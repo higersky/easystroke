@@ -17,6 +17,8 @@
 #include "composite.h"
 #include <gdkmm.h>
 #include <glibmm/i18n.h>
+#include <gdk/gdk.h>
+
 
 double red, green, blue, alpha, width;
 std::list<Trace::Point> points;
@@ -49,6 +51,9 @@ Composite::Composite() {
 #define N 128
 	int w = gdk_screen_width();
 	int h = gdk_screen_height();
+	GdkDisplay* dp = gdk_display_get_default();
+	GdkMonitor* mon = gdk_display_get_primary_monitor(dp);
+	scale_factor = gdk_monitor_get_scale_factor(mon);
 	num_x = (gdk_screen_width()  - 1)/N + 1;
 	num_y = (gdk_screen_height() - 1)/N + 1;
 	pieces = new Popup**[num_x];
@@ -61,6 +66,12 @@ Composite::Composite() {
 }
 
 void Composite::draw(Point p, Point q) {
+	if(scale_factor > 0) {
+		p.x /= scale_factor;
+		p.y /= scale_factor;
+		q.x /= scale_factor;
+		q.y /= scale_factor;
+	}
 	if (!points.size()) {
 		points.push_back(p);
 	}
