@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+build: build-arch build-indep
+build-arch: build-indep
+build-indep: build-stamp
+build-stamp:
+	dh_testdir
+	$(MAKE) PREFIX=/usr
+	touch $@
+
+clean: 
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	$(MAKE) clean
+	rm -f debian/gtk+-3.0.vapi
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+
+	$(MAKE) DESTDIR=$(CURDIR)/debian/easystroke PREFIX=/usr man install
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installman easystroke.1
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb -- -Z xz
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

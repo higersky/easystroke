@@ -1,0 +1,283 @@
+easystroke (0.6.0-1) focal; urgency=medium
+
+  * Apply all of the latest patches to fix bugs.
+
+easystroke (0.6.0-0ubuntu14) focal; urgency=medium
+
+  * No-change rebuild for libgcc-s1 package name change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 23 Mar 2020 08:58:35 +0100
+
+easystroke (0.6.0-0ubuntu13) focal; urgency=medium
+
+  * No change rebuild against new boost1.71 ABI
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Mon, 03 Feb 2020 20:19:28 +0000
+
+easystroke (0.6.0-0ubuntu12) cosmic; urgency=medium
+
+  * No-change rebuild for boost soname change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 17 Jul 2018 12:55:22 +0000
+
+easystroke (0.6.0-0ubuntu11) bionic; urgency=medium
+
+  * Import
+    https://github.com/thjaeger/easystroke/commit/9e2c32390c5c253aade3bb703e51841748d2c37e.patch
+    to fix FTBFS.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Tue, 31 Oct 2017 11:45:37 +0000
+
+easystroke (0.6.0-0ubuntu10) bionic; urgency=medium
+
+  * No-change rebuild for boost soname change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 26 Oct 2017 17:13:05 +0000
+
+easystroke (0.6.0-0ubuntu9) zesty; urgency=high
+
+  * No change rebuild against boost1.62.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Tue, 01 Nov 2016 16:17:23 +0000
+
+easystroke (0.6.0-0ubuntu8) yakkety; urgency=medium
+
+  * No-change rebuild for boost soname change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 04 Aug 2016 08:17:02 +0000
+
+easystroke (0.6.0-0ubuntu7) yakkety; urgency=medium
+
+  * debian/patches/lambda.patch: Grab patch from Debian to fix FTBFS due to
+    removed sigc::group (use C++11 lambda instead).
+  * debian/{control,compat}: Bump debhelper compatibility level to 9.
+  * debian/control: Bump Standards-Version to 3.9.8.
+
+ -- Logan Rosen <logan@ubuntu.com>  Sat, 07 May 2016 20:47:56 -0400
+
+easystroke (0.6.0-0ubuntu6) yakkety; urgency=medium
+
+  * No-change rebuild for boost soname change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 23 Apr 2016 18:38:13 +0000
+
+easystroke (0.6.0-0ubuntu5) wily; urgency=medium
+
+  * No-change rebuild against libatkmm-1.6-1v5
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 07 Aug 2015 18:14:49 +0000
+
+easystroke (0.6.0-0ubuntu4) wily; urgency=medium
+
+  * debian/control:
+    - Drop build-depends on valac-0.20, valac-0.20-vapi
+  * debian/gtk3vapi.patch:
+  * debian/rules:
+    - Don't rebuild and patch Vala file - the new version seems to compile fine
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 16 Jun 2015 11:11:40 +1200
+
+easystroke (0.6.0-0ubuntu3) utopic; urgency=high
+
+  * No change rebuild against boost1.55.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Mon, 28 Apr 2014 04:03:48 +0100
+
+easystroke (0.6.0-0ubuntu2) trusty; urgency=low
+
+  * No change rebuild for Boost 1.54 transition.
+
+ -- Dmitrijs Ledkovs <xnox@ubuntu.com>  Tue, 22 Oct 2013 15:25:08 +0100
+
+easystroke (0.6.0-0ubuntu1) saucy; urgency=low
+
+  * New upstream release
+  * Use vala-0.20 instead of vala-0.18
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Thu, 06 Jun 2013 14:52:26 -0400
+
+easystroke (0.5.99.2-0ubuntu2) saucy; urgency=low
+
+  * No change rebuild for Boost 1.53 transition.
+
+ -- Dmitrijs Ledkovs <dmitrij.ledkov@ubuntu.com>  Fri, 26 Apr 2013 19:18:40 +0100
+
+easystroke (0.5.99.2-0ubuntu1) raring; urgency=low
+
+  [ Thomas Jaeger ]
+  * New upstream release candidate.  Fixes
+    - editing actions no longer possible (LP: #1106922)
+  * debian/control: dependent on gtkmm3.0 now
+
+  [ Julian Taylor ]
+  * generate C source from vala file
+    - requires patch to gtk+3.0.vapi done during build
+    - add build dependency on libgtk+3.0-dev, valac-0.18 and valac-0.18-vapi
+  * drop deprecated dh_builddeb -- -Z lzma for -Z xz
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Fri, 01 Mar 2013 04:29:16 -0500
+
+easystroke (0.5.6-0ubuntu1) raring; urgency=low
+
+  [ Logan Rosen ]
+  * New upstream release. Should fix the following bugs, according to
+    Tom Jaeger on Launchpad:
+    - Exceptions don't work (LP: #995841).
+    - The focus randomly changes between windows if easystroke is in use and
+      the evdev driver is built with mtdev (LP: #1048865).
+  * debian/source/format: Indicate format of 3.0 (quilt).
+  * debian/control: Bump Standards-Version to 3.9.4.
+
+  [ Andrew Starr-Bochicchio ]
+  * debian/copyright: Update to DEP-5 style.
+
+ -- Logan Rosen <logatronico@gmail.com>  Tue, 08 Jan 2013 01:44:02 -0500
+
+easystroke (0.5.5.1-0ubuntu1) quantal; urgency=low
+
+  * New upstream release.
+  * Update build structure to satisfy Lintian.
+  * Bump Standards-Version to 3.9.3.
+
+ -- Logan Rosen <logatronico@gmail.com>  Mon, 16 Jul 2012 11:25:21 +0200
+
+easystroke (0.5.4-0ubuntu3) quantal; urgency=low
+
+  * No change rebuild for boost1.49 transition
+
+ -- Dmitrijs Ledkovs <dmitrij.ledkov@ubuntu.com>  Thu, 03 May 2012 20:59:03 +0100
+
+easystroke (0.5.4-0ubuntu2) oneiric; urgency=low
+
+  * No change rebuild for boost1.46 transition
+
+ -- Scott Kitterman <scott@kitterman.com>  Wed, 07 Sep 2011 22:42:42 -0400
+
+easystroke (0.5.4-0ubuntu1) maverick; urgency=low
+
+  * New upstream release (LP: #623955)
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Wed, 25 Aug 2010 14:38:25 +0200
+
+easystroke (0.5.3-0ubuntu1) lucid; urgency=low
+
+  * New upstream release (LP: #521548)
+    - Fixes a crash when a gesture times out during recording
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Sat, 13 Feb 2010 19:09:23 -0500
+
+easystroke (0.5.2-0ubuntu1) lucid; urgency=low
+
+  [ Thomas Jaeger ]
+  * New upstream release (LP: #502366)
+    - Fixes crash when the third axis is a relative one (LP: #466532)
+    - Uses XI2 now, so upgrade Build-Depends accordingly
+
+  [ Benjamin Drung ]
+  * Wrap Build-Depends
+  * Bump Standards-Version to 3.8.3
+  * Add ${misc:Depends} to dependency list
+  * Switch to debhelper v7.
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Sun, 03 Jan 2010 01:02:54 +0100
+
+easystroke (0.4.9-0ubuntu1) karmic; urgency=low
+
+  * New upstream release (LP: #416097)
+   - Upstream workaround for up and down button problem (LP: #412169)
+   - Include translations (LP: #355251) 
+
+ -- Julien Lavergne <gilir@ubuntu.com>  Thu, 20 Aug 2009 18:49:34 +0200
+
+easystroke (0.4.4-0ubuntu1) karmic; urgency=low
+
+  * New upstream release (LP: #377059)
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Fri, 15 May 2009 15:17:06 -0400
+
+easystroke (0.4.1.1-0ubuntu1) jaunty; urgency=low
+
+  * New upstream release (LP: #344040)
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Mon, 16 Mar 2009 22:58:42 -0400
+
+easystroke (0.4.1-0ubuntu1) jaunty; urgency=low
+
+  * New upstream release
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Fri, 20 Feb 2009 16:21:02 -0500
+
+easystroke (0.4.0.98.1-0ubuntu1) jaunty; urgency=low
+
+  * New upstream beta (LP: #329889)
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Sun, 15 Feb 2009 18:43:29 -0500
+
+easystroke (0.4.0-0ubuntu1) jaunty; urgency=low
+
+  * New upstream release
+  * Packaging changes
+    - Drop obsolete dependencies
+    - Don't suggest xautomation anymore since most of xte's features are
+      present in easystroke now.
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Sun, 08 Feb 2009 11:51:27 -0500
+
+easystroke (0.3.98.1-0ubuntu1) jaunty; urgency=low
+
+  * New upstream beta (LP: #318051)
+  * Use lzma compression in the deb.
+    - pass -Z lzma to dh_builddeb
+    - Pre-Depend on dpkg (>= 1.14.12ubuntu3)
+  * Build-Depend on intltool for the i18n of the desktop file.
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Fri, 16 Jan 2009 11:31:54 -0500
+
+easystroke (0.3.97.2-0ubuntu1) jaunty; urgency=low
+
+  * New upstream alpha
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Fri, 09 Jan 2009 17:06:09 -0500
+
+easystroke (0.3.97.1) jaunty; urgency=low
+
+  * New upstream alpha
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Tue, 06 Jan 2009 17:45:41 -0500
+
+easystroke (0.3.1-0ubuntu1) intrepid; urgency=low
+
+  * New upstream release
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Mon, 22 Dec 2008 21:13:32 +0100
+
+easystroke (0.2.2.1-0ubuntu2) intrepid; urgency=low
+
+  [ Thomas Jaeger ]
+  * Set a link open function to make documentation button work
+  * Don't set page_gize in adjustments for spin buttons to fix gtk
+    warnings.
+
+  [ James Westby ]
+  * Depend on xdg-utils for xdg-open, which is callled to show the
+    documentation.
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Tue, 30 Sep 2008 12:44:57 -0400
+
+easystroke (0.2.2.1-0ubuntu1) intrepid; urgency=low
+
+  * New upstream bugfix release (LP: #272593)
+    - better handling of unexpected X server behavior
+    - don't leave zombie processes behind
+    - make sure the gesture line disappears after a timeout
+    - workaround for multi-screen setups
+
+  * fix bug that caused popup preferences not to be saved automatically
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Thu, 25 Sep 2008 10:55:00 -0400
+
+easystroke (0.2.2-0ubuntu1) intrepid; urgency=low
+
+  * Initial release (LP: #254893)
+
+ -- Thomas Jaeger <ThJaeger@gmail.com>  Sun, 17 Aug 2008 19:19:14 -0400
