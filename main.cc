@@ -109,7 +109,10 @@ public:
 		get_window()->input_shape_combine_region(Cairo::Region::create(), 0, 0);
 	}
 	static void do_move() {
-		int left = gdk_screen_width() - 10;
+		GdkRectangle work_area;
+		gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
+                             	 &work_area);
+		int left = work_area.width - 10;
 		for (std::list<OSD *>::iterator i = osd_stack.begin(); i != osd_stack.end(); i++) {
 			left -= (*i)->w + 30;
 			(*i)->move(left, 40);
@@ -298,7 +301,11 @@ void App::run_by_name(const char *str, const Glib::RefPtr<Gio::ApplicationComman
 		}
 	}
 	char *msg;
-	asprintf(&msg, _("Warning: No action \"%s\" defined\n"), str);
+	int ret = asprintf(&msg, _("Warning: No action \"%s\" defined\n"), str);
+	if (ret < 0) {
+		cmd_line->print("Error: app cannot allocate enough memory");
+		exit(1);
+	}
 	cmd_line->print(msg);
 	free(msg);
 }
@@ -326,7 +333,11 @@ int App::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine> &comman
 			quit();
 		} else {
 			char *msg;
-			asprintf(&msg, "Warning: Unknown command \"%s\".\n", arg[i]);
+			int ret = asprintf(&msg, "Warning: Unknown command \"%s\".\n", arg[i]);
+			if (ret < 0) {
+				command_line->print("Error: app cannot allocate enough memory");
+				exit(1);
+			}
 			command_line->print(msg);
 			free(msg);
 		}

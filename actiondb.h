@@ -58,6 +58,7 @@ class Action {
 	friend std::ostream& operator<<(std::ostream& output, const Action& c);
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
 public:
+	virtual ~Action() {}
 	virtual void run() {}
 	virtual RModifiers prepare() { return RModifiers(); }
 	virtual const Glib::ustring get_label() const = 0;

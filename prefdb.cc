@@ -68,18 +68,18 @@ template<class Archive> void PrefDB::serialize(Archive & ar, const unsigned int 
 	}
 	ar & button.unsafe_ref();
 	if (version < 2) {
-		bool help;
+		bool help{};
 		ar & help;
 	}
 	ar & trace.unsafe_ref();
 	if (trace.get() == TraceShape)
 		trace.unsafe_ref() = TraceDefault;
 	if (version < 3) {
-		int delay;
+		int delay{};
 		ar & delay;
 	}
 	if (version == 1) {
-		ButtonInfo foo;
+		ButtonInfo foo{};
 		ar & foo;
 		ar & foo;
 		return;

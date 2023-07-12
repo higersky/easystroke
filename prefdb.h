@@ -34,7 +34,7 @@ class ButtonInfo {
 		ar & button;
 		ar & state;
 		if (version == 1) {
-			int special;
+			int special{};
 			ar & special;
 			return;
 		}

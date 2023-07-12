@@ -49,13 +49,16 @@ void Popup::invalidate(int x1, int y1, int x2, int y2) {
 
 Composite::Composite() {
 #define N 128
-	int w = gdk_screen_width();
-	int h = gdk_screen_height();
+	GdkRectangle work_area;
+	gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
+                             &work_area);
+	int w = work_area.width;
+	int h = work_area.height;
 	GdkDisplay* dp = gdk_display_get_default();
 	GdkMonitor* mon = gdk_display_get_primary_monitor(dp);
 	scale_factor = gdk_monitor_get_scale_factor(mon);
-	num_x = (gdk_screen_width()  - 1)/N + 1;
-	num_y = (gdk_screen_height() - 1)/N + 1;
+	num_x = (work_area.width - 1)/N + 1;
+	num_y = (work_area.height - 1)/N + 1;
 	pieces = new Popup**[num_x];
 	for (int i = 0; i < num_x; i++) {
 		pieces[i] = new Popup*[num_y];
@@ -121,6 +124,7 @@ void Popup::draw_line(Cairo::RefPtr<Cairo::Context> ctx) {
 }
 
 bool Popup::on_draw(const ::Cairo::RefPtr< ::Cairo::Context>& ctx) {
+	ctx->set_antialias(Cairo::ANTIALIAS_DEFAULT);
 	ctx->set_operator(Cairo::OPERATOR_SOURCE);
 	ctx->set_source_rgba(0.0, 0.0, 0.0, 0.0);
 	ctx->paint();

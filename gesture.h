@@ -68,7 +68,7 @@ public:
 		template<class Archive> void serialize(Archive & ar, const unsigned int version) {
 			ar & x; ar & y;
 			if (version == 0) {
-				double time;
+				double time = ((double)rand() / (double)(RAND_MAX));
 				ar & time;
 			}
 		}

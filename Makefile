@@ -12,6 +12,7 @@
 #  OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 #  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+CXX = g++
 DESTDIR  =
 PREFIX   = /usr/local
 BINDIR   = $(PREFIX)/bin
@@ -21,11 +22,11 @@ LOCALEDIR= $(PREFIX)/share/locale
 DFLAGS   =
 OFLAGS   = -O2
 AOFLAGS  = -O3
-STROKEFLAGS  = -Wall -std=c11 $(DFLAGS)
-CXXSTD = -std=c++11
+STROKEFLAGS  = -Wall -std=c17 $(DFLAGS)
+CXXSTD = -std=c++17
 INCLUDES = $(shell pkg-config gtkmm-3.0 dbus-glib-1 --cflags)
 CXXFLAGS = $(CXXSTD) -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES)
-CFLAGS   = -std=c11 -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES) -DGETTEXT_PACKAGE='"easystroke"'
+CFLAGS   = -std=c17 -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES) -DGETTEXT_PACKAGE='"easystroke"'
 LDFLAGS  = $(DFLAGS)
 
 LIBS     = $(DFLAGS) -lboost_serialization -lX11 -lXext -lXi -lXfixes -lXtst `pkg-config gtkmm-3.0 dbus-glib-1 --libs`

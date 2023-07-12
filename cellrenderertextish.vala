@@ -22,7 +22,7 @@ public class CellRendererTextish : Gtk.CellRendererText {
 		this.items = items;
 	}
 
-	public override unowned Gtk.CellEditable start_editing (Gdk.Event? event, Gtk.Widget widget, string path, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
+	public override unowned Gtk.CellEditable? start_editing (Gdk.Event? event, Gtk.Widget widget, string path, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
 		cell = null;
 		if (!editable)
 			return cell;
@@ -56,23 +56,44 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 	public bool editing_canceled { get; set; }
 	new CellRendererTextish parent;
 	new string path;
+	static bool background_color_added;
 
 	public CellEditableAccel(CellRendererTextish parent, string path, Gtk.Widget widget) {
 		this.parent = parent;
 		this.path = path;
 		editing_done.connect(on_editing_done);
 		Gtk.Label label = new Gtk.Label(_("Key combination..."));
-		label.set_alignment(0.0f, 0.5f);
+		label.xalign = 0.0f;
+		label.yalign = 0.5f;
 		add(label);
-		override_background_color(Gtk.StateFlags.NORMAL, widget.get_style_context().get_background_color(Gtk.StateFlags.SELECTED));
-		label.override_color(Gtk.StateFlags.NORMAL, widget.get_style_context().get_color(Gtk.StateFlags.SELECTED));
+		if(!background_color_added) {
+			var screen = this.get_screen();
+			var css_provider = new Gtk.CssProvider();
+			string css = ".cell_editable_accel_bg { background-color: " + widget.get_style_context().get_background_color(Gtk.StateFlags.SELECTED).to_string() + ";}";
+			try {
+				css_provider.load_from_data(css);
+				Gtk.StyleContext.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+			} catch(Error e) {
+				error("Cannot load CSS stylesheet: %s", e.message);
+			}
+			background_color_added = true;
+		}
+
+		
+		get_style_context().add_class("cell_editable_accel_bg");
+		label.get_style_context().add_class("cell_editable_accel_bg");
 		show_all();
 	}
 
 	protected virtual void start_editing(Gdk.Event? event) {
 		Gtk.grab_add(this);
-		Gdk.keyboard_grab(get_window(), false, event != null ? event.get_time() : Gdk.CURRENT_TIME);
-
+		Gdk.Seat seat = Gdk.Display.get_default().get_default_seat();
+		seat.grab(get_window(),
+				  Gdk.SeatCapabilities.KEYBOARD,
+				  false,
+				  null,
+				  event,
+				  null);
 /*
 		Gdk.DeviceManager dm = get_window().get_display().get_device_manager();
 		foreach (Gdk.Device dev in dm.list_devices(Gdk.DeviceType.SLAVE))
@@ -101,8 +122,7 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 	}
 	void on_editing_done() {
 		Gtk.grab_remove(this);
-		Gdk.keyboard_ungrab(Gdk.CURRENT_TIME);
-
+		Gdk.Display.get_default().get_default_seat().ungrab();
 /*
 		Gdk.DeviceManager dm = get_window().get_display().get_device_manager();
 		foreach (Gdk.Device dev in dm.list_devices(Gdk.DeviceType.SLAVE))
