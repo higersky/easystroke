@@ -3,6 +3,10 @@
 
 /* compile with  valac -c cellrenderertextish.vala --pkg gtk+-3.0 -C -H cellrenderertextish.h */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+
 #include <gtk/gtk.h>
 #include <glib-object.h>
 #include <stdlib.h>
@@ -10,6 +14,9 @@
 #include <glib.h>
 #include <gdk/gdk.h>
 #include <glib/gi18n-lib.h>
+#include <cairo-gobject.h>
+#include <float.h>
+#include <math.h>
 
 #define TYPE_CELL_RENDERER_TEXTISH (cell_renderer_textish_get_type ())
 #define CELL_RENDERER_TEXTISH(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_CELL_RENDERER_TEXTISH, CellRendererTextish))
@@ -33,7 +40,7 @@ enum  {
 	CELL_RENDERER_TEXTISH_0_PROPERTY,
 	CELL_RENDERER_TEXTISH_NUM_PROPERTIES
 };
-__attribute__((unused)) static GParamSpec* cell_renderer_textish_properties[CELL_RENDERER_TEXTISH_NUM_PROPERTIES];
+static GParamSpec* cell_renderer_textish_properties[CELL_RENDERER_TEXTISH_NUM_PROPERTIES];
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
 #define TYPE_CELL_EDITABLE_ACCEL (cell_editable_accel_get_type ())
@@ -87,12 +94,14 @@ enum  {
 static GParamSpec* cell_editable_accel_properties[CELL_EDITABLE_ACCEL_NUM_PROPERTIES];
 #define _g_free0(var) (var = (g_free (var), NULL))
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
+#define _cairo_destroy0(var) ((var == NULL) ? NULL : (var = (cairo_destroy (var), NULL)))
+#define _cairo_surface_destroy0(var) ((var == NULL) ? NULL : (var = (cairo_surface_destroy (var), NULL)))
 typedef struct _CellEditableComboPrivate CellEditableComboPrivate;
 enum  {
 	CELL_EDITABLE_COMBO_0_PROPERTY,
 	CELL_EDITABLE_COMBO_NUM_PROPERTIES
 };
- __attribute__((unused)) static GParamSpec* cell_editable_combo_properties[CELL_EDITABLE_COMBO_NUM_PROPERTIES];
+static GParamSpec* cell_editable_combo_properties[CELL_EDITABLE_COMBO_NUM_PROPERTIES];
 typedef struct _Block1Data Block1Data;
 
 struct _CellRendererTextish {
@@ -191,8 +200,8 @@ static GtkCellEditable* cell_renderer_textish_real_start_editing (GtkCellRendere
                                                            GdkEvent* event,
                                                            GtkWidget* widget,
                                                            const gchar* path,
-                                                           const GdkRectangle* background_area,
-                                                           const GdkRectangle* cell_area,
+                                                           GdkRectangle* background_area,
+                                                           GdkRectangle* cell_area,
                                                            GtkCellRendererState flags);
 CellEditableAccel* cell_editable_accel_new (CellRendererTextish* parent,
                                             const gchar* path,
@@ -251,9 +260,13 @@ static void _vala_cell_editable_dummy_set_property (GObject * object,
                                              guint property_id,
                                              const GValue * value,
                                              GParamSpec * pspec);
+static gint cell_editable_accel_inverse_premultiplied_color (gint color,
+                                                      gint alpha);
 static void cell_editable_accel_on_editing_done (CellEditableAccel* self);
 static void _cell_editable_accel_on_editing_done_gtk_cell_editable_editing_done (GtkCellEditable* _sender,
                                                                           gpointer self);
+static guchar* _vala_array_dup2 (guchar* self,
+                          gint length);
 void cell_editable_accel_start_editing (CellEditableAccel* self,
                                         GdkEvent* event);
 static void cell_editable_accel_real_start_editing (CellEditableAccel* self,
@@ -390,8 +403,8 @@ cell_renderer_textish_real_start_editing (GtkCellRenderer* base,
                                           GdkEvent* event,
                                           GtkWidget* widget,
                                           const gchar* path,
-                                          const GdkRectangle* background_area,
-                                          const GdkRectangle* cell_area,
+                                          GdkRectangle* background_area,
+                                          GdkRectangle* cell_area,
                                           GtkCellRendererState flags)
 {
 	CellRendererTextish * self;
@@ -528,7 +541,7 @@ cell_renderer_textish_class_init (CellRendererTextishClass * klass,
 {
 	cell_renderer_textish_parent_class = g_type_class_peek_parent (klass);
 	g_type_class_adjust_private_offset (klass, &CellRendererTextish_private_offset);
-	((GtkCellRendererClass *) klass)->start_editing = (GtkCellEditable* (*) (GtkCellRenderer*, GdkEvent*, GtkWidget*, const gchar*, const GdkRectangle*, const GdkRectangle*, GtkCellRendererState)) cell_renderer_textish_real_start_editing;
+	((GtkCellRendererClass *) klass)->start_editing = (GtkCellEditable* (*) (GtkCellRenderer*, GdkEvent*, GtkWidget*, const gchar*, GdkRectangle*, GdkRectangle*, GtkCellRendererState)) cell_renderer_textish_real_start_editing;
 	G_OBJECT_CLASS (klass)->finalize = cell_renderer_textish_finalize;
 	cell_renderer_textish_signals[CELL_RENDERER_TEXTISH_KEY_EDITED_SIGNAL] = g_signal_new ("key-edited", TYPE_CELL_RENDERER_TEXTISH, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__STRING_FLAGS_UINT, G_TYPE_NONE, 3, G_TYPE_STRING, gdk_modifier_type_get_type (), G_TYPE_UINT);
 	cell_renderer_textish_signals[CELL_RENDERER_TEXTISH_COMBO_EDITED_SIGNAL] = g_signal_new ("combo-edited", TYPE_CELL_RENDERER_TEXTISH, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__STRING_UINT, G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_UINT);
@@ -663,7 +676,6 @@ cell_editable_dummy_finalize (GObject * obj)
 	CellEditableDummy * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, TYPE_CELL_EDITABLE_DUMMY, CellEditableDummy);
 	G_OBJECT_CLASS (cell_editable_dummy_parent_class)->finalize (obj);
-	(void) self;
 }
 
 static GType
@@ -732,11 +744,31 @@ cell_editable_accel_get_instance_private (CellEditableAccel* self)
 	return G_STRUCT_MEMBER_P (self, CellEditableAccel_private_offset);
 }
 
+static gint
+cell_editable_accel_inverse_premultiplied_color (gint color,
+                                                 gint alpha)
+{
+	gint result = 0;
+	if (alpha == 0) {
+		result = 0;
+		return result;
+	}
+	result = (((255 * color) + alpha) - 1) / alpha;
+	return result;
+}
+
 static void
 _cell_editable_accel_on_editing_done_gtk_cell_editable_editing_done (GtkCellEditable* _sender,
                                                                      gpointer self)
 {
 	cell_editable_accel_on_editing_done ((CellEditableAccel*) self);
+}
+
+static guchar*
+_vala_array_dup2 (guchar* self,
+                  gint length)
+{
+	return g_memdup (self, length * sizeof (guchar));
 }
 
 CellEditableAccel*
@@ -753,9 +785,9 @@ cell_editable_accel_construct (GType object_type,
 	GtkLabel* _tmp3_;
 	GtkLabel* _tmp4_;
 	GtkLabel* _tmp5_;
-	GtkStyleContext* _tmp22_;
-	GtkLabel* _tmp23_;
-	GtkStyleContext* _tmp24_;
+	GtkStyleContext* _tmp44_;
+	GtkLabel* _tmp45_;
+	GtkStyleContext* _tmp46_;
 	GError* _inner_error0_ = NULL;
 	g_return_val_if_fail (parent != NULL, NULL);
 	g_return_val_if_fail (path != NULL, NULL);
@@ -783,60 +815,150 @@ cell_editable_accel_construct (GType object_type,
 		GdkScreen* _tmp7_;
 		GtkCssProvider* css_provider = NULL;
 		GtkCssProvider* _tmp8_;
-		gchar* css = NULL;
+		GtkStyleContext* styleContext = NULL;
 		GtkStyleContext* _tmp9_;
-		GdkRGBA _tmp10_ = {0};
-		gchar* _tmp11_;
-		gchar* _tmp12_;
-		gchar* _tmp13_;
-		gchar* _tmp14_;
-		gchar* _tmp15_;
-		gchar* _tmp16_;
+		GtkStyleContext* _tmp10_;
+		GtkStyleContext* _tmp11_;
+		GtkStyleContext* _tmp12_;
+		cairo_surface_t* surface = NULL;
+		cairo_surface_t* _tmp13_;
+		cairo_t* context = NULL;
+		cairo_surface_t* _tmp14_;
+		cairo_t* _tmp15_;
+		GtkStyleContext* _tmp16_;
+		cairo_t* _tmp17_;
+		cairo_t* _tmp18_;
+		cairo_surface_t* _tmp19_;
+		GtkStyleContext* _tmp20_;
+		guchar* data = NULL;
+		cairo_surface_t* _tmp21_;
+		guchar* _tmp22_;
+		guchar* _tmp23_;
+		gint _tmp23__length1;
+		gint data_length1;
+		gint _data_size_;
+		gint a = 0;
+		guchar* _tmp24_;
+		gint _tmp24__length1;
+		guchar _tmp25_;
+		gint r = 0;
+		guchar* _tmp26_;
+		gint _tmp26__length1;
+		guchar _tmp27_;
+		gint g = 0;
+		guchar* _tmp28_;
+		gint _tmp28__length1;
+		guchar _tmp29_;
+		gint b = 0;
+		guchar* _tmp30_;
+		gint _tmp30__length1;
+		guchar _tmp31_;
+		GdkRGBA rgba = {0};
+		GdkRGBA _tmp32_ = {0};
+		gchar* css = NULL;
+		gchar* _tmp33_;
+		gchar* _tmp34_;
+		gchar* _tmp35_;
+		gchar* _tmp36_;
+		gchar* _tmp37_;
+		gchar* _tmp38_;
 		_tmp6_ = gtk_widget_get_screen ((GtkWidget*) self);
 		_tmp7_ = _g_object_ref0 (_tmp6_);
 		screen = _tmp7_;
 		_tmp8_ = gtk_css_provider_new ();
 		css_provider = _tmp8_;
 		_tmp9_ = gtk_widget_get_style_context (widget);
-		gtk_style_context_get_background_color (_tmp9_, GTK_STATE_FLAG_SELECTED, &_tmp10_);
-		_tmp11_ = gdk_rgba_to_string (&_tmp10_);
-		_tmp12_ = _tmp11_;
-		_tmp13_ = g_strconcat (".cell_editable_accel_bg { background-color: ", _tmp12_, NULL);
-		_tmp14_ = _tmp13_;
-		_tmp15_ = g_strconcat (_tmp14_, ";}", NULL);
-		_tmp16_ = _tmp15_;
-		_g_free0 (_tmp14_);
-		_g_free0 (_tmp12_);
-		css = _tmp16_;
+		_tmp10_ = _g_object_ref0 (_tmp9_);
+		styleContext = _tmp10_;
+		_tmp11_ = styleContext;
+		gtk_style_context_save (_tmp11_);
+		_tmp12_ = styleContext;
+		gtk_style_context_set_state (_tmp12_, GTK_STATE_FLAG_SELECTED);
+		_tmp13_ = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 1, 1);
+		surface = _tmp13_;
+		_tmp14_ = surface;
+		_tmp15_ = cairo_create (_tmp14_);
+		context = _tmp15_;
+		_tmp16_ = styleContext;
+		_tmp17_ = context;
+		gtk_render_background (_tmp16_, _tmp17_, (gdouble) -50, (gdouble) -50, (gdouble) 100, (gdouble) 100);
+		_tmp18_ = context;
+		cairo_fill (_tmp18_);
+		_tmp19_ = surface;
+		cairo_surface_flush (_tmp19_);
+		_tmp20_ = styleContext;
+		gtk_style_context_restore (_tmp20_);
+		_tmp21_ = surface;
+		_tmp22_ = cairo_image_surface_get_data (_tmp21_);
+		_tmp23_ = (_tmp22_ != NULL) ? _vala_array_dup2 (_tmp22_, -1) : ((gpointer) _tmp22_);
+		_tmp23__length1 = -1;
+		data = _tmp23_;
+		data_length1 = _tmp23__length1;
+		_data_size_ = data_length1;
+		_tmp24_ = data;
+		_tmp24__length1 = data_length1;
+		_tmp25_ = _tmp24_[3];
+		a = (gint) _tmp25_;
+		_tmp26_ = data;
+		_tmp26__length1 = data_length1;
+		_tmp27_ = _tmp26_[2];
+		r = (gint) _tmp27_;
+		_tmp28_ = data;
+		_tmp28__length1 = data_length1;
+		_tmp29_ = _tmp28_[1];
+		g = (gint) _tmp29_;
+		_tmp30_ = data;
+		_tmp30__length1 = data_length1;
+		_tmp31_ = _tmp30_[0];
+		b = (gint) _tmp31_;
+		memset (&_tmp32_, 0, sizeof (GdkRGBA));
+		_tmp32_.alpha = (gdouble) (a / 255.f);
+		_tmp32_.red = (gdouble) (cell_editable_accel_inverse_premultiplied_color (r, a) / 255.f);
+		_tmp32_.green = (gdouble) (cell_editable_accel_inverse_premultiplied_color (g, a) / 255.f);
+		_tmp32_.blue = (gdouble) (cell_editable_accel_inverse_premultiplied_color (b, a) / 255.f);
+		rgba = _tmp32_;
+		_tmp33_ = gdk_rgba_to_string (&rgba);
+		_tmp34_ = _tmp33_;
+		_tmp35_ = g_strconcat (".cell_editable_accel_bg { background-color: ", _tmp34_, NULL);
+		_tmp36_ = _tmp35_;
+		_tmp37_ = g_strconcat (_tmp36_, ";}", NULL);
+		_tmp38_ = _tmp37_;
+		_g_free0 (_tmp36_);
+		_g_free0 (_tmp34_);
+		css = _tmp38_;
 		{
-			GtkCssProvider* _tmp17_;
-			const gchar* _tmp18_;
-			GdkScreen* _tmp19_;
-			GtkCssProvider* _tmp20_;
-			_tmp17_ = css_provider;
-			_tmp18_ = css;
-			gtk_css_provider_load_from_data (_tmp17_, _tmp18_, (gssize) -1, &_inner_error0_);
+			GtkCssProvider* _tmp39_;
+			const gchar* _tmp40_;
+			GdkScreen* _tmp41_;
+			GtkCssProvider* _tmp42_;
+			_tmp39_ = css_provider;
+			_tmp40_ = css;
+			gtk_css_provider_load_from_data (_tmp39_, _tmp40_, (gssize) -1, &_inner_error0_);
 			if (G_UNLIKELY (_inner_error0_ != NULL)) {
 				goto __catch0_g_error;
 			}
-			_tmp19_ = screen;
-			_tmp20_ = css_provider;
-			gtk_style_context_add_provider_for_screen (_tmp19_, (GtkStyleProvider*) _tmp20_, (guint) GTK_STYLE_PROVIDER_PRIORITY_USER);
+			_tmp41_ = screen;
+			_tmp42_ = css_provider;
+			gtk_style_context_add_provider_for_screen (_tmp41_, (GtkStyleProvider*) _tmp42_, (guint) GTK_STYLE_PROVIDER_PRIORITY_USER);
 		}
 		goto __finally0;
 		__catch0_g_error:
 		{
 			GError* e = NULL;
-			const gchar* _tmp21_;
+			const gchar* _tmp43_;
 			e = _inner_error0_;
 			_inner_error0_ = NULL;
-			_tmp21_ = e->message;
-			g_error ("cellrenderertextish.vala:77: Cannot load CSS stylesheet: %s", _tmp21_);
+			_tmp43_ = e->message;
+			g_error ("cellrenderertextish.vala:106: Cannot load CSS stylesheet: %s", _tmp43_);
 			_g_error_free0 (e);
 		}
 		__finally0:
 		if (G_UNLIKELY (_inner_error0_ != NULL)) {
 			_g_free0 (css);
+			data = (g_free (data), NULL);
+			_cairo_destroy0 (context);
+			_cairo_surface_destroy0 (surface);
+			_g_object_unref0 (styleContext);
 			_g_object_unref0 (css_provider);
 			_g_object_unref0 (screen);
 			_g_object_unref0 (label);
@@ -846,14 +968,18 @@ cell_editable_accel_construct (GType object_type,
 		}
 		cell_editable_accel_background_color_added = TRUE;
 		_g_free0 (css);
+		data = (g_free (data), NULL);
+		_cairo_destroy0 (context);
+		_cairo_surface_destroy0 (surface);
+		_g_object_unref0 (styleContext);
 		_g_object_unref0 (css_provider);
 		_g_object_unref0 (screen);
 	}
-	_tmp22_ = gtk_widget_get_style_context ((GtkWidget*) self);
-	gtk_style_context_add_class (_tmp22_, "cell_editable_accel_bg");
-	_tmp23_ = label;
-	_tmp24_ = gtk_widget_get_style_context ((GtkWidget*) _tmp23_);
-	gtk_style_context_add_class (_tmp24_, "cell_editable_accel_bg");
+	_tmp44_ = gtk_widget_get_style_context ((GtkWidget*) self);
+	gtk_style_context_add_class (_tmp44_, "cell_editable_accel_bg");
+	_tmp45_ = label;
+	_tmp46_ = gtk_widget_get_style_context ((GtkWidget*) _tmp45_);
+	gtk_style_context_add_class (_tmp46_, "cell_editable_accel_bg");
 	gtk_widget_show_all ((GtkWidget*) self);
 	_g_object_unref0 (label);
 	return self;
@@ -1158,7 +1284,7 @@ cell_editable_combo_construct (GType object_type,
 	{
 		gchar** item_collection = NULL;
 		gint item_collection_length1 = 0;
-		__attribute__((unused)) gint _item_collection_size_ = 0;
+		gint _item_collection_size_ = 0;
 		gint item_it = 0;
 		item_collection = items;
 		item_collection_length1 = items_length1;
@@ -1263,3 +1389,4 @@ _vala_array_free (gpointer array,
 	g_free (array);
 }
 
+#pragma GCC diagnostic pop

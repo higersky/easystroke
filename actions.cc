@@ -685,7 +685,12 @@ void Actions::update_row(const Gtk::TreeRow &row) {
 	row[cols.stroke] = !si->strokes.empty() && *si->strokes.begin() ? 
 		(*si->strokes.begin())->draw(STROKE_SIZE, stroke ? 4.0 : 2.0) : Stroke::drawEmpty(STROKE_SIZE);
 	row[cols.name] = si->name;
-	row[cols.type] = si->action ? type_info_to_name(&typeid(*si->action)) : "";
+	if(si->action) {
+		auto& r = *si->action;
+		row[cols.type] = type_info_to_name(&typeid(r));
+	} else {
+		row[cols.type] = "";
+	}
 	row[cols.arg]  = si->action ? si->action->get_label() : "";
 	row[cols.deactivated] = deleted;
 	row[cols.name_bold] = name;

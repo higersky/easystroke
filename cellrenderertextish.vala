@@ -58,6 +58,13 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 	new string path;
 	static bool background_color_added;
 
+	static int inverse_premultiplied_color(int color, int alpha) {
+		if (alpha == 0) {
+			return 0;
+		}
+		return (255 * color + alpha - 1) / alpha;
+	}
+
 	public CellEditableAccel(CellRendererTextish parent, string path, Gtk.Widget widget) {
 		this.parent = parent;
 		this.path = path;
@@ -69,7 +76,29 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 		if(!background_color_added) {
 			var screen = this.get_screen();
 			var css_provider = new Gtk.CssProvider();
-			string css = ".cell_editable_accel_bg { background-color: " + widget.get_style_context().get_background_color(Gtk.StateFlags.SELECTED).to_string() + ";}";
+			var styleContext = widget.get_style_context();
+			styleContext.save();
+			styleContext.set_state(Gtk.StateFlags.SELECTED);
+			var surface = new Cairo.ImageSurface(Cairo.Format.ARGB32, 1, 1);
+			var context = new Cairo.Context(surface);
+			styleContext.render_background(context, -50, -50, 100, 100);
+			context.fill();
+			surface.flush();
+			styleContext.restore();
+
+			var data = surface.get_data();
+			int a = data[3];
+			int r = data[2];
+			int g = data[1];
+			int b = data[0];
+			var rgba = Gdk.RGBA() {
+				alpha = a / 255f,
+				red   = inverse_premultiplied_color(r, a) / 255f,
+				green = inverse_premultiplied_color(g, a) / 255f,
+				blue  = inverse_premultiplied_color(b, a) / 255f		
+			};
+			
+			string css = ".cell_editable_accel_bg { background-color: " + rgba.to_string() + ";}";
 			try {
 				css_provider.load_from_data(css);
 				Gtk.StyleContext.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
