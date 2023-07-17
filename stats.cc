@@ -91,11 +91,17 @@ class Feedback {
 	boost::shared_ptr<Gtk::Window> text;
 public:
 	Feedback(RStroke s, Glib::ustring t, int x, int y) {
-		x += (prefs.left_handed.get() ? 1 : -1)*3*STROKE_SIZE / 2;
+		// x += (prefs.left_handed.get() ? 1 : -1)*3*STROKE_SIZE / 2;
 		int w,h;
+		Glib::RefPtr<Gdk::Screen> screen = Gdk::Display::get_default()->get_default_screen();
+		int sw = screen->get_width();
+		int sh = screen->get_height();
+		x = sw / 2;
+		y = sh / 2 + 3 * sh / 10;
+
 		if (s) {
 			WIDGET(Gtk::Image, image, s->draw(STROKE_SIZE));
-			image.set_padding(2,2);
+			image.set_padding(6,6);
 			icon.reset(new Tooltip(image));
 			icon->get_size(w,h);
 			icon->move(x - w/2, y - h/2);
@@ -104,7 +110,7 @@ public:
 
 		if (t != "") {
 			WIDGET(Gtk::Label, label, t);
-			label.set_padding(4,4);
+			label.set_padding(8,8);
 			text.reset(new Tooltip(label));
 			text->get_size(w,h);
 			text->move(x - w/2, y + h/2);

@@ -1282,7 +1282,7 @@ Van Diep Duong (Vietnamese)</property>
                               <object class="GtkCheckButton" id="check_left_handed">
                                 <property name="label" translatable="yes">to the right of the cursor)</property>
                                 <property name="use_action_appearance">False</property>
-                                <property name="visible">True</property>
+                                <property name="visible">False</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
                                 <property name="use_action_appearance">False</property>
