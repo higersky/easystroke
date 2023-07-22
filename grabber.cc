@@ -201,10 +201,10 @@ std::string get_wm_class(Window w) {
 }
 
 class IdleNotifier : public Base {
-	sigc::slot<void> f;
+	sigc::slot<void()> f;
 	void run() { f(); }
 public:
-	IdleNotifier(sigc::slot<void> f_) : f(f_) {}
+	IdleNotifier(sigc::slot<void()>&& f_) : f(std::move(f_)) {}
 	virtual void notify() { xstate->queue(sigc::mem_fun(*this, &IdleNotifier::run)); }
 };
 

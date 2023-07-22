@@ -45,7 +45,7 @@ public:
 	void bail_out();
 	void select();
 	void run_action(RAction act);
-	void queue(sigc::slot<void> f);
+	void queue(sigc::slot<void()>&& f);
 	std::string select_window();
 
 	static void activate_window(Window w, Time t);
@@ -68,7 +68,7 @@ private:
 	static int xIOErrorHandler(Display *dpy2);
 	int (*oldHandler)(Display *, XErrorEvent *);
 	int (*oldIOHandler)(Display *);
-	std::list<sigc::slot<void> > queued;
+	std::list<sigc::slot<void()> > queued;
 	std::map<int, std::string> opcodes;
 };
 

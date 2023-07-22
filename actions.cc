@@ -697,7 +697,7 @@ void Actions::update_row(const Gtk::TreeRow &row) {
 	row[cols.action_bold] = action;
 }
 
-extern boost::shared_ptr<sigc::slot<void, RStroke> > stroke_action;
+extern boost::shared_ptr<sigc::slot<void(RStroke)> > stroke_action;
 Source<bool> recording(false);
 
 class Actions::OnStroke {
@@ -761,7 +761,7 @@ void Actions::on_row_activated(const Gtk::TreeModel::Path& path, Gtk::TreeViewCo
 		del->set_sensitive(si->strokes.size() != 0);
 
 	OnStroke ps(this, dialog, row);
-	stroke_action.reset(new sigc::slot<void, RStroke>(sigc::mem_fun(ps, &OnStroke::delayed_run)));
+	stroke_action.reset(new sigc::slot<void(RStroke)>(sigc::mem_fun(ps, &OnStroke::delayed_run)));
 	recording.set(true);
 
 	dialog->show();

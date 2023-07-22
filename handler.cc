@@ -33,7 +33,7 @@ extern Source<Window> current_app_window;
 extern boost::shared_ptr<Trace> trace;
 
 
-boost::shared_ptr<sigc::slot<void, RStroke> > stroke_action;
+boost::shared_ptr<sigc::slot<void(RStroke)> > stroke_action;
 
 static XAtom EASYSTROKE_PING("EASYSTROKE_PING");
 
@@ -41,12 +41,12 @@ bool XState::idle() {
 	return !handler->child;
 }
 
-void XState::queue(sigc::slot<void> f) {
+void XState::queue(sigc::slot<void()>&& f) {
 	if (idle()) {
 		f();
 		XFlush(dpy);
 	} else
-		queued.push_back(f);
+		queued.push_back(std::move(f));
 }
 
 void XState::handle_enter_leave(XEvent &ev) {

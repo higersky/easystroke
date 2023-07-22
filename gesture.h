@@ -65,6 +65,10 @@ public:
 			Point product = { x * a, y * a };
 			return product;
 		}
+		Point operator/(const double a) {
+			Point division = { x / a, y / a };
+			return division;
+		}
 		template<class Archive> void serialize(Archive & ar, const unsigned int version) {
 			ar & x; ar & y;
 			if (version == 0) {
