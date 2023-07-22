@@ -36,20 +36,20 @@ class Button;
 class Misc;
 class Ranking;
 
-typedef boost::shared_ptr<Action> RAction;
-typedef boost::shared_ptr<Command> RCommand;
-typedef boost::shared_ptr<SendKey> RSendKey;
-typedef boost::shared_ptr<SendText> RSendText;
-typedef boost::shared_ptr<Scroll> RScroll;
-typedef boost::shared_ptr<Ignore> RIgnore;
-typedef boost::shared_ptr<Button> RButton;
-typedef boost::shared_ptr<Misc> RMisc;
-typedef boost::shared_ptr<Ranking> RRanking;
+typedef std::shared_ptr<Action> RAction;
+typedef std::shared_ptr<Command> RCommand;
+typedef std::shared_ptr<SendKey> RSendKey;
+typedef std::shared_ptr<SendText> RSendText;
+typedef std::shared_ptr<Scroll> RScroll;
+typedef std::shared_ptr<Ignore> RIgnore;
+typedef std::shared_ptr<Button> RButton;
+typedef std::shared_ptr<Misc> RMisc;
+typedef std::shared_ptr<Ranking> RRanking;
 
 class Unique;
 
 class Modifiers;
-typedef boost::shared_ptr<Modifiers> RModifiers;
+typedef std::shared_ptr<Modifiers> RModifiers;
 
 bool mods_equal(RModifiers m1, RModifiers m2);
 
@@ -205,7 +205,7 @@ public:
 	RAction action;
 	std::string name;
 };
-typedef boost::shared_ptr<StrokeInfo> RStrokeInfo;
+typedef std::shared_ptr<StrokeInfo> RStrokeInfo;
 BOOST_CLASS_VERSION(StrokeInfo, 1)
 
 class Ranking {
@@ -367,8 +367,8 @@ public:
 		return true;
 	}
 
-	boost::shared_ptr<std::map<Unique *, StrokeSet> > get_strokes() const;
-	boost::shared_ptr<std::set<Unique *> > get_ids(bool include_deleted) const;
+	std::shared_ptr<std::map<Unique *, StrokeSet> > get_strokes() const;
+	std::shared_ptr<std::set<Unique *> > get_ids(bool include_deleted) const;
 	int count_actions() const {
 		return (parent ? parent->count_actions() : 0) + order.size() - deleted.size();
 	}

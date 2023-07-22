@@ -50,7 +50,7 @@ Win *win = nullptr;
 Display *dpy;
 Window ROOT;
 
-boost::shared_ptr<Trace> trace;
+std::shared_ptr<Trace> trace;
 
 static ActionDBWatcher *action_watcher = 0;
 
@@ -199,6 +199,7 @@ private:
 
 	bool remote;
 	GSimpleAction *enabled;
+	Notifier* trace_notify;
 };
 
 class ReloadTrace : public Timeout {
@@ -413,7 +414,7 @@ void App::on_activate() {
 	Glib::RefPtr<Gdk::Screen> screen = Gdk::Display::get_default()->get_default_screen();
 	g_signal_connect(screen->gobj(), "composited-changed", &schedule_reload_trace, nullptr);
 	screen->signal_size_changed().connect(sigc::ptr_fun(&schedule_reload_trace));
-	Notifier *trace_notify = new Notifier(sigc::ptr_fun(&schedule_reload_trace));
+	trace_notify = new Notifier(sigc::ptr_fun(&schedule_reload_trace));
 	prefs.trace.connect(trace_notify);
 	prefs.color.connect(trace_notify);
 
@@ -502,6 +503,9 @@ App::~App() {
 		XCloseDisplay(dpy);
 		prefs.execute_now();
 		action_watcher->execute_now();
+		delete xstate;
+		delete action_watcher;
+		delete trace_notify;
 	}
 }
 

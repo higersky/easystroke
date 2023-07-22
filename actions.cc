@@ -653,16 +653,16 @@ void Actions::update_counts() {
 
 void Actions::update_action_list() {
 	check_show_deleted->set_sensitive(action_list != actions.get_root());
-	boost::shared_ptr<std::set<Unique *> > ids = action_list->get_ids(check_show_deleted->get_active());
+	std::shared_ptr<std::set<Unique *> > ids = action_list->get_ids(check_show_deleted->get_active());
 	const Gtk::TreeNodeChildren &ch = tm->children();
 
-	std::list<Gtk::TreeRowReference> refs;
+	std::vector<Gtk::TreeRowReference> refs;
 	for (Gtk::TreeIter i = ch.begin(); i != ch.end(); i++) {
 		Gtk::TreeRowReference ref(tm, Gtk::TreePath(*i));
 		refs.push_back(ref);
 	}
 
-	for (std::list<Gtk::TreeRowReference>::iterator ref = refs.begin(); ref != refs.end(); ref++) {
+	for (std::vector<Gtk::TreeRowReference>::iterator ref = refs.begin(); ref != refs.end(); ref++) {
 		Gtk::TreeIter i = tm->get_iter(ref->get_path());
 		std::set<Unique *>::iterator id = ids->find((*i)[cols.id]);
 		if (id == ids->end()) {
@@ -697,7 +697,7 @@ void Actions::update_row(const Gtk::TreeRow &row) {
 	row[cols.action_bold] = action;
 }
 
-extern boost::shared_ptr<sigc::slot<void(RStroke)> > stroke_action;
+extern std::shared_ptr<sigc::slot<void(RStroke)> > stroke_action;
 Source<bool> recording(false);
 
 class Actions::OnStroke {
@@ -882,19 +882,19 @@ void Actions::on_accel_edited(const gchar *path_string, guint accel_key, GdkModi
 		Glib::ustring str = send_key->get_label();
 		if (row[cols.arg] == str)
 			return;
-		action_list->set_action(row[cols.id], boost::static_pointer_cast<Action>(send_key));
+		action_list->set_action(row[cols.id], std::static_pointer_cast<Action>(send_key));
 	} else if (type == SCROLL) {
 		RScroll scroll = Scroll::create(accel_mods);
 		Glib::ustring str = scroll->get_label();
 		if (row[cols.arg] == str)
 			return;
-		action_list->set_action(row[cols.id], boost::static_pointer_cast<Action>(scroll));
+		action_list->set_action(row[cols.id], std::static_pointer_cast<Action>(scroll));
 	} else if (type == IGNORE) {
 		RIgnore ignore = Ignore::create(accel_mods);
 		Glib::ustring str = ignore->get_label();
 		if (row[cols.arg] == str)
 			return;
-		action_list->set_action(row[cols.id], boost::static_pointer_cast<Action>(ignore));
+		action_list->set_action(row[cols.id], std::static_pointer_cast<Action>(ignore));
 	} else return;
 	update_row(row);
 	update_actions();
@@ -906,7 +906,7 @@ void Actions::on_combo_edited(const gchar *path_string, guint item) {
 	Gtk::TreeRow row(*tm->get_iter(path_string));
 	if (row[cols.arg] == str)
 		return;
-	action_list->set_action(row[cols.id], boost::static_pointer_cast<Action>(misc));
+	action_list->set_action(row[cols.id], std::static_pointer_cast<Action>(misc));
 	update_row(row);
 	update_actions();
 }
@@ -925,13 +925,13 @@ void Actions::on_arg_editing_started(GtkCellEditable *editable, const gchar *pat
 	if (from_name(row[cols.type]) != BUTTON)
 		return;
 	ButtonInfo bi;
-	RButton bt = boost::static_pointer_cast<Button>(action_list->get_info(row[cols.id])->action);
+	RButton bt = std::static_pointer_cast<Button>(action_list->get_info(row[cols.id])->action);
 	if (bt)
 		bi = bt->get_button_info();
 	SelectButton sb(bi, false, false);
 	if (!sb.run())
 		return;
-	bt = boost::static_pointer_cast<Button>(Button::create(Gdk::ModifierType(sb.event.state), sb.event.button));
+	bt = std::static_pointer_cast<Button>(Button::create(Gdk::ModifierType(sb.event.state), sb.event.button));
 	action_list->set_action(row[cols.id], bt);
 	update_row(row);
 	update_actions();

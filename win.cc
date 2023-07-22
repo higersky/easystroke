@@ -22,7 +22,10 @@
 Glib::RefPtr<Gtk::Builder> widgets;
 
 void Stroke::draw(Cairo::RefPtr<Cairo::Surface> surface, int x, int y, int w, int h, double width, bool inv) const {
+	surface->set_fallback_resolution(96, 96);
+
 	const Cairo::RefPtr<Cairo::Context> ctx = Cairo::Context::create (surface);
+	ctx->set_antialias(Cairo::ANTIALIAS_GRAY);
 	x += width; y += width; w -= 2*width; h -= 2*width;
 	ctx->save();
 	ctx->translate(x,y);
@@ -147,7 +150,7 @@ Glib::RefPtr<Gdk::Pixbuf> Stroke::drawEmpty_(int size) {
 
 Source<bool> disabled(false);
 
-class MenuCheck : private Base {
+class MenuCheck : public Base {
 	IO<bool> &io;
 	Gtk::CheckMenuItem *check;
 	virtual void notify() { check->set_active(io.get()); }
@@ -164,14 +167,20 @@ public:
 	}
 };
 
-Win::Win() : actions(new Actions), prefs_tab(new Prefs), stats(new Stats) {
+Notifier* Win::register_notifier(sigc::slot<void()>&& f_) {
+	auto p = new Notifier(std::move(f_));
+	this->notifiers.push_back(p);
+	return p;
+}
+
+Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Prefs>()), stats(std::make_shared<Stats>()) {
 	show_hide_icon();
-	prefs.tray_icon.connect(new Notifier(sigc::mem_fun(*this, &Win::show_hide_icon)));
-	disabled.connect(new Notifier(sigc::mem_fun(*this, &Win::timeout)));
+	prefs.tray_icon.connect(register_notifier(sigc::mem_fun(*this, &Win::show_hide_icon)));
+	disabled.connect(register_notifier(sigc::mem_fun(*this, &Win::timeout)));
 
 	WIDGET(Gtk::CheckMenuItem, menu_disabled, _("D_isabled"), true);
 	menu.append(menu_disabled);
-	new MenuCheck(disabled, &menu_disabled);
+	menu_check = new MenuCheck(disabled, &menu_disabled);
 
 	WIDGET(Gtk::ImageMenuItem, menu_about, Gtk::Stock::ABOUT);
 	menu.append(menu_about);
@@ -202,6 +211,13 @@ Win::Win() : actions(new Actions), prefs_tab(new Prefs), stats(new Stats) {
 		button_hide[i]->signal_clicked().connect(sigc::mem_fun(win, &Gtk::Window::hide));
 }
 
+Win::~Win() {
+	delete menu_check;
+	for(auto p : notifiers) {
+		delete p;
+	}
+}
+
 extern void icon_warning();
 
 static gboolean icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event, gpointer) {
@@ -216,6 +232,7 @@ void Win::show_hide_icon() {
 		if (icon)
 			return;
 		icon = Gtk::StatusIcon::create("");
+		icon->set_tooltip_text("easystroke");
 		icon->signal_size_changed().connect(sigc::mem_fun(*this, &Win::on_icon_size_changed));
 		icon->signal_activate().connect(sigc::mem_fun(*this, &Win::show_hide));
 		icon->signal_popup_menu().connect(sigc::mem_fun(*this, &Win::show_popup));

@@ -33,11 +33,12 @@ extern Glib::RefPtr<Gtk::Builder> widgets;
 class Win : Timeout {
 public:
 	Win();
+	~Win();
 
 	Gtk::Window& get_window() { return *win; }
-	boost::shared_ptr<Actions> actions;
-	boost::shared_ptr<Prefs> prefs_tab;
-	boost::shared_ptr<Stats> stats;
+	std::shared_ptr<Actions> actions;
+	std::shared_ptr<Prefs> prefs_tab;
+	std::shared_ptr<Stats> stats;
 	void show();
 	void hide();
 	void show_hide();
@@ -49,6 +50,11 @@ private:
 	void on_help_toggled();
 	void show_popup(guint, guint32);
 	void show_hide_icon();
+
+	Notifier* register_notifier(sigc::slot<void()>&& f_);
+
+	Base* menu_check;
+	std::vector<Notifier*> notifiers;
 
 	Gtk::Window *win;
 
@@ -63,7 +69,7 @@ extern Win *win;
 class Stats {
 public:
 	Stats();
-	bool on_stroke(boost::shared_ptr<Ranking>);
+	bool on_stroke(std::shared_ptr<Ranking>);
 private:
 	void on_pdf();
 	void on_cursor_changed();

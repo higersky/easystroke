@@ -87,8 +87,8 @@ private:
 };
 
 class Feedback {
-	boost::shared_ptr<Gtk::Window> icon;
-	boost::shared_ptr<Gtk::Window> text;
+	std::shared_ptr<Gtk::Window> icon;
+	std::shared_ptr<Gtk::Window> text;
 public:
 	Feedback(RStroke s, Glib::ustring t, int x, int y) {
 		// x += (prefs.left_handed.get() ? 1 : -1)*3*STROKE_SIZE / 2;
@@ -132,7 +132,7 @@ void Ranking::queue_show(RRanking r, RTriple e) {
 	Glib::signal_idle().connect(sigc::bind(sigc::ptr_fun(&Ranking::show), r));
 }
 
-bool delete_me(boost::shared_ptr<Feedback>) {
+bool delete_me(std::shared_ptr<Feedback>) {
 	return false;
 }
 
@@ -141,7 +141,7 @@ bool Ranking::show(RRanking r) {
 		win->set_icon(r->stroke, !r->best_stroke);
 	if (prefs.feedback.get() && r->best_stroke) {
 		if (prefs.advanced_popups.get() || !(r->best_stroke->button || r->best_stroke->timeout)) {
-			boost::shared_ptr<Feedback> popup(new Feedback(r->best_stroke, r->name, r->x, r->y));
+			std::shared_ptr<Feedback> popup(new Feedback(r->best_stroke, r->name, r->x, r->y));
 			Glib::signal_timeout().connect(sigc::bind(sigc::ptr_fun(&delete_me), popup), 600);
 		}
 	}

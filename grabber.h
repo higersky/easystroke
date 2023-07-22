@@ -45,6 +45,7 @@ public:
 
 class Grabber;
 extern Grabber *grabber;
+class IdleNotifier;
 
 class Grabber {
 	friend class Handler;
@@ -71,7 +72,7 @@ public:
 		void grab_button(ButtonInfo &bi, bool grab);
 	};
 
-	typedef std::map<XID, boost::shared_ptr<XiDevice> > DeviceMap;
+	typedef std::map<XID, std::shared_ptr<XiDevice> > DeviceMap;
 	int opcode, event, error;
 	XiDevice *get_xi_dev(int id);
 private:
@@ -86,6 +87,7 @@ private:
 	Cursor cursor_select;
 	ButtonInfo grabbed_button;
 	std::vector<ButtonInfo> buttons;
+	std::vector<IdleNotifier*> idle_notifiers;
 
 	void set();
 	void grab_xi(bool);
@@ -97,6 +99,8 @@ private:
 	void suspend() { suspended++; set(); }
 	void resume() { if (suspended) suspended--; set(); }
 	void update();
+	
+	IdleNotifier* register_idle_notifier(sigc::slot<void()>&& f_);
 public:
 	Grabber();
 	~Grabber();

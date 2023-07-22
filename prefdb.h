@@ -62,7 +62,7 @@ public:
 };
 BOOST_CLASS_VERSION(ButtonInfo, 4)
 
-typedef boost::shared_ptr<ButtonInfo> RButtonInfo;
+typedef std::shared_ptr<ButtonInfo> RButtonInfo;
 
 struct RGBA {
 	Gdk::Color color;

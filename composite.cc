@@ -18,10 +18,12 @@
 #include <gdkmm.h>
 #include <glibmm/i18n.h>
 #include <gdk/gdk.h>
+#include <vector>
+#include <memory>
 
 
 double red, green, blue, alpha, width;
-std::list<Trace::Point> points;
+std::vector<Trace::Point> points;
 
 Popup::Popup(int x1, int y1, int x2, int y2) : Gtk::Window(Gtk::WINDOW_POPUP), rect(x1, y1, x2-x1, y2-y1) {
 	if (!is_composited())
@@ -48,7 +50,7 @@ void Popup::invalidate(int x1, int y1, int x2, int y2) {
 }
 
 Composite::Composite() {
-#define N 128
+#define N 196
 	GdkRectangle work_area;
 	gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
                              &work_area);
@@ -59,13 +61,17 @@ Composite::Composite() {
 	scale_factor = gdk_monitor_get_scale_factor(mon);
 	num_x = (work_area.width - 1)/N + 1;
 	num_y = (work_area.height - 1)/N + 1;
-	pieces = new Popup**[num_x];
-	for (int i = 0; i < num_x; i++) {
-		pieces[i] = new Popup*[num_y];
-		for (int j = 0; j < num_y; j++)
-			pieces[i][j] = new Popup(i*N,j*N,MIN((i+1)*N,w),MIN((j+1)*N,h));
 
+	pieces.reserve(num_x * num_y);
+	for (int i = 0; i < num_x; i++) {
+		for(int j = 0; j < num_y; j++) {
+			pieces.emplace_back(std::make_unique<Popup>(i*N,j*N,MIN((i+1)*N,w),MIN((j+1)*N,h)));
+		}
 	}
+}
+
+size_t Composite::get_pieces_index(size_t x, size_t y) {
+	return x * num_y + y;
 }
 
 void Composite::draw(Point p, Point q) {
@@ -92,7 +98,7 @@ void Composite::draw(Point p, Point q) {
 		y1 = 0;
 	for (int i = x1/N; i<num_x && i<=x2/N; i++)
 		for (int j = y1/N; j<num_y && j<=y2/N; j++)
-			pieces[i][j]->invalidate(x1, y1, x2, y2);
+			pieces[get_pieces_index(i, j)]->invalidate(x1, y1, x2, y2);
 }
 
 void Composite::start_() {
@@ -107,7 +113,7 @@ void Composite::start_() {
 void Popup::draw_line(Cairo::RefPtr<Cairo::Context> ctx) {
 	if (!points.size())
 		return;
-	std::list<Trace::Point>::iterator i = points.begin();
+	auto i = points.begin();
 	ctx->move_to (i->x, i->y);
 	for (; i != points.end(); i++)
 		ctx->line_to (i->x, i->y);
@@ -139,14 +145,9 @@ void Composite::end_() {
 	points.clear();
 	for (int i = 0; i < num_x; i++)
 		for (int j = 0; j < num_y; j++)
-			pieces[i][j]->hide();
+			pieces[get_pieces_index(i, j)]->hide();
 }
 
 Composite::~Composite() {
-	for (int i = 0; i < num_x; i++) {
-		for (int j = 0; j < num_y; j++)
-			delete pieces[i][j];
-		delete[] pieces[i];
-	}
-	delete[] pieces;
+
 }

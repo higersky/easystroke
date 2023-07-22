@@ -22,7 +22,7 @@
 class Prefs {
 public:
 	Prefs();
-	virtual ~Prefs() {}
+	virtual ~Prefs();
 	void update_device_list();
 	void update_extra_buttons();
 private:
@@ -50,6 +50,7 @@ private:
 	ExceptionColumns cols;
 	Glib::RefPtr<Gtk::ListStore> tm;
 	Gtk::TreeView* tv;
+	std::vector<Base*> pref_objs;
 
 	class Single : public Gtk::TreeModel::ColumnRecord {
 	public:

@@ -32,15 +32,15 @@
 class Stroke;
 class PreStroke;
 
-typedef boost::shared_ptr<Stroke> RStroke;
-typedef boost::shared_ptr<PreStroke> RPreStroke;
+typedef std::shared_ptr<Stroke> RStroke;
+typedef std::shared_ptr<PreStroke> RPreStroke;
 
 struct Triple {
 	float x;
 	float y;
 	Time t;
 };
-typedef boost::shared_ptr<Triple> RTriple;
+typedef std::shared_ptr<Triple> RTriple;
 void update_triple(RTriple e, float x, float y, Time t);
 RTriple create_triple(float x, float y, Time t);
 
@@ -127,7 +127,7 @@ public:
 	int button;
 	unsigned int modifiers;
 	bool timeout;
-	boost::shared_ptr<stroke_t> stroke;
+	std::shared_ptr<stroke_t> stroke;
 
 	Stroke() : trigger(0), button(0), modifiers(AnyModifier), timeout(false) {}
 	static RStroke create(PreStroke &s, int trigger_, int button_, unsigned int modifiers_, bool timeout_) {

@@ -218,6 +218,12 @@ void Grabber::unminimize() {
 
 const char *Grabber::state_name[4] = { "None", "Button", "Select", "Raw" };
 
+IdleNotifier* Grabber::register_idle_notifier(sigc::slot<void()>&& f_) {
+	auto p = new IdleNotifier(std::move(f_));
+	this->idle_notifiers.push_back(p);
+	return p;
+}
+
 Grabber::Grabber() : children(ROOT) {
 	current = BUTTON;
 	suspended = 0;
@@ -230,18 +236,22 @@ Grabber::Grabber() : children(ROOT) {
 	grabbed_button.state = 0;
 	cursor_select = XCreateFontCursor(dpy, XC_crosshair);
 	init_xi();
-	prefs.excluded_devices.connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::update)));
-	prefs.button.connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::update)));
+	prefs.excluded_devices.connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::update)));
+	prefs.button.connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::update)));
 	current_class = fun(&get_wm_class, current_app_window);
-	current_class->connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::update)));
-	recording.connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::update)));
-	disabled.connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::set)));
+	current_class->connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::update)));
+	recording.connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::update)));
+	disabled.connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::set)));
 	update();
 	resume();
 }
 
 Grabber::~Grabber() {
 	XFreeCursor(dpy, cursor_select);
+	for(auto p : idle_notifiers) {
+		delete p;
+	}
+	delete current_class;
 }
 
 bool Grabber::init_xi() {
@@ -265,7 +275,7 @@ bool Grabber::init_xi() {
 	for (int i = 0; i < n; i++)
 		new_device(info + i);
 	XIFreeDeviceInfo(info);
-	prefs.excluded_devices.connect(new IdleNotifier(sigc::mem_fun(*this, &Grabber::update_excluded)));
+	prefs.excluded_devices.connect(register_idle_notifier(sigc::mem_fun(*this, &Grabber::update_excluded)));
 	update_excluded();
 	xi_grabbed = false;
 	set();

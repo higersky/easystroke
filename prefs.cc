@@ -26,17 +26,22 @@
 
 extern const char *desktop_file;
 
-class Check : private Base {
+class Check : public Base
+{
 	IO<bool> &io;
 	Gtk::CheckButton *check;
 	virtual void notify() { check->set_active(io.get()); }
-	void on_changed() {
+	void on_changed()
+	{
 		bool b = check->get_active();
-		if (b == io.get()) return;
+		if (b == io.get())
+			return;
 		io.set(b);
 	}
+
 public:
-	Check(IO<bool> &io_, const Glib::ustring &name) : io(io_) {
+	Check(IO<bool> &io_, const Glib::ustring &name) : io(io_)
+	{
 		io.connect(this);
 		widgets->get_widget(name, check);
 		notify();
@@ -44,18 +49,24 @@ public:
 	}
 };
 
-template <class T> class Adjustment : private Base {
+template <class T>
+class Adjustment : public Base
+{
 	IO<T> &io;
 	Glib::RefPtr<Gtk::Adjustment> adj;
 	Gtk::Button *button;
 	virtual void notify() { adj->set_value(io.get()); }
-	void on_changed() {
+	void on_changed()
+	{
 		T i = (T)adj->get_value();
-		if (i == io.get()) return;
+		if (i == io.get())
+			return;
 		io.set(i);
 	}
+
 public:
-	Adjustment(IO<T> &io_, const Glib::ustring & name) : io(io_) {
+	Adjustment(IO<T> &io_, const Glib::ustring &name) : io(io_)
+	{
 		io.connect(this);
 		adj = Glib::RefPtr<Gtk::Adjustment>::cast_dynamic(widgets->get_object(name));
 		notify();
@@ -63,22 +74,28 @@ public:
 	}
 };
 
-class Color : private Base {
+class Color : public Base
+{
 	IO<RGBA> &io;
 	Gtk::ColorButton *color;
-	virtual void notify() {
+	virtual void notify()
+	{
 		color->set_color(io.get().color);
 		color->set_alpha(io.get().alpha);
 	}
-	void on_changed() {
+	void on_changed()
+	{
 		RGBA rgba;
 		rgba.color = color->get_color();
 		rgba.alpha = color->get_alpha();
-		if (rgba == io.get()) return;
+		if (rgba == io.get())
+			return;
 		io.set(rgba);
 	}
+
 public:
-	Color(IO<RGBA> &io_, const Glib::ustring &name) : io(io_) {
+	Color(IO<RGBA> &io_, const Glib::ustring &name) : io(io_)
+	{
 		io.connect(this);
 		widgets->get_widget(name, color);
 		color->set_use_alpha();
@@ -87,23 +104,30 @@ public:
 	}
 };
 
-template <class T> class Combo : private Base {
+template <class T>
+class Combo : public Base
+{
 public:
-	struct Info {
+	struct Info
+	{
 		T value;
-		const char* name;
+		const char *name;
 	};
+
 private:
 	IO<T> &io;
 	const Info *info;
 	Gtk::ComboBoxText *combo;
-	virtual void notify() {
+	virtual void notify()
+	{
 		T value = io.get();
 		int i = 0;
-		while (info[i].name && info[i].value != value) i++;
+		while (info[i].name && info[i].value != value)
+			i++;
 		combo->set_active(i);
 	}
-	void on_changed() {
+	void on_changed()
+	{
 		int row = combo->get_active_row_number();
 		if (row < 0)
 			return;
@@ -112,8 +136,10 @@ private:
 			return;
 		io.set(value);
 	}
+
 public:
-	Combo(IO<T> &io_, const Glib::ustring &name, const Info *info_) : io(io_), info(info_) {
+	Combo(IO<T> &io_, const Glib::ustring &name, const Info *info_) : io(io_), info(info_)
+	{
 		io.connect(this);
 		Gtk::Bin *parent;
 		widgets->get_widget(name, parent);
@@ -127,24 +153,31 @@ public:
 	}
 };
 
-template <class T> class ButtonSet {
+template <class T>
+class ButtonSet
+{
 	IO<T> &io;
 	T def;
 	void on_click() { io.set(def); }
+
 public:
-	ButtonSet(IO<T> &io_, const Glib::ustring &name, T def_) : io(io_), def(def_) {
+	ButtonSet(IO<T> &io_, const Glib::ustring &name, T def_) : io(io_), def(def_)
+	{
 		Gtk::Button *button;
 		widgets->get_widget(name, button);
 		button->signal_clicked().connect(sigc::mem_fun(*this, &ButtonSet::on_click));
 	}
 };
 
-class Sensitive : private Base {
+class Sensitive : public Base
+{
 	Gtk::Widget *widget;
 	Out<bool> &in;
+
 public:
 	virtual void notify() { widget->set_sensitive(in.get()); }
-	Sensitive(Out<bool> &in_, const Glib::ustring &name) : in(in_) {
+	Sensitive(Out<bool> &in_, const Glib::ustring &name) : in(in_)
+	{
 		in.connect(this);
 		widgets->get_widget(name, widget);
 		notify();
@@ -155,60 +188,64 @@ static bool is_custom(TimeoutType profile) { return profile == TimeoutCustom; }
 static bool draw_trace(TraceType t) { return t == TraceDefault || t == TraceShape; }
 
 const Combo<TraceType>::Info trace_info[] = {
-	{ TraceNone, N_("None") },
-	{ TraceDefault, N_("Default") },
-	{ TraceShape, N_("XShape") },
-	{ TraceAnnotate, N_("Annotate (compiz)") },
-	{ TraceFire, N_("Fire (compiz)") },
-	{ TraceWater, N_("Water (compiz)") },
-	{ TraceDefault, 0 }
-};
+	{TraceNone, N_("None")},
+	{TraceDefault, N_("Default")},
+	{TraceShape, N_("XShape")},
+	{TraceAnnotate, N_("Annotate (compiz)")},
+	{TraceFire, N_("Fire (compiz)")},
+	{TraceWater, N_("Water (compiz)")},
+	{TraceDefault, 0}};
 
 const Combo<TimeoutType>::Info timeout_info[] = {
-	{ TimeoutOff, N_("Timeout Off") },
-	{ TimeoutConservative, N_("Conservative") },
-	{ TimeoutDefault, N_("Default") },
-	{ TimeoutMedium, N_("Medium") },
-	{ TimeoutAggressive, N_("Aggressive") },
-	{ TimeoutFlick, N_("Flick") },
-	{ TimeoutDefault, 0 }
-};
+	{TimeoutOff, N_("Timeout Off")},
+	{TimeoutConservative, N_("Conservative")},
+	{TimeoutDefault, N_("Default")},
+	{TimeoutMedium, N_("Medium")},
+	{TimeoutAggressive, N_("Aggressive")},
+	{TimeoutFlick, N_("Flick")},
+	{TimeoutDefault, 0}};
 
 const Combo<TimeoutType>::Info timeout_info_exp[] = {
-	{ TimeoutOff, N_("Timeout Off") },
-	{ TimeoutConservative, N_("Conservative") },
-	{ TimeoutDefault, N_("Default") },
-	{ TimeoutMedium, N_("Medium") },
-	{ TimeoutAggressive, N_("Aggressive") },
-	{ TimeoutFlick, N_("Flick") },
-	{ TimeoutCustom, N_("Custom") },
-	{ TimeoutDefault, 0 }
-};
+	{TimeoutOff, N_("Timeout Off")},
+	{TimeoutConservative, N_("Conservative")},
+	{TimeoutDefault, N_("Default")},
+	{TimeoutMedium, N_("Medium")},
+	{TimeoutAggressive, N_("Aggressive")},
+	{TimeoutFlick, N_("Flick")},
+	{TimeoutCustom, N_("Custom")},
+	{TimeoutDefault, 0}};
 
 Source<bool> autostart_ok(true);
 
-class Autostart : public IO<bool>, private Base {
+class Autostart : public IO<bool>, public Base
+{
 	bool a;
 	std::string filename;
+
 public:
-	Autostart() {
+	Autostart()
+	{
 		std::string dir = getenv("HOME");
 		dir += "/.config/autostart";
 		filename = dir + "/easystroke.desktop";
 
-		if (!is_dir(dir) && mkdir(dir.c_str(), 0777)) {
+		if (!is_dir(dir) && mkdir(dir.c_str(), 0777))
+		{
 			autostart_ok.set(false);
 			return;
 		}
 		a = is_file(filename);
 	}
-	virtual void set(const bool a_) {
+	virtual void set(const bool a_)
+	{
 		a = a_;
 		notify();
 	}
 	virtual bool get() const { return a; }
-	virtual void notify() {
-		if (a) {
+	virtual void notify()
+	{
+		if (a)
+		{
 			char path[256] = "easystroke";
 			__attribute__((unused)) int ret = readlink("/proc/self/exe", path, sizeof(path));
 
@@ -217,7 +254,9 @@ public:
 				autostart_ok.set(false);
 			if (file)
 				fclose(file);
-		} else {
+		}
+		else
+		{
 			if (remove(filename.c_str()) == -1)
 				autostart_ok.set(false);
 		}
@@ -227,7 +266,8 @@ public:
 
 Autostart autostart;
 
-void remove_last_entry(const Glib::ustring & name) {
+void remove_last_entry(const Glib::ustring &name)
+{
 	Gtk::ComboBox *combo;
 	widgets->get_widget(name, combo);
 	Glib::RefPtr<Gtk::ListStore> combo_model = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(combo->get_model());
@@ -235,45 +275,47 @@ void remove_last_entry(const Glib::ustring & name) {
 	combo_model->erase(--i);
 }
 
-static void on_prefs_editing_started(GtkCellRenderer *, GtkCellEditable *editable, const gchar *path, gpointer data) {
+static void on_prefs_editing_started(GtkCellRenderer *, GtkCellEditable *editable, const gchar *path, gpointer data)
+{
 	((Prefs *)data)->on_button_editing_started(editable, path);
 }
 
-Prefs::Prefs() {
-	new Check(prefs.advanced_ignore, "check_advanced_ignore");
+Prefs::Prefs()
+{
+	pref_objs.push_back(new Check(prefs.advanced_ignore, "check_advanced_ignore"));
 
-	new Check(prefs.proximity, "check_proximity");
+	pref_objs.push_back(new Check(prefs.proximity, "check_proximity"));
 
-	new Check(prefs.feedback, "check_feedback");
-	new Check(prefs.left_handed, "check_left_handed");
-	new Sensitive(prefs.feedback, "check_left_handed");
-	new Check(prefs.advanced_popups, "check_advanced_popups");
-	new Sensitive(prefs.feedback, "check_advanced_popups");
+	pref_objs.push_back(new Check(prefs.feedback, "check_feedback"));
+	pref_objs.push_back(new Check(prefs.left_handed, "check_left_handed"));
+	pref_objs.push_back(new Sensitive(prefs.feedback, "check_left_handed"));
+	pref_objs.push_back(new Check(prefs.advanced_popups, "check_advanced_popups"));
+	pref_objs.push_back(new Sensitive(prefs.feedback, "check_advanced_popups"));
 
-	new Check(prefs.tray_icon, "check_tray_icon");
-	new Sensitive(prefs.tray_icon, "check_tray_feedback");
-	new Check(prefs.tray_feedback, "check_tray_feedback");
+	pref_objs.push_back(new Check(prefs.tray_icon, "check_tray_icon"));
+	pref_objs.push_back(new Sensitive(prefs.tray_icon, "check_tray_feedback"));
+	pref_objs.push_back(new Check(prefs.tray_feedback, "check_tray_feedback"));
 
-	new Check(autostart, "check_autostart");
-	new Sensitive(autostart_ok, "check_autostart");
+	pref_objs.push_back(new Check(autostart, "check_autostart"));
+	pref_objs.push_back(new Sensitive(autostart_ok, "check_autostart"));
 
-	new Adjustment<int>(prefs.init_timeout, "adjustment_init_timeout");
-	new Adjustment<int>(prefs.final_timeout, "adjustment_final_timeout");
+	pref_objs.push_back(new Adjustment<int>(prefs.init_timeout, "adjustment_init_timeout"));
+	pref_objs.push_back(new Adjustment<int>(prefs.final_timeout, "adjustment_final_timeout"));
 
-	new Combo<TraceType>(prefs.trace, "box_trace", trace_info);
-	new Color(prefs.color, "button_color");
-	new Adjustment<int>(prefs.trace_width, "adjustment_trace_width");
-	new Combo<TimeoutType>(prefs.timeout_profile, "box_timeout", experimental ? timeout_info_exp : timeout_info);
+	pref_objs.push_back(new Combo<TraceType>(prefs.trace, "box_trace", trace_info));
+	pref_objs.push_back(new Color(prefs.color, "button_color"));
+	pref_objs.push_back(new Adjustment<int>(prefs.trace_width, "adjustment_trace_width"));
+	pref_objs.push_back(new Combo<TimeoutType>(prefs.timeout_profile, "box_timeout", experimental ? timeout_info_exp : timeout_info));
 
-	new Check(prefs.whitelist, "check_whitelist");
-	new Check(prefs.timeout_gestures, "check_timeout_gestures");
+	pref_objs.push_back(new Check(prefs.whitelist, "check_whitelist"));
+	pref_objs.push_back(new Check(prefs.timeout_gestures, "check_timeout_gestures"));
 
-	new Check(prefs.scroll_invert, "check_scroll_invert");
-	new Adjustment<double>(prefs.scroll_speed, "adjustment_scroll_speed");
+	pref_objs.push_back(new Check(prefs.scroll_invert, "check_scroll_invert"));
+	pref_objs.push_back(new Adjustment<double>(prefs.scroll_speed, "adjustment_scroll_speed"));
 
-	new Check(prefs.move_back, "check_move_back");
+	pref_objs.push_back(new Check(prefs.move_back, "check_move_back"));
 
-	new Check(prefs.show_osd, "check_osd");
+	pref_objs.push_back(new Check(prefs.show_osd, "check_osd"));
 
 	Gtk::Button *bbutton, *add_exception, *remove_exception, *add_extra, *edit_extra, *remove_extra;
 	widgets->get_widget("button_add_exception", add_exception);
@@ -288,18 +330,30 @@ Prefs::Prefs() {
 	widgets->get_widget("treeview_extra", etv);
 	widgets->get_widget("frame_tablet", frame_tablet);
 
-	new Sensitive(*fun(&is_custom, prefs.timeout_profile), "hbox_timeout");
-	new Sensitive(*fun(&draw_trace, prefs.trace), "button_color");
-	new Sensitive(*fun(&draw_trace, prefs.trace), "spin_trace_width");
+	{
+		auto p = fun(&is_custom, prefs.timeout_profile);
+		pref_objs.push_back(new Sensitive(*p, "hbox_timeout"));
+		pref_objs.push_back(p);
+	}
+	{
+		auto p = fun(&draw_trace, prefs.trace);
+		pref_objs.push_back(new Sensitive(*p, "button_color"));
+		pref_objs.push_back(p);
+	}
+	{
+		auto p = fun(&draw_trace, prefs.trace);
+		pref_objs.push_back(new Sensitive(*p, "spin_trace_width"));
+		pref_objs.push_back(p);
+	}
 
 	tm = Gtk::ListStore::create(cols);
 	tv->set_model(tm);
 	tv->append_column(_("Application (WM__CLASS)"), cols.user_app);
 	tm->set_sort_column(cols.user_app, Gtk::SORT_ASCENDING);
 
-	CellRendererTextish *button_renderer = cell_renderer_textish_new ();
+	CellRendererTextish *button_renderer = cell_renderer_textish_new();
 	button_renderer->mode = CELL_RENDERER_TEXTISH_MODE_Popup;
-	GtkTreeViewColumn *col_button = gtk_tree_view_column_new_with_attributes(_("Button"), GTK_CELL_RENDERER (button_renderer), "text", cols.button.index(), nullptr);
+	GtkTreeViewColumn *col_button = gtk_tree_view_column_new_with_attributes(_("Button"), GTK_CELL_RENDERER(button_renderer), "text", cols.button.index(), nullptr);
 	gtk_tree_view_append_column(tv->gobj(), col_button);
 	g_object_set(button_renderer, "editable", true, nullptr);
 	g_signal_connect(button_renderer, "editing-started", G_CALLBACK(on_prefs_editing_started), this);
@@ -313,7 +367,7 @@ Prefs::Prefs() {
 	dtv->set_model(dtm);
 	dtv->append_column_editable(_("Enabled"), dcs.enabled);
 	int n = dtv->append_column(_("Device"), dcs.name);
-	Gtk::TreeView::Column *col_device = dtv->get_column(n-1);
+	Gtk::TreeView::Column *col_device = dtv->get_column(n - 1);
 	col_device->set_expand();
 
 	Glib::RefPtr<Gtk::ListStore> timeout_model = Gtk::ListStore::create(timeout_columns);
@@ -321,7 +375,8 @@ Prefs::Prefs() {
 		Gtk::TreeModel::Row row = *(timeout_model->append());
 		row[timeout_columns.name] = _("<unchanged>");
 	}
-	for (const Combo<TimeoutType>::Info *i = timeout_info; i->name; i++) {
+	for (const Combo<TimeoutType>::Info *i = timeout_info; i->name; i++)
+	{
 		Gtk::TreeModel::Row row = *(timeout_model->append());
 		row[timeout_columns.name] = i->name;
 	}
@@ -331,9 +386,9 @@ Prefs::Prefs() {
 	timeout_renderer->property_editable() = true;
 	timeout_renderer->property_text_column() = 0;
 	timeout_renderer->property_has_entry() = false;
-        timeout_renderer->signal_edited().connect(sigc::mem_fun(*this, &Prefs::on_device_timeout_changed));
+	timeout_renderer->signal_edited().connect(sigc::mem_fun(*this, &Prefs::on_device_timeout_changed));
 	n = dtv->append_column(_("Timeout profile"), *timeout_renderer);
-	Gtk::TreeView::Column *col_timeout = dtv->get_column(n-1);
+	Gtk::TreeView::Column *col_timeout = dtv->get_column(n - 1);
 	col_timeout->add_attribute(timeout_renderer->property_text(), dcs.timeout);
 
 	dtm->signal_row_changed().connect(sigc::mem_fun(*this, &Prefs::on_device_toggled));
@@ -348,7 +403,8 @@ Prefs::Prefs() {
 	etv->append_column(_("Button"), ecs.str);
 	update_extra_buttons();
 
-	if (!experimental) {
+	if (!experimental)
+	{
 		Gtk::HBox *hbox;
 		widgets->get_widget("hbox_timeout", hbox);
 		hbox->hide();
@@ -357,7 +413,8 @@ Prefs::Prefs() {
 	set_button_label();
 
 	const std::map<std::string, RButtonInfo> &exceptions = prefs.exceptions.ref();
-	for (std::map<std::string, RButtonInfo>::const_iterator i = exceptions.begin(); i!=exceptions.end(); i++) {
+	for (std::map<std::string, RButtonInfo>::const_iterator i = exceptions.begin(); i != exceptions.end(); i++)
+	{
 		Gtk::TreeModel::Row row = *(tm->append());
 		row[cols.app] = i->first;
 		row[cols.user_app] = app_name_hr(i->first);
@@ -365,12 +422,20 @@ Prefs::Prefs() {
 	}
 }
 
-void Prefs::update_device_list() {
+Prefs::~Prefs() {
+	for(auto p : pref_objs) {
+		delete p;
+	}
+}
+
+void Prefs::update_device_list()
+{
 	bool proximity = false;
 	ignore_device_toggled = true;
 	dtm->clear();
 	std::set<std::string> names;
-	for (Grabber::DeviceMap::iterator i = grabber->xi_devs.begin(); i != grabber->xi_devs.end(); ++i) {
+	for (Grabber::DeviceMap::iterator i = grabber->xi_devs.begin(); i != grabber->xi_devs.end(); ++i)
+	{
 		if (i->second->proximity_axis >= 0)
 			proximity = true;
 		std::string name = i->second->name;
@@ -393,17 +458,20 @@ void Prefs::update_device_list() {
 	frame_tablet->set_visible(proximity);
 }
 
-void Prefs::update_extra_buttons() {
+void Prefs::update_extra_buttons()
+{
 	etm->clear();
 	std::vector<ButtonInfo> &extra = prefs.extra_buttons.unsafe_ref();
-	for (std::vector<ButtonInfo>::iterator i = extra.begin(); i != extra.end(); i++) {
+	for (std::vector<ButtonInfo>::iterator i = extra.begin(); i != extra.end(); i++)
+	{
 		Gtk::TreeModel::Row row = *(etm->append());
 		row[ecs.str] = i->get_button_text();
 		row[ecs.i] = i;
 	}
 }
 
-void Prefs::on_add_extra() {
+void Prefs::on_add_extra()
+{
 	ButtonInfo bi;
 	SelectButton sb(bi, true, true);
 	if (!sb.run())
@@ -420,7 +488,8 @@ void Prefs::on_add_extra() {
 	update_extra_buttons();
 }
 
-void Prefs::on_edit_extra() {
+void Prefs::on_edit_extra()
+{
 	Gtk::TreePath path;
 	Gtk::TreeViewColumn *col;
 	etv->get_cursor(path, col);
@@ -444,7 +513,8 @@ void Prefs::on_edit_extra() {
 	update_extra_buttons();
 }
 
-void Prefs::on_remove_extra() {
+void Prefs::on_remove_extra()
+{
 	Gtk::TreePath path;
 	Gtk::TreeViewColumn *col;
 	etv->get_cursor(path, col);
@@ -459,7 +529,8 @@ void Prefs::on_remove_extra() {
 	update_extra_buttons();
 }
 
-SelectButton::SelectButton(ButtonInfo bi, bool def, bool any) {
+SelectButton::SelectButton(ButtonInfo bi, bool def, bool any)
+{
 	widgets->get_widget("dialog_select", dialog);
 	dialog->set_message(_("Select a Mouse or Pen Button"));
 	dialog->set_secondary_text(_("Please place your mouse or pen in the box below and press the button that you want to select.  You can also hold down additional modifiers."));
@@ -477,23 +548,27 @@ SelectButton::SelectButton(ButtonInfo bi, bool def, bool any) {
 	Gtk::HBox *hbox_button_timeout;
 	widgets->get_widget("hbox_button_timeout", hbox_button_timeout);
 	select_button = dynamic_cast<Gtk::ComboBoxText *>(box_button->get_child());
-	if (!select_button) {
+	if (!select_button)
+	{
 		select_button = Gtk::manage(new Gtk::ComboBoxText);
 		box_button->add(*select_button);
 		for (int i = 1; i <= 12; i++)
 			select_button->append(Glib::ustring::compose(_("Button %1"), i));
 		select_button->show();
 	}
-	select_button->set_active(bi.button-1);
+	select_button->set_active(bi.button - 1);
 	toggle_shift->set_active(bi.button && (bi.state & GDK_SHIFT_MASK));
 	toggle_control->set_active(bi.button && (bi.state & GDK_CONTROL_MASK));
 	toggle_alt->set_active(bi.button && (bi.state & GDK_MOD1_MASK));
 	toggle_super->set_active(bi.button && (bi.state & GDK_SUPER_MASK));
 	toggle_any->set_active(any && bi.button && bi.state == AnyModifier);
-	if (any) {
+	if (any)
+	{
 		hbox_button_timeout->show();
 		toggle_any->show();
-	} else {
+	}
+	else
+	{
 		hbox_button_timeout->hide();
 		toggle_any->hide();
 	}
@@ -511,10 +586,11 @@ SelectButton::SelectButton(ButtonInfo bi, bool def, bool any) {
 	else
 		select_default->hide();
 
-	if (!eventbox->get_children().size()) {
+	if (!eventbox->get_children().size())
+	{
 		eventbox->set_events(Gdk::BUTTON_PRESS_MASK);
 
-		Glib::RefPtr<Gdk::Pixbuf> pb = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB,true,8,400,200);
+		Glib::RefPtr<Gdk::Pixbuf> pb = Gdk::Pixbuf::create(Gdk::COLORSPACE_RGB, true, 8, 400, 200);
 		pb->fill(0x808080ff);
 		WIDGET(Gtk::Image, box, pb);
 		eventbox->add(box);
@@ -525,65 +601,74 @@ SelectButton::SelectButton(ButtonInfo bi, bool def, bool any) {
 	on_any_toggled();
 }
 
-SelectButton::~SelectButton() {
+SelectButton::~SelectButton()
+{
 	handler[0].disconnect();
 	handler[1].disconnect();
 }
 
-bool SelectButton::run() {
+bool SelectButton::run()
+{
 	grabber->queue_suspend();
 	dialog->show();
 	Gtk::Button *select_ok;
 	widgets->get_widget("select_ok", select_ok);
 	select_ok->grab_focus();
 	int response;
-	do {
+	do
+	{
 		response = dialog->run();
 	} while (!response);
 	dialog->hide();
 	grabber->queue_resume();
-	switch (response) {
-		case 1: // Okay
-			event.button = select_button->get_active_row_number() + 1;
-			if (!event.button)
-				return false;
-			event.state = 0;
-			if (toggle_any->get_active()) {
-				event.state = AnyModifier;
-				return true;
-			}
-			if (toggle_shift->get_active())
-				event.state |= GDK_SHIFT_MASK;
-			if (toggle_control->get_active())
-				event.state |= GDK_CONTROL_MASK;
-			if (toggle_alt->get_active())
-				event.state |= GDK_MOD1_MASK;
-			if (toggle_super->get_active())
-				event.state |= GDK_SUPER_MASK;
-			event.instant = radio_instant->get_active();
-			event.click_hold = radio_click_hold->get_active();
-			return true;
-		case 2: // Default
-			event.button = 0;
-			event.state = 0;
-			event.instant = false;
-			return true;
-		case 3: // Click - all the work has already been done
-			return true;
-		case -1: // Cancel
-		default: // Something went wrong
+	switch (response)
+	{
+	case 1: // Okay
+		event.button = select_button->get_active_row_number() + 1;
+		if (!event.button)
 			return false;
+		event.state = 0;
+		if (toggle_any->get_active())
+		{
+			event.state = AnyModifier;
+			return true;
+		}
+		if (toggle_shift->get_active())
+			event.state |= GDK_SHIFT_MASK;
+		if (toggle_control->get_active())
+			event.state |= GDK_CONTROL_MASK;
+		if (toggle_alt->get_active())
+			event.state |= GDK_MOD1_MASK;
+		if (toggle_super->get_active())
+			event.state |= GDK_SUPER_MASK;
+		event.instant = radio_instant->get_active();
+		event.click_hold = radio_click_hold->get_active();
+		return true;
+	case 2: // Default
+		event.button = 0;
+		event.state = 0;
+		event.instant = false;
+		return true;
+	case 3: // Click - all the work has already been done
+		return true;
+	case -1: // Cancel
+	default: // Something went wrong
+		return false;
 	}
 }
 
-bool SelectButton::on_button_press(GdkEventButton *ev) {
+bool SelectButton::on_button_press(GdkEventButton *ev)
+{
 	event.button = ev->button;
-	event.state  = ev->state;
+	event.state = ev->state;
 	event.instant = radio_instant->get_active();
 	event.click_hold = radio_click_hold->get_active();
-	if (toggle_any->get_active()) {
+	if (toggle_any->get_active())
+	{
 		event.state = AnyModifier;
-	} else {
+	}
+	else
+	{
 		if (event.state & Mod4Mask)
 			event.state |= GDK_SUPER_MASK;
 		event.state &= gtk_accelerator_get_default_mod_mask();
@@ -592,15 +677,17 @@ bool SelectButton::on_button_press(GdkEventButton *ev) {
 	return true;
 }
 
-void SelectButton::on_any_toggled() {
-	bool any = toggle_any->get_active(); 
+void SelectButton::on_any_toggled()
+{
+	bool any = toggle_any->get_active();
 	toggle_shift->set_sensitive(!any);
 	toggle_control->set_sensitive(!any);
 	toggle_alt->set_sensitive(!any);
 	toggle_super->set_sensitive(!any);
 }
 
-void Prefs::on_select_button() {
+void Prefs::on_select_button()
+{
 	Atomic a;
 	ButtonInfo &bi = prefs.button.write_ref(a);
 	SelectButton sb(bi, true, true);
@@ -610,35 +697,43 @@ void Prefs::on_select_button() {
 	set_button_label();
 }
 
-bool Prefs::select_row(const Gtk::TreeModel::Path& path, const Gtk::TreeModel::iterator& iter, std::string name) {
-	if ((std::string)(*iter)[cols.app] == name) {
+bool Prefs::select_row(const Gtk::TreeModel::Path &path, const Gtk::TreeModel::iterator &iter, std::string name)
+{
+	if ((std::string)(*iter)[cols.app] == name)
+	{
 		tv->set_cursor(path);
 		return true;
 	}
 	return false;
 }
 
-void Prefs::on_add() {
+void Prefs::on_add()
+{
 	std::string str = grabber->select_window();
 	bool is_new;
 	{
 		Atomic a;
 		is_new = prefs.exceptions.write_ref(a).insert(
-				std::pair<std::string, RButtonInfo>(str, RButtonInfo())).second;
+												  std::pair<std::string, RButtonInfo>(str, RButtonInfo()))
+					 .second;
 	}
-	if (is_new) {
+	if (is_new)
+	{
 		Gtk::TreeModel::Row row = *(tm->append());
 		row[cols.app] = str;
 		row[cols.user_app] = app_name_hr(str);
 		row[cols.button] = _("<App disabled>");
 		Gtk::TreePath path = tm->get_path(row);
 		tv->set_cursor(path);
-	} else {
-		tm->foreach(sigc::bind(sigc::mem_fun(*this, &Prefs::select_row), str));
+	}
+	else
+	{
+		tm->foreach (sigc::bind(sigc::mem_fun(*this, &Prefs::select_row), str));
 	}
 }
 
-void Prefs::on_button_editing_started(GtkCellEditable* editable, const gchar *path) {
+void Prefs::on_button_editing_started(GtkCellEditable *editable, const gchar *path)
+{
 	Gtk::TreeRow row(*tm->get_iter(path));
 	std::string app = row[cols.app];
 	ButtonInfo bi;
@@ -658,12 +753,13 @@ void Prefs::on_button_editing_started(GtkCellEditable* editable, const gchar *pa
 	prefs.exceptions.write_ref(a)[app] = bi2;
 }
 
-
-void Prefs::on_remove() {
+void Prefs::on_remove()
+{
 	Gtk::TreePath path;
 	Gtk::TreeViewColumn *col;
 	tv->get_cursor(path, col);
-	if (path.gobj() != 0) {
+	if (path.gobj() != 0)
+	{
 		Gtk::TreeIter iter = *tm->get_iter(path);
 		Atomic a;
 		prefs.exceptions.write_ref(a).erase((Glib::ustring)((*iter)[cols.app]));
@@ -671,7 +767,8 @@ void Prefs::on_remove() {
 	}
 }
 
-void Prefs::on_device_toggled(const Gtk::TreeModel::Path& path, const Gtk::TreeModel::iterator& iter) {
+void Prefs::on_device_toggled(const Gtk::TreeModel::Path &path, const Gtk::TreeModel::iterator &iter)
+{
 	if (ignore_device_toggled)
 		return;
 	Atomic a;
@@ -683,14 +780,17 @@ void Prefs::on_device_toggled(const Gtk::TreeModel::Path& path, const Gtk::TreeM
 		ex.insert(device);
 }
 
-void Prefs::on_device_timeout_changed(const Glib::ustring& path, const Glib::ustring& new_text) {
+void Prefs::on_device_timeout_changed(const Glib::ustring &path, const Glib::ustring &new_text)
+{
 	Gtk::TreeRow row(*dtm->get_iter(path));
 	row[dcs.timeout] = new_text;
 	Glib::ustring device = row[dcs.name];
 	Atomic a;
 
-	for (const Combo<TimeoutType>::Info *i = timeout_info; i->name; i++) {
-		if (Glib::ustring(i->name) == new_text) {
+	for (const Combo<TimeoutType>::Info *i = timeout_info; i->name; i++)
+	{
+		if (Glib::ustring(i->name) == new_text)
+		{
 			std::map<std::string, TimeoutType> &dt = prefs.device_timeout.write_ref(a);
 			dt[device] = i->value;
 			return;
@@ -701,6 +801,7 @@ void Prefs::on_device_timeout_changed(const Glib::ustring& path, const Glib::ust
 	dt.erase(device);
 }
 
-void Prefs::set_button_label() {
+void Prefs::set_button_label()
+{
 	blabel->set_text(prefs.button.ref().get_button_text());
 }

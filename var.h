@@ -99,7 +99,7 @@ public:
 	virtual T get() const { return x; }
 };
 
-template <class X, class Y> class Fun : public Out<Y>, private Base {
+template <class X, class Y> class Fun : public Out<Y>, public Base {
 	sigc::slot<Y(X)> f;
 	Out<X> &in;
 public:

@@ -18,7 +18,8 @@
 #include <gtkmm.h>
 #include "trace.h"
 #include "main.h"
-#include <list>
+#include <memory>
+#include <vector>
 
 class Popup : public Gtk::Window {
 	bool on_draw(const ::Cairo::RefPtr< ::Cairo::Context>& ctx);
@@ -32,7 +33,8 @@ public:
 class Composite : public Trace {
 	int num_x, num_y;
 	int scale_factor;
-	Popup ***pieces;
+	std::vector<std::unique_ptr<Popup>> pieces;
+	size_t get_pieces_index(size_t x, size_t y);
 	virtual void draw(Point p, Point q);
 	virtual void start_();
 	virtual void end_();
