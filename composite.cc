@@ -50,7 +50,7 @@ void Popup::invalidate(int x1, int y1, int x2, int y2) {
 }
 
 Composite::Composite() {
-#define N 196
+#define N 128
 	GdkRectangle work_area;
 	gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
                              &work_area);
