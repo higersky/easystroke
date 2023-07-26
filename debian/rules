@@ -1,4 +1,5 @@
 #!/usr/bin/make -f
+MAKEFLAGS += -j
 
 build: build-arch build-indep
 build-arch: build-indep

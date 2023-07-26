@@ -1,6 +1,15 @@
+easystroke (0.6.0-2ubuntu1) UNRELEASED; urgency=medium
+
+  * Always put the feedback tooltip on the lower center of screen (The original settings often wrongly place the tooltip on some random locations.)
+  * Fix most of the memory leaks
+
+ -- higersky <64680426+higersky@users.noreply.github.com>  Wed, 26 Jul 2023 20:42:05 +0800
+
 easystroke (0.6.0-1) focal; urgency=medium
 
   * Apply all of the latest patches to fix bugs.
+
+ -- higersky <64680426+higersky@users.noreply.github.com>  Wed, 12 Jul 2023 21:21:40 +0800
 
 easystroke (0.6.0-0ubuntu14) focal; urgency=medium
 
