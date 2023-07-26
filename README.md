@@ -14,3 +14,5 @@ cd easystroke-master
 make
 sudo make install
 ```
+
+Currently Makefile uses clang toolchain and lld to compile. Modify `CC` and `CXX` and `LDFLAGS` if you want to use GCC toolchain.
