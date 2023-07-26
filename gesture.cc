@@ -29,7 +29,7 @@ void update_triple(RTriple e, float x, float y, Time t) {
 }
 
 RTriple create_triple(float x, float y, Time t) {
-	RTriple e(new Triple);
+	RTriple e = std::make_shared<Triple>();
 	update_triple(e, x, y, t);
 	return e;
 }

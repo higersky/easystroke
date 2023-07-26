@@ -25,6 +25,7 @@ class XState {
 	friend class Handler;
 public:
 	XState();
+	~XState();
 
 	bool handle(Glib::IOCondition);
 	void handle_enter_leave(XEvent &ev);
@@ -68,7 +69,7 @@ private:
 	static int xIOErrorHandler(Display *dpy2);
 	int (*oldHandler)(Display *, XErrorEvent *);
 	int (*oldIOHandler)(Display *);
-	std::list<sigc::slot<void()> > queued;
+	std::deque<sigc::slot<void()> > queued;
 	std::map<int, std::string> opcodes;
 };
 

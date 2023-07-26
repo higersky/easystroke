@@ -67,11 +67,11 @@ public:
 class Command : public Action {
 	friend class boost::serialization::access;
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
-	Command(const std::string &c) : cmd(c) {}
 public:
 	std::string cmd;
 	Command() {}
-	static RCommand create(const std::string &c) { return RCommand(new Command(c)); }
+	Command(const std::string &c) : cmd(c) {}
+	static RCommand create(const std::string &c) { return std::make_shared<Command>(c) ; }
 	virtual void run();
 	virtual const Glib::ustring get_label() const { return cmd; }
 };
@@ -94,12 +94,12 @@ class SendKey : public ModAction {
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 	template<class Archive> void load(Archive & ar, const unsigned int version);
 	template<class Archive> void save(Archive & ar, const unsigned int version) const;
-	SendKey(guint key_, Gdk::ModifierType mods) :
-		ModAction(mods), key(key_) {}
 public:
 	SendKey() {}
+	SendKey(guint key_, Gdk::ModifierType mods) :
+		ModAction(mods), key(key_) {}
 	static RSendKey create(guint key, Gdk::ModifierType mods) {
-		return RSendKey(new SendKey(key, mods));
+		return std::make_shared<SendKey>(key, mods);
 	}
 
 	virtual void run();
@@ -115,10 +115,10 @@ class SendText : public Action {
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 	template<class Archive> void load(Archive & ar, const unsigned int version);
 	template<class Archive> void save(Archive & ar, const unsigned int version) const;
-	SendText(Glib::ustring text_) : text(text_) {}
 public:
 	SendText() {}
-	static RSendText create(Glib::ustring text) { return RSendText(new SendText(text)); }
+	SendText(Glib::ustring text_) : text(text_) {}
+	static RSendText create(Glib::ustring text) { return std::make_shared<SendText>(text); }
 
 	virtual void run();
 	virtual const Glib::ustring get_label() const { return text; }
@@ -127,10 +127,11 @@ public:
 class Scroll : public ModAction {
 	friend class boost::serialization::access;
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
-	Scroll(Gdk::ModifierType mods) : ModAction(mods) {}
+
 public:
 	Scroll() {}
-	static RScroll create(Gdk::ModifierType mods) { return RScroll(new Scroll(mods)); }
+	Scroll(Gdk::ModifierType mods) : ModAction(mods) {}
+	static RScroll create(Gdk::ModifierType mods) { return std::make_shared<Scroll>(mods); }
 	virtual const Glib::ustring get_label() const;
 };
 #define IS_SCROLL(act) (act && dynamic_cast<Scroll *>(act.get()))
@@ -138,10 +139,10 @@ public:
 class Ignore : public ModAction {
 	friend class boost::serialization::access;
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
-	Ignore(Gdk::ModifierType mods) : ModAction(mods) {}
 public:
 	Ignore() {}
-	static RIgnore create(Gdk::ModifierType mods) { return RIgnore(new Ignore(mods)); }
+	Ignore(Gdk::ModifierType mods) : ModAction(mods) {}
+	static RIgnore create(Gdk::ModifierType mods) { return std::make_shared<Ignore>(mods); }
 	virtual const Glib::ustring get_label() const;
 };
 #define IS_IGNORE(act) (act && dynamic_cast<Ignore *>(act.get()))
@@ -149,10 +150,10 @@ public:
 class Button : public ModAction {
 	friend class boost::serialization::access;
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
-	Button(Gdk::ModifierType mods, guint button_) : ModAction(mods), button(button_) {}
 	guint button;
 public:
 	Button() {}
+	Button(Gdk::ModifierType mods, guint button_) : ModAction(mods), button(button_) {}
 	ButtonInfo get_button_info() const;
 	static unsigned int get_button(RAction act) {
 		if (!act)
@@ -162,7 +163,7 @@ public:
 			return 0;
 		return b->get_button_info().button;
 	}
-	static RButton create(Gdk::ModifierType mods, guint button_) { return RButton(new Button(mods, button_)); }
+	static RButton create(Gdk::ModifierType mods, guint button_) { return std::make_shared<Button>(mods, button_); }
 	virtual const Glib::ustring get_label() const;
 	virtual void run();
 };
@@ -175,12 +176,12 @@ public:
 	Type type;
 private:
 	template<class Archive> void serialize(Archive & ar, const unsigned int version);
-	Misc(Type t) : type(t) {}
 public:
 	static const char *types[5];
 	Misc() {}
+	Misc(Type t) : type(t) {}
 	virtual const Glib::ustring get_label() const;
-	static RMisc create(Type t) { return RMisc(new Misc(t)); }
+	static RMisc create(Type t) { return std::make_shared<Misc>(t); }
 	virtual void run();
 };
 

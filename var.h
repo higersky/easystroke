@@ -17,7 +17,6 @@
 #define __VAR_H__
 
 #include <set>
-#include <boost/shared_ptr.hpp>
 #include <glibmm.h>
 #include "util.h"
 

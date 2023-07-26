@@ -20,6 +20,8 @@
 #include "util.h"
 #include "prefdb.h"
 
+#include <forward_list>
+
 class Actions;
 class Prefs;
 class Stats;
@@ -54,7 +56,7 @@ private:
 	Notifier* register_notifier(sigc::slot<void()>&& f_);
 
 	Base* menu_check;
-	std::vector<Notifier*> notifiers;
+	std::forward_list<Notifier> notifiers;
 
 	Gtk::Window *win;
 

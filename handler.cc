@@ -1058,9 +1058,6 @@ public:
 
 class IdleHandler : public Handler {
 protected:
-	virtual void init() {
-		xstate->update_core_mapping();
-	}
 	virtual void press(guint b, RTriple e) {
 		if (current_app_window.get())
 			XState::activate_window(current_app_window.get(), e->t);
@@ -1071,10 +1068,13 @@ public:
 		xstate = xstate_;
 	}
 	virtual ~IdleHandler() {
-		XUngrabKey(dpy, XKeysymToKeycode(dpy,XK_Escape), AnyModifier, ROOT);
+		// XUngrabKey(dpy, XKeysymToKeycode(dpy,XK_Escape), AnyModifier, DefaultRootWindow(dpy));
 	}
 	virtual std::string name() { return "Idle"; }
 	virtual Grabber::State grab_mode() { return Grabber::BUTTON; }
+	virtual void init() {
+		xstate->update_core_mapping();
+	}
 };
 
 class SelectHandler : public Handler {
@@ -1112,6 +1112,11 @@ XState::XState() : current_dev(nullptr), in_proximity(false), accepted(true), mo
 	ping_window = XCreateSimpleWindow(dpy, ROOT, 0, 0, 1, 1, 0, 0, 0);
 	handler = new IdleHandler(this);
 	handler->init();
+}
+
+
+XState::~XState() {
+	delete handler;
 }
 
 void XState::run_action(RAction act) {

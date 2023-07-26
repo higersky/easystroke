@@ -168,9 +168,8 @@ public:
 };
 
 Notifier* Win::register_notifier(sigc::slot<void()>&& f_) {
-	auto p = new Notifier(std::move(f_));
-	this->notifiers.push_back(p);
-	return p;
+	notifiers.push_front(std::move(f_));
+	return &notifiers.front();
 }
 
 Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Prefs>()), stats(std::make_shared<Stats>()) {
@@ -213,9 +212,6 @@ Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Pr
 
 Win::~Win() {
 	delete menu_check;
-	for(auto p : notifiers) {
-		delete p;
-	}
 }
 
 extern void icon_warning();

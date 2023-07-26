@@ -219,9 +219,8 @@ void Grabber::unminimize() {
 const char *Grabber::state_name[4] = { "None", "Button", "Select", "Raw" };
 
 IdleNotifier* Grabber::register_idle_notifier(sigc::slot<void()>&& f_) {
-	auto p = new IdleNotifier(std::move(f_));
-	this->idle_notifiers.push_back(p);
-	return p;
+	this->idle_notifiers.push_front(std::move(f_));
+	return &idle_notifiers.front();
 }
 
 Grabber::Grabber() : children(ROOT) {
@@ -248,9 +247,6 @@ Grabber::Grabber() : children(ROOT) {
 
 Grabber::~Grabber() {
 	XFreeCursor(dpy, cursor_select);
-	for(auto p : idle_notifiers) {
-		delete p;
-	}
 	delete current_class;
 }
 

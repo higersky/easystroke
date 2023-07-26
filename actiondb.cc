@@ -244,7 +244,7 @@ RStrokeInfo ActionListDiff::get_info(Unique *id, bool *deleted, bool *stroke, bo
 		*name = false;
 	if (action)
 		*action = false;
-	RStrokeInfo si = parent ? parent->get_info(id) : RStrokeInfo(new StrokeInfo);
+	RStrokeInfo si = parent ? parent->get_info(id) : std::make_shared<StrokeInfo>();
 	std::map<Unique *, StrokeInfo>::const_iterator i = added.find(id);
 	for (i = added.begin(); i != added.end(); i++) {
 		if (i->first == id)
@@ -273,7 +273,7 @@ RStrokeInfo ActionListDiff::get_info(Unique *id, bool *deleted, bool *stroke, bo
 
 std::shared_ptr<std::map<Unique *, StrokeSet> > ActionListDiff::get_strokes() const {
 	std::shared_ptr<std::map<Unique *, StrokeSet> > strokes = parent ? parent->get_strokes() :
-		std::shared_ptr<std::map<Unique *, StrokeSet> >(new std::map<Unique *, StrokeSet>);
+		std::make_shared<std::map<Unique *, StrokeSet> >();
 	for (std::set<Unique *>::const_iterator i = deleted.begin(); i != deleted.end(); i++)
 		strokes->erase(*i);
 	for (std::map<Unique *, StrokeInfo>::const_iterator i = added.begin(); i != added.end(); i++)
@@ -284,7 +284,7 @@ std::shared_ptr<std::map<Unique *, StrokeSet> > ActionListDiff::get_strokes() co
 
 std::shared_ptr<std::set<Unique *> > ActionListDiff::get_ids(bool include_deleted) const {
 	std::shared_ptr<std::set<Unique *> > ids = parent ? parent->get_ids(false) :
-		std::shared_ptr<std::set<Unique *> >(new std::set<Unique *>);
+		std::make_shared<std::set<Unique *>>();
 	if (!include_deleted)
 		for (std::set<Unique *>::const_iterator i = deleted.begin(); i != deleted.end(); i++)
 			ids->erase(*i);
@@ -328,7 +328,7 @@ RAction ActionListDiff::handle(RStroke s, RRanking &r) const {
 		}
 	}
 	if (!r->action && s->trivial())
-		return RAction(new Click);
+		return std::make_shared<Click>();
 	if (r->action) {
 		if (verbosity >= 1)
 			printf("Executing Action %s\n", r->name.c_str());
@@ -362,7 +362,7 @@ void ActionListDiff::handle_advanced(RStroke s, std::map<guint, RAction> &as,
 			} else {
 				r = new Ranking;
 				rs[b].reset(r);
-				r->stroke = RStroke(new Stroke(*s));
+				r->stroke = std::make_shared<Stroke>(*s);
 				r->score = -1;
 			}
 			RStrokeInfo si = get_info(i->first);

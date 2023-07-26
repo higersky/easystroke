@@ -20,7 +20,6 @@
 #include "stroke.h"
 #include <gdkmm.h>
 #include <vector>
-#include <boost/shared_ptr.hpp>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/version.hpp>
 #include <boost/serialization/split_member.hpp>

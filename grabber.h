@@ -18,6 +18,7 @@
 #include "prefdb.h"
 #include <string>
 #include <map>
+#include <forward_list>
 #include <X11/extensions/XInput2.h>
 #include <X11/Xatom.h>
 
@@ -87,7 +88,7 @@ private:
 	Cursor cursor_select;
 	ButtonInfo grabbed_button;
 	std::vector<ButtonInfo> buttons;
-	std::vector<IdleNotifier*> idle_notifiers;
+	std::forward_list<IdleNotifier> idle_notifiers;
 
 	void set();
 	void grab_xi(bool);
