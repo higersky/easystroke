@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-14 00:24-0400\n"
+"POT-Creation-Date: 2023-07-26 20:48+0800\n"
 "PO-Revision-Date: 2013-03-14 20:01+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,36 +19,174 @@ msgstr ""
 "X-Launchpad-Export-Date: 2013-03-27 01:12+0000\n"
 "X-Generator: Launchpad (build 16540)\n"
 
-#, c-format
-msgid "Error: can't execute command \"%s\": fork() failed\n"
-msgstr "Chyba: nelze spustit příkaz \"%s\": fork() selhalo\n"
+#: ../stats.cc:33 ../stats.cc:39 ../actions.cc:159
+msgid "Stroke"
+msgstr "Gesto"
 
+#: ../stats.cc:34 ../stats.cc:42 ../actions.cc:165
+msgid "Name"
+msgstr "Název"
+
+#: ../stats.cc:35 ../stats.cc:43
+msgid "Score"
+msgstr "Skóre"
+
+#: ../win.cc:180
+msgid "D_isabled"
+msgstr "Zakázán_o"
+
+#: ../win.cc:304
+msgid "<unnamed>"
+msgstr "<bez názvu>"
+
+#: ../composite.cc:30
+msgid "'composite' not available"
+msgstr "'composite' není k dispozici"
+
+#: ../prefs.cc:191 ../actiondb.cc:141
 msgid "None"
 msgstr "Žádný"
 
-msgid "Unminimize"
-msgstr "Odminimalizovat"
-
-msgid "Show/Hide"
-msgstr "Zobrazit/Skrýt"
-
-msgid "Disable (Enable)"
-msgstr "Zakázat (Povolit)"
-
+#: ../prefs.cc:192 ../prefs.cc:202 ../prefs.cc:211 ../actiondb.cc:155
+#: ../actiondb.cc:179
 msgid "Default"
 msgstr "Výchozí"
 
+#: ../prefs.cc:193
+msgid "XShape"
+msgstr "XShape"
+
+#: ../prefs.cc:194
+msgid "Annotate (compiz)"
+msgstr "Annotate (compiz)"
+
+#: ../prefs.cc:195
+msgid "Fire (compiz)"
+msgstr "Oheň (compiz)"
+
+#: ../prefs.cc:196
+msgid "Water (compiz)"
+msgstr "Voda (compiz)"
+
+#: ../prefs.cc:200 ../prefs.cc:209
+msgid "Timeout Off"
+msgstr "Timeout vypnutý"
+
+#: ../prefs.cc:201 ../prefs.cc:210
+msgid "Conservative"
+msgstr "Konzervativní"
+
+#: ../prefs.cc:203 ../prefs.cc:212
+msgid "Medium"
+msgstr "Střední"
+
+#: ../prefs.cc:204 ../prefs.cc:213
+msgid "Aggressive"
+msgstr "Agresivní"
+
+#: ../prefs.cc:205 ../prefs.cc:214
+msgid "Flick"
+msgstr "Trhnutí"
+
+#: ../prefs.cc:215
+msgid "Custom"
+msgstr "Vlastní"
+
+#: ../prefs.cc:351
+msgid "Application (WM__CLASS)"
+msgstr "Aplikace (WM__CLASS)"
+
+#: ../prefs.cc:356 ../prefs.cc:403 ../actions.cc:76
+msgid "Button"
+msgstr "Tlačítko"
+
+#: ../prefs.cc:368 ../main.cc:372
+msgid "Enabled"
+msgstr "Povoleno"
+
+#: ../prefs.cc:369
+msgid "Device"
+msgstr "Zařízení"
+
+#: ../prefs.cc:376 ../prefs.cc:448
+msgid "<unchanged>"
+msgstr "<nezměněno>"
+
+#: ../prefs.cc:390 ../gui.glade.h:25
+msgid "Timeout profile"
+msgstr "Profil timeoutu"
+
+#: ../prefs.cc:421 ../prefs.cc:725 ../prefs.cc:751
+msgid "<App disabled>"
+msgstr "<Apl zakázána>"
+
+#: ../prefs.cc:535
+msgid "Select a Mouse or Pen Button"
+msgstr "Zvolte tlačítko myši nebo pera"
+
+#: ../prefs.cc:536
+msgid ""
+"Please place your mouse or pen in the box below and press the button that "
+"you want to select.  You can also hold down additional modifiers."
+msgstr ""
+"Prosím umístěte myš do náslodujícího okna a stiskněte požadované tlačítko. "
+"Můžete také držet libovolné pomocné klávesy (Ctrl, Alt, Shift)."
+
+#: ../prefs.cc:556 ../actions.cc:961
+msgid "Button %1"
+msgstr "Tlačítko %1"
+
+#: ../handler.cc:342 ../main.cc:84
 #, c-format
-msgid "Error: Couldn't read action database: %s.\n"
-msgstr "Chyba: Nelze přečíst databázi akcí: %s.\n"
+msgid "Error: %s\n"
+msgstr "Chyba: %s\n"
 
-msgid "rename() failed"
-msgstr "rename() selhalo"
+#: ../main.cc:155
+msgid "Tray icon disabled"
+msgstr "Ikona v oznam. oblasti zakázána"
 
+#: ../main.cc:156
+msgid ""
+"To bring the configuration dialog up again, you should define an action of "
+"type Misc...Show/Hide."
+msgstr ""
+"K zobrazení dialogu nastavení byste měli nadefinovat akci Ostatní...."
+"Zobrazit/Skrýt"
+
+#: ../main.cc:305
 #, c-format
-msgid "Error: Couldn't save action database: %s.\n"
-msgstr "Chyba: Nelze zapsat databázi akcí: %s.\n"
+msgid "Warning: No action \"%s\" defined\n"
+msgstr "Varování: Nebyla nadefinována akce \"%s\"\n"
 
+#: ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr "O programu"
+
+#: ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr "Konec"
+
+#: ../main.cc:397
+#, c-format
+msgid "Couldn't open display.\n"
+msgstr "Nelze otevřít display.\n"
+
+#: ../main.cc:482
+#, c-format
+msgid "Error: Couldn't create configuration directory \"%s\"\n"
+msgstr "Chyba: Nelze vytvořit konfigurační složku \"%s\"\n"
+
+#: ../main.cc:487
+#, c-format
+msgid "Error: \"%s\" is not a directory\n"
+msgstr "Chyba: \"%s\" není složka\n"
+
+#: ../prefdb.cc:154
+#, c-format
+msgid "Error: Couldn't save preferences: %s.\n"
+msgstr "Chyba: Nelze uložit nastavení: %s.\n"
+
+#: ../prefdb.cc:158 ../actiondb.cc:230
 msgid ""
 "Couldn't save %1.  Your changes will be lost.  Make sure that \"%2\" is a "
 "directory and that you have write access to it.  You can change the "
@@ -57,87 +196,105 @@ msgstr ""
 "složka a že do ní máte právo zápisu. Můžete změnit konfigurační složku "
 "parametrem -c nebo --config-dir v terminálu."
 
-msgid "actions"
-msgstr "akce"
+#: ../prefdb.cc:161
+msgid "preferences"
+msgstr "nastavení"
 
+#: ../prefdb.cc:188
+#, c-format
+msgid "Error: Couldn't read preferences.\n"
+msgstr "Chyba: Nelze načíst nastavení.\n"
+
+#: ../actions.cc:71
 msgid "Command"
 msgstr "Příkaz"
 
+#: ../actions.cc:72
 msgid "Key"
 msgstr "Klávesa"
 
+#: ../actions.cc:73
 msgid "Text"
 msgstr "Text"
 
+#: ../actions.cc:74 ../actions.cc:968
 msgid "Scroll"
 msgstr "Posun"
 
+#: ../actions.cc:75 ../actions.cc:975
 msgid "Ignore"
 msgstr "Ignorovat"
 
-msgid "Button"
-msgstr "Tlačítko"
-
+#: ../actions.cc:77
 msgid "Misc"
 msgstr "Ostatní"
 
-msgid "Stroke"
-msgstr "Gesto"
-
-msgid "Name"
-msgstr "Název"
-
+#: ../actions.cc:189
 msgid "Type"
 msgstr "Typ"
 
+#: ../actions.cc:197
 msgid "Details"
 msgstr "Detaily"
 
+#: ../actions.cc:222
 msgid "Application"
 msgstr "Aplikace"
 
+#: ../actions.cc:229 ../gui.glade.h:22
 msgid "Actions"
 msgstr "Akce"
 
+#: ../actions.cc:486
 msgid "Action \"%1\" is about to be deleted."
 msgstr "Akce \"%1\" bude smazána."
 
+#: ../actions.cc:488
 msgid "One action is about to be deleted."
 msgid_plural "%1 actions are about to be deleted"
 msgstr[0] "Jedna akce bude smazána."
 msgstr[1] "%1 akce budou smazány."
 msgstr[2] "%1 akcí bude smazáno."
 
+#: ../actions.cc:493
 msgid "Delete an Action"
 msgid_plural "Delete Actions"
 msgstr[0] "Smazat akci"
 msgstr[1] "Smazat akce"
 msgstr[2] "Smazat akce"
 
+#: ../actions.cc:559
 msgid "%1 \"%2\" (containing %3 %4) is about to be deleted."
 msgstr "%1 \"%2\" (obsahující %3 %4) bude smazána."
 
+#: ../actions.cc:560
 msgid "The application"
 msgstr "Aplikace"
 
+#: ../actions.cc:560
 msgid "The group"
 msgstr "Skupina"
 
+#: ../actions.cc:563
 msgid "action"
 msgid_plural "actions"
 msgstr[0] "akce"
 msgstr[1] "akce"
 msgstr[2] "akcí"
 
+#: ../actions.cc:564
 msgid "Delete an Application"
 msgstr "Smazat aplikaci"
 
+#: ../actions.cc:564
 msgid "Delete an Application Group"
 msgstr "Smazat skupinu aplikací"
 
+#: ../actions.cc:594
 msgid "Group"
 msgstr "Skupina"
 
+#: ../actions.cc:712
 msgid ""
 "You are about to bind an action to a single click.  This might make it "
 "difficult to use Button %1 in the future.  Are you sure you want to continue?"
@@ -145,9 +302,11 @@ msgstr ""
 "Chcete nastavit pro akci jedno kliknutí. Toto může v budouctnosti způsobovat "
 "problémy při používání tlačítka %1. Opravdu chcete pokračovat?"
 
+#: ../actions.cc:745
 msgid "Record a New Stroke"
 msgstr "Zaznamenat nové gesto"
 
+#: ../actions.cc:746
 msgid ""
 "The next stroke will be associated with the action \"%1\".  You can draw it "
 "anywhere on the screen (except for the two buttons below)."
@@ -155,317 +314,295 @@ msgstr ""
 "Následující gesto bude asociováno s akcí \"%1\". Můžete malovat kdekoliv na "
 "obrazovce (s výjimkou dvou tlačítek níže)."
 
+#: ../actions.cc:831
 msgid "Gesture %1"
 msgstr "Gesto %1"
 
+#: ../actions.cc:946
 msgid "No Modifiers"
 msgstr "Žádné modifikátory"
 
+#: ../actions.cc:954
 msgid "(Instantly) "
 msgstr "(Instantně) "
 
+#: ../actions.cc:956
 msgid "(Click & Hold) "
 msgstr "(Kliknout & držet) "
 
+#: ../actions.cc:958
 msgid "Any Modifier"
 msgstr "Jakékoliv modifikátory"
 
-msgid "Button %1"
-msgstr "Tlačítko %1"
-
+#: ../actions.cc:966
 msgid " + Scroll"
 msgstr " + Rolovat"
 
-msgid "'composite' not available"
-msgstr "'composite' není k dispozici"
+#: ../actiondb.cc:141
+msgid "Unminimize"
+msgstr "Odminimalizovat"
 
+#: ../actiondb.cc:141
+msgid "Show/Hide"
+msgstr "Zobrazit/Skrýt"
+
+#: ../actiondb.cc:141
+msgid "Disable (Enable)"
+msgstr "Zakázat (Povolit)"
+
+#: ../actiondb.cc:206
 #, c-format
-msgid "Error: %s\n"
-msgstr "Chyba: %s\n"
+msgid "Error: Couldn't read action database: %s.\n"
+msgstr "Chyba: Nelze přečíst databázi akcí: %s.\n"
 
-msgid "Tray icon disabled"
-msgstr "Ikona v oznam. oblasti zakázána"
+#: ../actiondb.cc:222
+msgid "rename() failed"
+msgstr "rename() selhalo"
 
-msgid ""
-"To bring the configuration dialog up again, you should define an action of "
-"type Misc...Show/Hide."
-msgstr ""
-"K zobrazení dialogu nastavení byste měli nadefinovat akci "
-"Ostatní....Zobrazit/Skrýt"
-
+#: ../actiondb.cc:226
 #, c-format
-msgid "Warning: No action \"%s\" defined\n"
-msgstr "Varování: Nebyla nadefinována akce \"%s\"\n"
+msgid "Error: Couldn't save action database: %s.\n"
+msgstr "Chyba: Nelze zapsat databázi akcí: %s.\n"
 
-msgid "Enabled"
-msgstr "Povoleno"
+#: ../actiondb.cc:233
+msgid "actions"
+msgstr "akce"
 
-msgid "About"
-msgstr "O programu"
-
-msgid "Quit"
-msgstr "Konec"
-
-#, c-format
-msgid "Couldn't open display.\n"
-msgstr "Nelze otevřít display.\n"
-
-#, c-format
-msgid "Error: Couldn't create configuration directory \"%s\"\n"
-msgstr "Chyba: Nelze vytvořit konfigurační složku \"%s\"\n"
-
-#, c-format
-msgid "Error: \"%s\" is not a directory\n"
-msgstr "Chyba: \"%s\" není složka\n"
-
-#, c-format
-msgid "Error: Couldn't save preferences: %s.\n"
-msgstr "Chyba: Nelze uložit nastavení: %s.\n"
-
-msgid "preferences"
-msgstr "nastavení"
-
-#, c-format
-msgid "Error: Couldn't read preferences.\n"
-msgstr "Chyba: Nelze načíst nastavení.\n"
-
-msgid "XShape"
-msgstr "XShape"
-
-msgid "Annotate (compiz)"
-msgstr "Annotate (compiz)"
-
-msgid "Fire (compiz)"
-msgstr "Oheň (compiz)"
-
-msgid "Water (compiz)"
-msgstr "Voda (compiz)"
-
-msgid "Timeout Off"
-msgstr "Timeout vypnutý"
-
-msgid "Conservative"
-msgstr "Konzervativní"
-
-msgid "Medium"
-msgstr "Střední"
-
-msgid "Aggressive"
-msgstr "Agresivní"
-
-msgid "Flick"
-msgstr "Trhnutí"
-
-msgid "Custom"
-msgstr "Vlastní"
-
-msgid "Application (WM__CLASS)"
-msgstr "Aplikace (WM__CLASS)"
-
-msgid "Device"
-msgstr "Zařízení"
-
-msgid "<unchanged>"
-msgstr "<nezměněno>"
-
-msgid "Timeout profile"
-msgstr "Profil timeoutu"
-
-msgid "<App disabled>"
-msgstr "<Apl zakázána>"
-
-msgid "Select a Mouse or Pen Button"
-msgstr "Zvolte tlačítko myši nebo pera"
-
-msgid ""
-"Please place your mouse or pen in the box below and press the button that "
-"you want to select.  You can also hold down additional modifiers."
-msgstr ""
-"Prosím umístěte myš do náslodujícího okna a stiskněte požadované tlačítko. "
-"Můžete také držet libovolné pomocné klávesy (Ctrl, Alt, Shift)."
-
-msgid "Score"
-msgstr "Skóre"
-
-msgid "D_isabled"
-msgstr "Zakázán_o"
-
-msgid "<unnamed>"
-msgstr "<bez názvu>"
-
+#: ../trace.h:23
 msgid "Connection to DBus failed"
 msgstr "Spojení s DBus selhalo"
 
+#: ../gui.glade.h:1
 msgid "_Delete Current"
 msgstr "S_mazat aktuální"
 
+#: ../gui.glade.h:2
 msgid "_Default"
 msgstr "_Výchozí"
 
+#: ../gui.glade.h:3
 msgid "Timeout"
 msgstr "Timeout"
 
+#: ../gui.glade.h:4
 msgid "Instant Gestures"
 msgstr "Rychlá gesta"
 
+#: ../gui.glade.h:5
 msgid "Click & Hold"
 msgstr "Kliknout & držet"
 
+#: ../gui.glade.h:6
 msgid "_Control"
 msgstr "_Control"
 
+#: ../gui.glade.h:7
 msgid "_Shift"
 msgstr "_Shift"
 
+#: ../gui.glade.h:8
 msgid "_Alt"
 msgstr "_Alt"
 
+#: ../gui.glade.h:9
 msgid "S_uper"
 msgstr "S_uper"
 
+#: ../gui.glade.h:10
 msgid "An_y Modifier"
 msgstr "J_akýkoliv modifikátor"
 
+#: ../gui.glade.h:11
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "Alternativně můžete zvolit tlačítko a modifikátory níže."
 
+#: ../gui.glade.h:12
 msgid "Show deleted rows"
 msgstr "Zobrazit smazané řady"
 
+#: ../gui.glade.h:13
 msgid "Add Application"
 msgstr "Přidat aplikaci"
 
+#: ../gui.glade.h:14
 msgid "Remove Application/Group"
 msgstr "Odebrat Aplikaci/Skupinu"
 
+#: ../gui.glade.h:15
 msgid "Add Group"
 msgstr "Přidat skupinu"
 
+#: ../gui.glade.h:16
 msgid "Reset Action(s)"
 msgstr "Resetovat Akce"
 
+#: ../gui.glade.h:17
 msgid "Applications"
 msgstr "Aplikace"
 
+#: ../gui.glade.h:18
 msgid "_Record Stroke"
 msgstr "_Zaznamenat gesto"
 
+#: ../gui.glade.h:19
 msgid "_Add Action"
 msgstr "Přid_at akci"
 
+#: ../gui.glade.h:20
 msgid "_Delete Action(s)"
 msgstr "S_mazat akce"
 
+#: ../gui.glade.h:21
 msgid "_Hide"
 msgstr "_Skrýt"
 
+#: ../gui.glade.h:23
 msgid "_Gesture Button"
 msgstr "Tlačítko _Gest"
 
+#: ../gui.glade.h:24
 msgid "Additional Buttons"
 msgstr "Další tlačítka"
 
+#: ../gui.glade.h:26
 msgid "Initial Timeout (ms)"
 msgstr "Počáteční timeout (ms)"
 
+#: ../gui.glade.h:27
 msgid "     Timeout (ms)"
 msgstr "     Timeout (ms)"
 
+#: ../gui.glade.h:28
 msgid "<b>Behavior</b>"
 msgstr "<b>Chování</b>"
 
+#: ../gui.glade.h:29
 msgid "Method to show gestures"
 msgstr "Metoda zobrazování gest"
 
+#: ../gui.glade.h:30
 msgid "Color"
 msgstr "Barva"
 
+#: ../gui.glade.h:31
 msgid "Width"
 msgstr "Šířka"
 
+#: ../gui.glade.h:32
 msgid "Show popups ("
 msgstr "Zobrazit vyskakovací okna ("
 
+#: ../gui.glade.h:33
 msgid "to the right of the cursor)"
 msgstr "napravo od kurzoru)"
 
+#: ../gui.glade.h:34
 msgid "Show tray icon"
 msgstr "Zobrazovat ikonu v oznamovací oblasti"
 
+#: ../gui.glade.h:35
 msgid "Show last gesture in tray"
 msgstr "Zobrazit poslední gesto v oznam. oblasti"
 
+#: ../gui.glade.h:36
 msgid "Autostart easystroke"
 msgstr "Automaticky spouštět EasyStroke"
 
+#: ../gui.glade.h:37
 msgid "<b>Appearance</b>"
 msgstr "<b>Vzhled</b>"
 
+#: ../gui.glade.h:38
 msgid "<b>Exceptions</b>"
 msgstr "<b>Výjimky</b>"
 
+#: ../gui.glade.h:39
 msgid "_Add Exception"
 msgstr "Přid_at výjimku"
 
+#: ../gui.glade.h:40
 msgid "_Remove Exception"
 msgstr "Odeb_rat výjimku"
 
+#: ../gui.glade.h:41
 msgid "Preferences"
 msgstr "Nastavení"
 
+#: ../gui.glade.h:42
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr "Easystroke povolit pouze po aplikace uvedené v kartě 'Akce'"
 
+#: ../gui.glade.h:43
 msgid "Timeout Gestures"
 msgstr "Timeout Gest"
 
+#: ../gui.glade.h:44
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Ignorovat čáry, které začínají být složitějšími gesty"
 
+#: ../gui.glade.h:45
 msgid "(See Documentation)"
 msgstr "(Navštivte dokumentaci)"
 
+#: ../gui.glade.h:46
 msgid "Show popups on advanced gestures"
 msgstr "Zobrazit vyskakovací okna u pokročilých gest"
 
+#: ../gui.glade.h:47
 msgid "Show OSD"
 msgstr "Zobrazit OSD"
 
+#: ../gui.glade.h:48
 msgid "Invert Scroll Direction"
 msgstr "Obrátit směr posuvu"
 
+#: ../gui.glade.h:49
 msgid "Scroll Speed"
 msgstr "Rychlost posuvu"
 
+#: ../gui.glade.h:50
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "Po každém gestu přesunout kurzor zpět na původní pozici."
 
+#: ../gui.glade.h:51
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr "Zůstat ve 'skrolovacím' a 'ignore' módu dokud je pero v dosahu"
 
+#: ../gui.glade.h:52
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Nastavení Tabletu</b>"
 
+#: ../gui.glade.h:53
 msgid "<b>Devices</b>"
 msgstr "<b>Zařízení</b>"
 
+#: ../gui.glade.h:54
 msgid "Advanced"
 msgstr "Pokročilé"
 
+#: ../gui.glade.h:55
 msgid "_Matrix"
 msgstr "_Matrix"
 
+#: ../gui.glade.h:56
 msgid "_History"
 msgstr "_Historie"
 
+#: ../easystroke.desktop.in.h:1
 msgid "Easystroke Gesture Recognition"
 msgstr "Easystroke rozeznávání gest"
 
+#: ../easystroke.desktop.in.h:2
 msgid "Control your desktop using mouse gestures"
 msgstr "Ovládejte počítač pomocí gest myši"
 
+#: ../easystroke.desktop.in.h:4
 msgid "Enable"
 msgstr "Povolit"
 
+#: ../easystroke.desktop.in.h:5
 msgid "Disable"
 msgstr "Zakázat"
+
+#~ msgid "Error: can't execute command \"%s\": fork() failed\n"
+#~ msgstr "Chyba: nelze spustit příkaz \"%s\": fork() selhalo\n"

@@ -6,49 +6,188 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-14 00:24-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-26 20:48+0800\n"
 "PO-Revision-Date: 2012-12-25 06:20+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2013-03-14 04:28+0000\n"
 "X-Generator: Launchpad (build 16532)\n"
 
-#, c-format
-msgid "Error: can't execute command \"%s\": fork() failed\n"
-msgstr "Ошибка! Не могу выполнить команду \"%s\": форк() не удался.\n"
+#: ../stats.cc:33 ../stats.cc:39 ../actions.cc:159
+msgid "Stroke"
+msgstr "Жест"
 
+#: ../stats.cc:34 ../stats.cc:42 ../actions.cc:165
+msgid "Name"
+msgstr "Название"
+
+#: ../stats.cc:35 ../stats.cc:43
+msgid "Score"
+msgstr "Точность"
+
+#: ../win.cc:180
+msgid "D_isabled"
+msgstr "О_тключено"
+
+#: ../win.cc:304
+msgid "<unnamed>"
+msgstr ""
+
+#: ../composite.cc:30
+msgid "'composite' not available"
+msgstr "«композит» не доступен"
+
+#: ../prefs.cc:191 ../actiondb.cc:141
 msgid "None"
 msgstr "Отсутствует"
 
-msgid "Unminimize"
-msgstr "Восстановить"
-
-msgid "Show/Hide"
-msgstr "Показать или скрыть"
-
-msgid "Disable (Enable)"
-msgstr "Отключить (включить)"
-
+#: ../prefs.cc:192 ../prefs.cc:202 ../prefs.cc:211 ../actiondb.cc:155
+#: ../actiondb.cc:179
 msgid "Default"
 msgstr "Значение по умолчанию"
 
+#: ../prefs.cc:193
+msgid "XShape"
+msgstr "XShape"
+
+#: ../prefs.cc:194
+msgid "Annotate (compiz)"
+msgstr "Annotate (Сompiz)"
+
+#: ../prefs.cc:195
+msgid "Fire (compiz)"
+msgstr "Огонь (Сompiz)"
+
+#: ../prefs.cc:196
+msgid "Water (compiz)"
+msgstr "Вода (Сompiz)"
+
+#: ../prefs.cc:200 ../prefs.cc:209
+msgid "Timeout Off"
+msgstr "Тайм-аут вытключен"
+
+#: ../prefs.cc:201 ../prefs.cc:210
+msgid "Conservative"
+msgstr "Умеренный"
+
+#: ../prefs.cc:203 ../prefs.cc:212
+msgid "Medium"
+msgstr "Средний"
+
+#: ../prefs.cc:204 ../prefs.cc:213
+msgid "Aggressive"
+msgstr "Агрессивный"
+
+#: ../prefs.cc:205 ../prefs.cc:214
+msgid "Flick"
+msgstr "Рывком"
+
+#: ../prefs.cc:215
+msgid "Custom"
+msgstr "Пользовательский"
+
+#: ../prefs.cc:351
+msgid "Application (WM__CLASS)"
+msgstr "Приложение (WM__CLASS)"
+
+#: ../prefs.cc:356 ../prefs.cc:403 ../actions.cc:76
+msgid "Button"
+msgstr "Кнопка"
+
+#: ../prefs.cc:368 ../main.cc:372
+msgid "Enabled"
+msgstr "Включено"
+
+#: ../prefs.cc:369
+msgid "Device"
+msgstr "Устройство"
+
+#: ../prefs.cc:376 ../prefs.cc:448
+msgid "<unchanged>"
+msgstr ""
+
+#: ../prefs.cc:390 ../gui.glade.h:25
+msgid "Timeout profile"
+msgstr "Настройка задержки"
+
+#: ../prefs.cc:421 ../prefs.cc:725 ../prefs.cc:751
+msgid "<App disabled>"
+msgstr "<Прил. отключено>"
+
+#: ../prefs.cc:535
+msgid "Select a Mouse or Pen Button"
+msgstr "Выберите кнопку мыши или пера"
+
+#: ../prefs.cc:536
+msgid ""
+"Please place your mouse or pen in the box below and press the button that "
+"you want to select.  You can also hold down additional modifiers."
+msgstr ""
+"Поместите мышь или перо в область ниже и нажмите желаемую кнопку. Можно "
+"удерживать дополнительные модификаторы."
+
+#: ../prefs.cc:556 ../actions.cc:961
+msgid "Button %1"
+msgstr "Кнопка %1"
+
+#: ../handler.cc:342 ../main.cc:84
 #, c-format
-msgid "Error: Couldn't read action database: %s.\n"
-msgstr "Ошибка! Не могу прочитать базу данных действий: %s.\n"
+msgid "Error: %s\n"
+msgstr "Ошибка: %s\n"
 
-msgid "rename() failed"
-msgstr "переименование() прошло неудачно"
+#: ../main.cc:155
+msgid "Tray icon disabled"
+msgstr "Иконка в области уведомлений отключена"
 
+#: ../main.cc:156
+msgid ""
+"To bring the configuration dialog up again, you should define an action of "
+"type Misc...Show/Hide."
+msgstr ""
+"Для вызова диалога конфигурации вы должны определить действие «Разное…"
+"Показать/скрыть»."
+
+#: ../main.cc:305
 #, c-format
-msgid "Error: Couldn't save action database: %s.\n"
-msgstr "Ошибка! Не могу сохранить базу данных действий: %s.\n"
+msgid "Warning: No action \"%s\" defined\n"
+msgstr "Внимание: действие \"%s\" не определено\n"
 
+#: ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr "Сведения о программе"
+
+#: ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr "Выйти"
+
+#: ../main.cc:397
+#, c-format
+msgid "Couldn't open display.\n"
+msgstr "Не могу открыть дисплей.\n"
+
+#: ../main.cc:482
+#, c-format
+msgid "Error: Couldn't create configuration directory \"%s\"\n"
+msgstr "Ошибка: не смог создать конфигурационный каталог \"%s\"\n"
+
+#: ../main.cc:487
+#, c-format
+msgid "Error: \"%s\" is not a directory\n"
+msgstr "Ошибка: \"%s\" не является каталогом\n"
+
+#: ../prefdb.cc:154
+#, c-format
+msgid "Error: Couldn't save preferences: %s.\n"
+msgstr "Ошибка! Не смог сохранить параметры настройки: \"%s\".\n"
+
+#: ../prefdb.cc:158 ../actiondb.cc:230
 msgid ""
 "Couldn't save %1.  Your changes will be lost.  Make sure that \"%2\" is a "
 "directory and that you have write access to it.  You can change the "
@@ -59,87 +198,105 @@ msgstr ""
 "Изменить конфигурационный каталог можно с помощью опций командной строки -c "
 "или --config-dir."
 
-msgid "actions"
-msgstr "действия"
+#: ../prefdb.cc:161
+msgid "preferences"
+msgstr "Настройка"
 
+#: ../prefdb.cc:188
+#, c-format
+msgid "Error: Couldn't read preferences.\n"
+msgstr "Ошибка: не смог прочитать параметры настройки.\n"
+
+#: ../actions.cc:71
 msgid "Command"
 msgstr "Команда"
 
+#: ../actions.cc:72
 msgid "Key"
 msgstr "Клавиша"
 
+#: ../actions.cc:73
 msgid "Text"
 msgstr "Текст"
 
+#: ../actions.cc:74 ../actions.cc:968
 msgid "Scroll"
 msgstr "Прокрутка"
 
+#: ../actions.cc:75 ../actions.cc:975
 msgid "Ignore"
 msgstr "Игнорировать"
 
-msgid "Button"
-msgstr "Кнопка"
-
+#: ../actions.cc:77
 msgid "Misc"
 msgstr "Разное"
 
-msgid "Stroke"
-msgstr "Жест"
-
-msgid "Name"
-msgstr "Название"
-
+#: ../actions.cc:189
 msgid "Type"
 msgstr "Тип"
 
+#: ../actions.cc:197
 msgid "Details"
 msgstr "Подробности"
 
+#: ../actions.cc:222
 msgid "Application"
 msgstr "Приложение"
 
+#: ../actions.cc:229 ../gui.glade.h:22
 msgid "Actions"
 msgstr "Действия"
 
+#: ../actions.cc:486
 msgid "Action \"%1\" is about to be deleted."
 msgstr "Действие \"%1\" будет удалено."
 
+#: ../actions.cc:488
 msgid "One action is about to be deleted."
 msgid_plural "%1 actions are about to be deleted"
 msgstr[0] "Одно действие будет удалено."
 msgstr[1] "Действия %1 будут удалены."
 msgstr[2] "Действия %1 будут удалены."
 
+#: ../actions.cc:493
 msgid "Delete an Action"
 msgid_plural "Delete Actions"
 msgstr[0] "Удалить действие"
 msgstr[1] "Удалить действия"
 msgstr[2] "Удалить действия"
 
+#: ../actions.cc:559
 msgid "%1 \"%2\" (containing %3 %4) is about to be deleted."
 msgstr "%1 \"%2\" (содержащее %3 %4) сейчас будет удалено."
 
+#: ../actions.cc:560
 msgid "The application"
 msgstr "Приложение"
 
+#: ../actions.cc:560
 msgid "The group"
 msgstr "Группа"
 
+#: ../actions.cc:563
 msgid "action"
 msgid_plural "actions"
 msgstr[0] "действие"
 msgstr[1] "действия"
 msgstr[2] "действия"
 
+#: ../actions.cc:564
 msgid "Delete an Application"
 msgstr "Удалить приложение"
 
+#: ../actions.cc:564
 msgid "Delete an Application Group"
 msgstr "Удалить группу приложений"
 
+#: ../actions.cc:594
 msgid "Group"
 msgstr "Группа"
 
+#: ../actions.cc:712
 msgid ""
 "You are about to bind an action to a single click.  This might make it "
 "difficult to use Button %1 in the future.  Are you sure you want to continue?"
@@ -147,9 +304,11 @@ msgstr ""
 "Вы собираетесь привязать действие к одиночному щелчку. В будущем это может "
 "вызвать затруднения с использованием кнопки %1. Точно продолжить?"
 
+#: ../actions.cc:745
 msgid "Record a New Stroke"
 msgstr "Записать новый жест"
 
+#: ../actions.cc:746
 msgid ""
 "The next stroke will be associated with the action \"%1\".  You can draw it "
 "anywhere on the screen (except for the two buttons below)."
@@ -157,322 +316,300 @@ msgstr ""
 "Следующий жест будет ассоциирован с действием \"%1\". Нарисуйте его в любом "
 "месте экрана (исключая две нижеследующие кнопки)."
 
+#: ../actions.cc:831
 msgid "Gesture %1"
 msgstr "Жест %1"
 
+#: ../actions.cc:946
 msgid "No Modifiers"
 msgstr "Без модификаторов"
 
+#: ../actions.cc:954
 msgid "(Instantly) "
 msgstr "(Мгновенно) "
 
+#: ../actions.cc:956
 msgid "(Click & Hold) "
 msgstr "(Щелчок и удержание) "
 
+#: ../actions.cc:958
 msgid "Any Modifier"
 msgstr "Любой модификатор"
 
-msgid "Button %1"
-msgstr "Кнопка %1"
-
+#: ../actions.cc:966
 msgid " + Scroll"
 msgstr " + Прокрутка"
 
-msgid "'composite' not available"
-msgstr "«композит» не доступен"
+#: ../actiondb.cc:141
+msgid "Unminimize"
+msgstr "Восстановить"
 
+#: ../actiondb.cc:141
+msgid "Show/Hide"
+msgstr "Показать или скрыть"
+
+#: ../actiondb.cc:141
+msgid "Disable (Enable)"
+msgstr "Отключить (включить)"
+
+#: ../actiondb.cc:206
 #, c-format
-msgid "Error: %s\n"
-msgstr "Ошибка: %s\n"
+msgid "Error: Couldn't read action database: %s.\n"
+msgstr "Ошибка! Не могу прочитать базу данных действий: %s.\n"
 
-msgid "Tray icon disabled"
-msgstr "Иконка в области уведомлений отключена"
+#: ../actiondb.cc:222
+msgid "rename() failed"
+msgstr "переименование() прошло неудачно"
 
-msgid ""
-"To bring the configuration dialog up again, you should define an action of "
-"type Misc...Show/Hide."
-msgstr ""
-"Для вызова диалога конфигурации вы должны определить действие "
-"«Разное…Показать/скрыть»."
-
+#: ../actiondb.cc:226
 #, c-format
-msgid "Warning: No action \"%s\" defined\n"
-msgstr "Внимание: действие \"%s\" не определено\n"
+msgid "Error: Couldn't save action database: %s.\n"
+msgstr "Ошибка! Не могу сохранить базу данных действий: %s.\n"
 
-msgid "Enabled"
-msgstr "Включено"
+#: ../actiondb.cc:233
+msgid "actions"
+msgstr "действия"
 
-msgid "About"
-msgstr "Сведения о программе"
-
-msgid "Quit"
-msgstr "Выйти"
-
-#, c-format
-msgid "Couldn't open display.\n"
-msgstr "Не могу открыть дисплей.\n"
-
-#, c-format
-msgid "Error: Couldn't create configuration directory \"%s\"\n"
-msgstr "Ошибка: не смог создать конфигурационный каталог \"%s\"\n"
-
-#, c-format
-msgid "Error: \"%s\" is not a directory\n"
-msgstr "Ошибка: \"%s\" не является каталогом\n"
-
-#, c-format
-msgid "Error: Couldn't save preferences: %s.\n"
-msgstr "Ошибка! Не смог сохранить параметры настройки: \"%s\".\n"
-
-msgid "preferences"
-msgstr "Настройка"
-
-#, c-format
-msgid "Error: Couldn't read preferences.\n"
-msgstr "Ошибка: не смог прочитать параметры настройки.\n"
-
-msgid "XShape"
-msgstr "XShape"
-
-msgid "Annotate (compiz)"
-msgstr "Annotate (Сompiz)"
-
-msgid "Fire (compiz)"
-msgstr "Огонь (Сompiz)"
-
-msgid "Water (compiz)"
-msgstr "Вода (Сompiz)"
-
-msgid "Timeout Off"
-msgstr "Тайм-аут вытключен"
-
-msgid "Conservative"
-msgstr "Умеренный"
-
-msgid "Medium"
-msgstr "Средний"
-
-msgid "Aggressive"
-msgstr "Агрессивный"
-
-msgid "Flick"
-msgstr "Рывком"
-
-msgid "Custom"
-msgstr "Пользовательский"
-
-msgid "Application (WM__CLASS)"
-msgstr "Приложение (WM__CLASS)"
-
-msgid "Device"
-msgstr "Устройство"
-
-msgid "<unchanged>"
-msgstr ""
-
-msgid "Timeout profile"
-msgstr "Настройка задержки"
-
-msgid "<App disabled>"
-msgstr "<Прил. отключено>"
-
-msgid "Select a Mouse or Pen Button"
-msgstr "Выберите кнопку мыши или пера"
-
-msgid ""
-"Please place your mouse or pen in the box below and press the button that "
-"you want to select.  You can also hold down additional modifiers."
-msgstr ""
-"Поместите мышь или перо в область ниже и нажмите желаемую кнопку. Можно "
-"удерживать дополнительные модификаторы."
-
-msgid "Score"
-msgstr "Точность"
-
-msgid "D_isabled"
-msgstr "О_тключено"
-
-msgid "<unnamed>"
-msgstr ""
-
+#: ../trace.h:23
 msgid "Connection to DBus failed"
 msgstr "Подключиться к D-Bus не удалось"
 
+#: ../gui.glade.h:1
 msgid "_Delete Current"
 msgstr "_Удалить текущее"
 
+#: ../gui.glade.h:2
 msgid "_Default"
 msgstr "_По умолчанию"
 
+#: ../gui.glade.h:3
 msgid "Timeout"
 msgstr "Задержка"
 
+#: ../gui.glade.h:4
 msgid "Instant Gestures"
 msgstr "Мгновенные жесты"
 
+#: ../gui.glade.h:5
 msgid "Click & Hold"
 msgstr "Нажать и удерживать"
 
+#: ../gui.glade.h:6
 msgid "_Control"
 msgstr "_Control"
 
+#: ../gui.glade.h:7
 msgid "_Shift"
 msgstr "_Shift"
 
+#: ../gui.glade.h:8
 msgid "_Alt"
 msgstr "_Alt"
 
+#: ../gui.glade.h:9
 msgid "S_uper"
 msgstr "S_uper"
 
+#: ../gui.glade.h:10
 msgid "An_y Modifier"
 msgstr "Л_юбой модификатор"
 
+#: ../gui.glade.h:11
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "Иначе, вы должны выбрать кнопку и модификаторы ниже."
 
+#: ../gui.glade.h:12
 msgid "Show deleted rows"
 msgstr "Показывать удаленные строки"
 
+#: ../gui.glade.h:13
 msgid "Add Application"
 msgstr "Добавить приложение"
 
+#: ../gui.glade.h:14
 msgid "Remove Application/Group"
 msgstr "Удалить приложение/группу"
 
+#: ../gui.glade.h:15
 msgid "Add Group"
 msgstr "Добавить группу"
 
+#: ../gui.glade.h:16
 msgid "Reset Action(s)"
 msgstr "Сбросить действие(я)"
 
+#: ../gui.glade.h:17
 msgid "Applications"
 msgstr "Приложения"
 
+#: ../gui.glade.h:18
 msgid "_Record Stroke"
 msgstr "_Записать жест"
 
+#: ../gui.glade.h:19
 msgid "_Add Action"
 msgstr "_Добавить действие"
 
+#: ../gui.glade.h:20
 msgid "_Delete Action(s)"
 msgstr "_Удалить действие(я)"
 
+#: ../gui.glade.h:21
 msgid "_Hide"
 msgstr "_Скрыть"
 
+#: ../gui.glade.h:23
 msgid "_Gesture Button"
 msgstr "_Кнопка жеста"
 
+#: ../gui.glade.h:24
 msgid "Additional Buttons"
 msgstr "Дополнительные кнопки"
 
+#: ../gui.glade.h:26
 msgid "Initial Timeout (ms)"
 msgstr "Начальная задержка (мс)"
 
+#: ../gui.glade.h:27
 msgid "     Timeout (ms)"
 msgstr "     Время до отключения (мс)"
 
+#: ../gui.glade.h:28
 msgid "<b>Behavior</b>"
 msgstr "<b>Поведение</b>"
 
+#: ../gui.glade.h:29
 msgid "Method to show gestures"
 msgstr "Метод показа жестов"
 
+#: ../gui.glade.h:30
 msgid "Color"
 msgstr "Цвет"
 
+#: ../gui.glade.h:31
 msgid "Width"
 msgstr "Ширина"
 
+#: ../gui.glade.h:32
 msgid "Show popups ("
 msgstr "Показывать всплывающие окна ("
 
+#: ../gui.glade.h:33
 msgid "to the right of the cursor)"
 msgstr ""
 
+#: ../gui.glade.h:34
 msgid "Show tray icon"
 msgstr "Показывать иконку в области уведомлений"
 
+#: ../gui.glade.h:35
 msgid "Show last gesture in tray"
 msgstr "Показывать последний жест в трее"
 
+#: ../gui.glade.h:36
 msgid "Autostart easystroke"
 msgstr "Автоматически запускать Easystroke"
 
+#: ../gui.glade.h:37
 msgid "<b>Appearance</b>"
 msgstr "<b>Появление</b>"
 
+#: ../gui.glade.h:38
 msgid "<b>Exceptions</b>"
 msgstr "<b>Исключения</b>"
 
+#: ../gui.glade.h:39
 msgid "_Add Exception"
 msgstr "_Добавить исключение"
 
+#: ../gui.glade.h:40
 msgid "_Remove Exception"
 msgstr "_Удалить исключение"
 
+#: ../gui.glade.h:41
 msgid "Preferences"
 msgstr "Настройка"
 
+#: ../gui.glade.h:42
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
+#: ../gui.glade.h:43
 msgid "Timeout Gestures"
 msgstr "Жесты с задержкой"
 
+#: ../gui.glade.h:44
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Игнорировать движения, приводящие к расширенным жестам"
 
+#: ../gui.glade.h:45
 msgid "(See Documentation)"
 msgstr "(см. документацию)"
 
+#: ../gui.glade.h:46
 msgid "Show popups on advanced gestures"
 msgstr "Показывать всплывающие окна для расширенных жестов"
 
+#: ../gui.glade.h:47
 msgid "Show OSD"
 msgstr "Показывать OSD"
 
+#: ../gui.glade.h:48
 msgid "Invert Scroll Direction"
 msgstr "Обратить направление прокрутки"
 
+#: ../gui.glade.h:49
 msgid "Scroll Speed"
 msgstr "Скорость прокрутки"
 
+#: ../gui.glade.h:50
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "Возвращать курсор в исходное положение после каждого жеста"
 
+#: ../gui.glade.h:51
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 "Пребывать в режиме прокрутки или игнора до тех пор, пока перо находится в "
 "диапазоне"
 
+#: ../gui.glade.h:52
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Настройка планшета</b>"
 
+#: ../gui.glade.h:53
 msgid "<b>Devices</b>"
 msgstr "<b>Устройства</b>"
 
+#: ../gui.glade.h:54
 msgid "Advanced"
 msgstr "Расширенные"
 
+#: ../gui.glade.h:55
 msgid "_Matrix"
 msgstr "_Матрица"
 
+#: ../gui.glade.h:56
 msgid "_History"
 msgstr "_История"
 
+#: ../easystroke.desktop.in.h:1
 msgid "Easystroke Gesture Recognition"
 msgstr "Распознавание жестов мыши Easystroke"
 
+#: ../easystroke.desktop.in.h:2
 msgid "Control your desktop using mouse gestures"
 msgstr "Управление рабочим столом с помощью жестов мыши"
 
+#: ../easystroke.desktop.in.h:4
 msgid "Enable"
 msgstr "Включить"
 
+#: ../easystroke.desktop.in.h:5
 msgid "Disable"
 msgstr "Отключить"
+
+#~ msgid "Error: can't execute command \"%s\": fork() failed\n"
+#~ msgstr "Ошибка! Не могу выполнить команду \"%s\": форк() не удался.\n"
 
 #~ msgid "Key combination..."
 #~ msgstr "Комбинация клавиш..."
@@ -480,7 +617,6 @@ msgstr "Отключить"
 #~ msgid "(window manager frame)"
 #~ msgstr "(рамка оконного менеджера)"
 
-#, c-format
 #~ msgid "Error: A grab failed.  Resetting...\n"
 #~ msgstr "Ошибка: захватить не удалось. Возврат в исходное положение...\n"
 
