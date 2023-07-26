@@ -141,7 +141,7 @@ bool Ranking::show(RRanking r) {
 		win->set_icon(r->stroke, !r->best_stroke);
 	if (prefs.feedback.get() && r->best_stroke) {
 		if (prefs.advanced_popups.get() || !(r->best_stroke->button || r->best_stroke->timeout)) {
-			std::shared_ptr<Feedback> popup(new Feedback(r->best_stroke, r->name, r->x, r->y));
+			std::shared_ptr<Feedback> popup = std::make_shared<Feedback>(r->best_stroke, r->name, r->x, r->y);
 			Glib::signal_timeout().connect(sigc::bind(sigc::ptr_fun(&delete_me), popup), 600);
 		}
 	}

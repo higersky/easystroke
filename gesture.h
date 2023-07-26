@@ -78,7 +78,6 @@ public:
 	};
 
 private:
-	Stroke(PreStroke &s, int trigger_, int button_, unsigned int modifiers_, bool timeout_);
 
 	Glib::RefPtr<Gdk::Pixbuf> draw_(int size, double width = 2.0, bool inv = false) const;
 	mutable Glib::RefPtr<Gdk::Pixbuf> pb[2];
@@ -128,9 +127,10 @@ public:
 	bool timeout;
 	std::shared_ptr<stroke_t> stroke;
 
+	Stroke(PreStroke &s, int trigger_, int button_, unsigned int modifiers_, bool timeout_);
 	Stroke() : trigger(0), button(0), modifiers(AnyModifier), timeout(false) {}
 	static RStroke create(PreStroke &s, int trigger_, int button_, unsigned int modifiers_, bool timeout_) {
-		return RStroke(new Stroke(s, trigger_, button_, modifiers_, timeout_));
+		return std::make_shared<Stroke>(s, trigger_, button_, modifiers_, timeout_);
 	}
         Glib::RefPtr<Gdk::Pixbuf> draw(int size, double width = 2.0, bool inv = false) const;
 	void draw(Cairo::RefPtr<Cairo::Surface> surface, int x, int y, int w, int h, double width = 2.0, bool inv = false) const;
@@ -153,7 +153,7 @@ BOOST_CLASS_VERSION(Stroke::Point, 1)
 
 class PreStroke : public std::vector<RTriple> {
 public:
-	static RPreStroke create() { return RPreStroke(new PreStroke()); }
+	static RPreStroke create() { return std::make_shared<PreStroke>(); }
 	void add(RTriple p) { push_back(p); }
 	bool valid() const { return size() > 2; }
 };

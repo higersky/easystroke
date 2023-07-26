@@ -52,7 +52,7 @@ Window ROOT;
 
 std::shared_ptr<Trace> trace;
 
-static ActionDBWatcher *action_watcher = 0;
+static ActionDBWatcher *action_watcher = nullptr;
 
 static Trace *trace_composite() {
 	try {
@@ -669,13 +669,13 @@ public:
 std::set<Modifiers *> Modifiers::all;
 
 RModifiers ModAction::prepare() {
-	return RModifiers(new Modifiers(mods, get_label()));
+	return std::make_shared<Modifiers>(mods, get_label());
 }
 
 RModifiers SendKey::prepare() {
 	if (!mods)
 		return RModifiers();
-	return RModifiers(new Modifiers(mods, ModAction::get_label()));
+	return std::make_shared<Modifiers>(mods, ModAction::get_label());
 }
 
 bool mods_equal(RModifiers m1, RModifiers m2) {
