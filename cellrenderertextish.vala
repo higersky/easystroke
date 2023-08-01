@@ -87,6 +87,9 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 			styleContext.restore();
 
 			var data = surface.get_data();
+			if (data == null) {
+				data = {0, 0, 0, 0};
+			}
 			int a = data[3];
 			int r = data[2];
 			int g = data[1];

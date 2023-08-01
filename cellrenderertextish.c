@@ -756,9 +756,9 @@ cell_editable_accel_construct (GType object_type,
 	GtkLabel* _tmp3_;
 	GtkLabel* _tmp4_;
 	GtkLabel* _tmp5_;
-	GtkStyleContext* _tmp44_;
-	GtkLabel* _tmp45_;
 	GtkStyleContext* _tmp46_;
+	GtkLabel* _tmp47_;
+	GtkStyleContext* _tmp48_;
 	GError* _inner_error0_ = NULL;
 	g_return_val_if_fail (parent != NULL, NULL);
 	g_return_val_if_fail (path != NULL, NULL);
@@ -808,31 +808,33 @@ cell_editable_accel_construct (GType object_type,
 		gint _tmp23__length1;
 		gint data_length1;
 		gint _data_size_;
-		gint a = 0;
 		guchar* _tmp24_;
 		gint _tmp24__length1;
-		guchar _tmp25_;
-		gint r = 0;
+		gint a = 0;
 		guchar* _tmp26_;
 		gint _tmp26__length1;
 		guchar _tmp27_;
-		gint g = 0;
+		gint r = 0;
 		guchar* _tmp28_;
 		gint _tmp28__length1;
 		guchar _tmp29_;
-		gint b = 0;
+		gint g = 0;
 		guchar* _tmp30_;
 		gint _tmp30__length1;
 		guchar _tmp31_;
+		gint b = 0;
+		guchar* _tmp32_;
+		gint _tmp32__length1;
+		guchar _tmp33_;
 		GdkRGBA rgba = {0};
-		GdkRGBA _tmp32_ = {0};
+		GdkRGBA _tmp34_ = {0};
 		gchar* css = NULL;
-		gchar* _tmp33_;
-		gchar* _tmp34_;
 		gchar* _tmp35_;
 		gchar* _tmp36_;
 		gchar* _tmp37_;
 		gchar* _tmp38_;
+		gchar* _tmp39_;
+		gchar* _tmp40_;
 		_tmp6_ = gtk_widget_get_screen ((GtkWidget*) self);
 		_tmp7_ = _g_object_ref0 (_tmp6_);
 		screen = _tmp7_;
@@ -868,59 +870,73 @@ cell_editable_accel_construct (GType object_type,
 		_data_size_ = data_length1;
 		_tmp24_ = data;
 		_tmp24__length1 = data_length1;
-		_tmp25_ = _tmp24_[3];
-		a = (gint) _tmp25_;
+		if (_tmp24_ == NULL) {
+			guchar* _tmp25_;
+			_tmp25_ = g_new0 (guchar, 4);
+			_tmp25_[0] = (guchar) 0;
+			_tmp25_[1] = (guchar) 0;
+			_tmp25_[2] = (guchar) 0;
+			_tmp25_[3] = (guchar) 0;
+			data = (g_free (data), NULL);
+			data = _tmp25_;
+			data_length1 = 4;
+			_data_size_ = data_length1;
+		}
 		_tmp26_ = data;
 		_tmp26__length1 = data_length1;
-		_tmp27_ = _tmp26_[2];
-		r = (gint) _tmp27_;
+		_tmp27_ = _tmp26_[3];
+		a = (gint) _tmp27_;
 		_tmp28_ = data;
 		_tmp28__length1 = data_length1;
-		_tmp29_ = _tmp28_[1];
-		g = (gint) _tmp29_;
+		_tmp29_ = _tmp28_[2];
+		r = (gint) _tmp29_;
 		_tmp30_ = data;
 		_tmp30__length1 = data_length1;
-		_tmp31_ = _tmp30_[0];
-		b = (gint) _tmp31_;
-		memset (&_tmp32_, 0, sizeof (GdkRGBA));
-		_tmp32_.alpha = (gdouble) (a / 255.f);
-		_tmp32_.red = (gdouble) (cell_editable_accel_inverse_premultiplied_color (r, a) / 255.f);
-		_tmp32_.green = (gdouble) (cell_editable_accel_inverse_premultiplied_color (g, a) / 255.f);
-		_tmp32_.blue = (gdouble) (cell_editable_accel_inverse_premultiplied_color (b, a) / 255.f);
-		rgba = _tmp32_;
-		_tmp33_ = gdk_rgba_to_string (&rgba);
-		_tmp34_ = _tmp33_;
-		_tmp35_ = g_strconcat (".cell_editable_accel_bg { background-color: ", _tmp34_, NULL);
+		_tmp31_ = _tmp30_[1];
+		g = (gint) _tmp31_;
+		_tmp32_ = data;
+		_tmp32__length1 = data_length1;
+		_tmp33_ = _tmp32_[0];
+		b = (gint) _tmp33_;
+		memset (&_tmp34_, 0, sizeof (GdkRGBA));
+		_tmp34_.alpha = (gdouble) (a / 255.f);
+		_tmp34_.red = (gdouble) (cell_editable_accel_inverse_premultiplied_color (r, a) / 255.f);
+		_tmp34_.green = (gdouble) (cell_editable_accel_inverse_premultiplied_color (g, a) / 255.f);
+		_tmp34_.blue = (gdouble) (cell_editable_accel_inverse_premultiplied_color (b, a) / 255.f);
+		rgba = _tmp34_;
+		_tmp35_ = gdk_rgba_to_string (&rgba);
 		_tmp36_ = _tmp35_;
-		_tmp37_ = g_strconcat (_tmp36_, ";}", NULL);
+		_tmp37_ = g_strconcat (".cell_editable_accel_bg { background-color: ", _tmp36_, NULL);
 		_tmp38_ = _tmp37_;
+		_tmp39_ = g_strconcat (_tmp38_, ";}", NULL);
+		_tmp40_ = _tmp39_;
+		_g_free0 (_tmp38_);
 		_g_free0 (_tmp36_);
-		_g_free0 (_tmp34_);
-		css = _tmp38_;
+		css = _tmp40_;
 		{
-			GtkCssProvider* _tmp39_;
-			const gchar* _tmp40_;
-			GdkScreen* _tmp41_;
-			GtkCssProvider* _tmp42_;
-			_tmp39_ = css_provider;
-			_tmp40_ = css;
-			gtk_css_provider_load_from_data (_tmp39_, _tmp40_, (gssize) -1, &_inner_error0_);
+			GtkCssProvider* _tmp41_;
+			const gchar* _tmp42_;
+			GdkScreen* _tmp43_;
+			GtkCssProvider* _tmp44_;
+			_tmp41_ = css_provider;
+			_tmp42_ = css;
+			gtk_css_provider_load_from_data (_tmp41_, _tmp42_, (gssize) -1, &_inner_error0_);
 			if (G_UNLIKELY (_inner_error0_ != NULL)) {
 				goto __catch0_g_error;
 			}
-			_tmp41_ = screen;
-			_tmp42_ = css_provider;
-			gtk_style_context_add_provider_for_screen (_tmp41_, (GtkStyleProvider*) _tmp42_, (guint) GTK_STYLE_PROVIDER_PRIORITY_USER);
+			_tmp43_ = screen;
+			_tmp44_ = css_provider;
+			gtk_style_context_add_provider_for_screen (_tmp43_, (GtkStyleProvider*) _tmp44_, (guint) GTK_STYLE_PROVIDER_PRIORITY_USER);
 		}
 		goto __finally0;
 		__catch0_g_error:
 		{
 			GError* e = NULL;
-			const gchar* _tmp43_;
+			const gchar* _tmp45_;
 			e = _inner_error0_;
 			_inner_error0_ = NULL;
-			_tmp43_ = e->message;
-			g_error ("cellrenderertextish.vala:106: Cannot load CSS stylesheet: %s", _tmp43_);
+			_tmp45_ = e->message;
+			g_error ("cellrenderertextish.vala:109: Cannot load CSS stylesheet: %s", _tmp45_);
 			_g_error_free0 (e);
 		}
 		__finally0:
@@ -946,11 +962,11 @@ cell_editable_accel_construct (GType object_type,
 		_g_object_unref0 (css_provider);
 		_g_object_unref0 (screen);
 	}
-	_tmp44_ = gtk_widget_get_style_context ((GtkWidget*) self);
-	gtk_style_context_add_class (_tmp44_, "cell_editable_accel_bg");
-	_tmp45_ = label;
-	_tmp46_ = gtk_widget_get_style_context ((GtkWidget*) _tmp45_);
+	_tmp46_ = gtk_widget_get_style_context ((GtkWidget*) self);
 	gtk_style_context_add_class (_tmp46_, "cell_editable_accel_bg");
+	_tmp47_ = label;
+	_tmp48_ = gtk_widget_get_style_context ((GtkWidget*) _tmp47_);
+	gtk_style_context_add_class (_tmp48_, "cell_editable_accel_bg");
 	gtk_widget_show_all ((GtkWidget*) self);
 	_g_object_unref0 (label);
 	return self;
@@ -1376,4 +1392,3 @@ _vala_memdup2 (gconstpointer mem,
 	return new_mem;
 }
 
-#pragma GCC diagnostic pop
