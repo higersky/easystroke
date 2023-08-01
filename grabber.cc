@@ -609,7 +609,7 @@ Window get_app_window(Window w) {
 	if (w2) {
 		frame_child.add(w, w2);
 		if (w2 != w) {
-			w = w2;
+			// w = w2;
 			XSelectInput(dpy, w2, StructureNotifyMask | PropertyChangeMask);
 		}
 		return w2;
