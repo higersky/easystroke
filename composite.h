@@ -33,7 +33,7 @@ public:
 class Composite : public Trace {
 	int num_x, num_y;
 	int scale_factor;
-	std::vector<std::unique_ptr<Popup>> pieces;
+	std::vector<Popup> pieces;
 	size_t get_pieces_index(size_t x, size_t y);
 	virtual void draw(Point p, Point q);
 	virtual void start_();
