@@ -162,7 +162,7 @@ class MenuCheck : public Base {
 public:
 	MenuCheck(IO<bool> &io_, Gtk::CheckMenuItem *check_) : io(io_), check(check_) {
 		io.connect(this);
-		notify();
+		MenuCheck::notify();
 		check->signal_toggled().connect(sigc::mem_fun(*this, &MenuCheck::on_changed));
 	}
 };

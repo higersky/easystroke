@@ -238,7 +238,7 @@ bool Stats::on_stroke(RRanking r) {
 }
 
 void Stats::on_pdf() {
-	struct timeval tv1, tv2;
+	struct timeval tv1{}, tv2{};
 	if (verbosity >= 1)
 		gettimeofday(&tv1, 0);
 	const int S = 32;

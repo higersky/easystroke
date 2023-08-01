@@ -61,21 +61,21 @@ TreeViewMulti::TreeViewMulti() : Gtk::TreeView(), pending(false) {
 enum Type { COMMAND, KEY, TEXT, SCROLL, IGNORE, BUTTON, MISC };
 
 struct TypeInfo {
-	Type type;
 	const char *name;
 	const std::type_info *type_info;
+	Type type;
 	const CellRendererTextishMode mode;
 };
 
 TypeInfo all_types[8] = {
-	{ COMMAND, N_("Command"), &typeid(Command),  CELL_RENDERER_TEXTISH_MODE_Text  },
-	{ KEY,     N_("Key"),     &typeid(SendKey),  CELL_RENDERER_TEXTISH_MODE_Key   },
-	{ TEXT,    N_("Text"),    &typeid(SendText), CELL_RENDERER_TEXTISH_MODE_Text  },
-	{ SCROLL,  N_("Scroll"),  &typeid(Scroll),   CELL_RENDERER_TEXTISH_MODE_Key   },
-	{ IGNORE,  N_("Ignore"),  &typeid(Ignore),   CELL_RENDERER_TEXTISH_MODE_Key   },
-	{ BUTTON,  N_("Button"),  &typeid(Button),   CELL_RENDERER_TEXTISH_MODE_Popup },
-	{ MISC,    N_("Misc"),    &typeid(Misc),     CELL_RENDERER_TEXTISH_MODE_Combo },
-	{ COMMAND, 0,             0,                 CELL_RENDERER_TEXTISH_MODE_Text  }
+	{ N_("Command"), &typeid(Command),  COMMAND,  CELL_RENDERER_TEXTISH_MODE_Text  },
+	{ N_("Key"),     &typeid(SendKey),  KEY,      CELL_RENDERER_TEXTISH_MODE_Key   },
+	{ N_("Text"),    &typeid(SendText), TEXT,     CELL_RENDERER_TEXTISH_MODE_Text  },
+	{ N_("Scroll"),  &typeid(Scroll),   SCROLL,   CELL_RENDERER_TEXTISH_MODE_Key   },
+	{ N_("Ignore"),  &typeid(Ignore),   IGNORE,   CELL_RENDERER_TEXTISH_MODE_Key   },
+	{ N_("Button"),  &typeid(Button),   BUTTON,   CELL_RENDERER_TEXTISH_MODE_Popup },
+	{ N_("Misc"),    &typeid(Misc),     MISC,     CELL_RENDERER_TEXTISH_MODE_Combo },
+	{ 0,             0,                 COMMAND,  CELL_RENDERER_TEXTISH_MODE_Text  }
 };
 
 const Type from_name(Glib::ustring name) {
