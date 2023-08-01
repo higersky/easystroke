@@ -19,6 +19,9 @@
 #include "grabber.h"
 #include <glibmm/i18n.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include "cellrenderertextish.h"
 
 #include <set>
@@ -44,7 +47,7 @@ public:
 	{
 		io.connect(this);
 		widgets->get_widget(name, check);
-		notify();
+		Check::notify();
 		check->signal_toggled().connect(sigc::mem_fun(*this, &Check::on_changed));
 	}
 };
@@ -69,7 +72,7 @@ public:
 	{
 		io.connect(this);
 		adj = Glib::RefPtr<Gtk::Adjustment>::cast_dynamic(widgets->get_object(name));
-		notify();
+		Adjustment::notify();
 		adj->signal_value_changed().connect(sigc::mem_fun(*this, &Adjustment::on_changed));
 	}
 };
@@ -99,7 +102,7 @@ public:
 		io.connect(this);
 		widgets->get_widget(name, color);
 		color->set_use_alpha();
-		notify();
+		Color::notify();
 		color->signal_color_set().connect(sigc::mem_fun(*this, &Color::on_changed));
 	}
 };
@@ -147,7 +150,7 @@ public:
 		parent->add(*combo);
 		for (const Info *i = info; i->name; i++)
 			combo->append(_(i->name));
-		notify();
+		Combo::notify();
 		combo->signal_changed().connect(sigc::mem_fun(*this, &Combo::on_changed));
 		combo->show();
 	}
@@ -180,7 +183,7 @@ public:
 	{
 		in.connect(this);
 		widgets->get_widget(name, widget);
-		notify();
+		Sensitive::notify();
 	}
 };
 
@@ -225,7 +228,11 @@ class Autostart : public IO<bool>, public Base
 public:
 	Autostart()
 	{
-		std::string dir = getenv("HOME");
+		const char * homedir = getenv("HOME");
+		if(homedir == nullptr) {
+			homedir = getpwuid(getuid())->pw_dir;
+		}
+		std::string dir = homedir;
 		dir += "/.config/autostart";
 		filename = dir + "/easystroke.desktop";
 
