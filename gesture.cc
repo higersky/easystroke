@@ -22,22 +22,16 @@
 
 BOOST_CLASS_EXPORT(Stroke)
 
-void update_triple(RTriple e, float x, float y, Time t) {
-	e->x = x;
-	e->y = y;
-	e->t = t;
-}
-
-RTriple create_triple(float x, float y, Time t) {
-	RTriple e = std::make_shared<Triple>(Triple {x, y, t});
+Triple create_triple(float x, float y, Time t) {
+	Triple e = Triple {x, y, t};
 	return e;
 }
 
 Stroke::Stroke(PreStroke &ps, int trigger_, int button_, unsigned int modifiers_, bool timeout_) : trigger(trigger_), button(button_), modifiers(modifiers_), timeout(timeout_) {
 	if (ps.valid()) {
 		stroke_t *s = stroke_alloc(ps.size());
-		for (std::vector<RTriple>::iterator i = ps.begin(); i != ps.end(); ++i)
-			stroke_add_point(s, (*i)->x, (*i)->y);
+		for (std::vector<Triple>::iterator i = ps.begin(); i != ps.end(); ++i)
+			stroke_add_point(s, i->x, i->y);
 		stroke_finish(s);
 		stroke.reset(s, &stroke_free);
 	}

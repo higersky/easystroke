@@ -653,7 +653,7 @@ void Actions::update_counts() {
 
 void Actions::update_action_list() {
 	check_show_deleted->set_sensitive(action_list != actions.get_root());
-	std::shared_ptr<std::set<Unique *> > ids = action_list->get_ids(check_show_deleted->get_active());
+	std::set<Unique *> ids = action_list->get_ids(check_show_deleted->get_active());
 	const Gtk::TreeNodeChildren &ch = tm->children();
 
 	std::vector<Gtk::TreeRowReference> refs;
@@ -664,15 +664,15 @@ void Actions::update_action_list() {
 
 	for (std::vector<Gtk::TreeRowReference>::iterator ref = refs.begin(); ref != refs.end(); ref++) {
 		Gtk::TreeIter i = tm->get_iter(ref->get_path());
-		std::set<Unique *>::iterator id = ids->find((*i)[cols.id]);
-		if (id == ids->end()) {
+		std::set<Unique *>::iterator id = ids.find((*i)[cols.id]);
+		if (id == ids.end()) {
 			tm->erase(i);
 		} else {
-			ids->erase(id);
+			ids.erase(id);
 			update_row(*i);
 		}
 	}
-	for (std::set<Unique *>::const_iterator i = ids->begin(); i != ids->end(); i++) {
+	for (std::set<Unique *>::const_iterator i = ids.begin(); i != ids.end(); i++) {
 		Gtk::TreeRow row = *tm->append();
 		row[cols.id] = *i;
 		update_row(row);

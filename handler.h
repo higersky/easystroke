@@ -85,10 +85,10 @@ public:
 			return this;
 	}
 
-	virtual void motion(RTriple e) {}
-	virtual void raw_motion(RTriple e, bool, bool) {}
-	virtual void press(guint b, RTriple e) {}
-	virtual void release(guint b, RTriple e) {}
+	virtual void motion(Triple e) {}
+	virtual void raw_motion(Triple e, bool, bool) {}
+	virtual void press(guint b, Triple e) {}
+	virtual void release(guint b, Triple e) {}
 	virtual void press_master(guint b, Time t) {}
 	virtual void pong() {}
 	void replace_child(Handler *c);

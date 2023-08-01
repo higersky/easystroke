@@ -218,7 +218,7 @@ public:
 	double score;
 	std::string name;
 	std::multimap<double, std::pair<std::string, RStroke> > r;
-	static void queue_show(RRanking r, RTriple e);
+	static void queue_show(RRanking r, Triple e);
 };
 
 class Unique {
@@ -237,11 +237,11 @@ class ActionListDiff {
 	std::set<Unique *> deleted;
 	std::map<Unique *, StrokeInfo> added;
 	std::list<Unique *> order;
-	std::list<ActionListDiff> children;
+	std::vector<ActionListDiff> children;
 
 	void update_order() {
 		int j = 0;
-		for (std::list<Unique *>::iterator i = order.begin(); i != order.end(); i++, j++) {
+		for (auto i = order.begin(); i != order.end(); i++, j++) {
 			(*i)->level = level;
 			(*i)->i = j;
 		}
@@ -253,7 +253,7 @@ class ActionListDiff {
 				if (!(parent && parent->contains(i->first)))
 					order.push_back(i->first);
 		update_order();
-		for (std::list<ActionListDiff>::iterator i = children.begin(); i != children.end(); i++) {
+		for (auto i = children.begin(); i != children.end(); i++) {
 			i->parent = this;
 			i->level = level + 1;
 			i->fix_tree(rebuild_order);
@@ -266,7 +266,7 @@ public:
 
 	ActionListDiff() : parent(0), level(0), app(false) {}
 
-	typedef std::list<ActionListDiff>::iterator iterator;
+	using iterator = decltype(children.begin());
 	iterator begin() { return children.begin(); }
 	iterator end() { return children.end(); }
 
@@ -274,7 +274,7 @@ public:
 	int order_size() const { return order.size(); }
 	int size_rec() const {
 		int size = added.size();
-		for (std::list<ActionListDiff>::const_iterator i = children.begin(); i != children.end(); i++)
+		for (auto i = children.begin(); i != children.end(); i++)
 			size += i->size_rec();
 		return size;
 	}
@@ -312,7 +312,7 @@ public:
 			update_order();
 		} else
 			deleted.insert(id);
-		for (std::list<ActionListDiff>::iterator i = children.begin(); i != children.end(); i++)
+		for (auto i = children.begin(); i != children.end(); i++)
 			i->remove(id);
 		return really;
 	}
@@ -325,7 +325,7 @@ public:
 	void add_apps(std::map<std::string, ActionListDiff *> &apps) {
 		if (app)
 			apps[name] = this;
-		for (std::list<ActionListDiff>::iterator i = children.begin(); i != children.end(); i++)
+		for (auto i = children.begin(); i != children.end(); i++)
 			i->add_apps(apps);
 	}
 	ActionListDiff *add_child(std::string name, bool app) {
@@ -340,7 +340,7 @@ public:
 	bool remove() {
 		if (!parent)
 			return false;
-		for (std::list<ActionListDiff>::iterator i = parent->children.begin(); i != parent->children.end(); i++) {
+		for (auto i = parent->children.begin(); i != parent->children.end(); i++) {
 			if (&*i == this) {
 				parent->children.erase(i);
 				return true;
@@ -368,12 +368,12 @@ public:
 		return true;
 	}
 
-	std::shared_ptr<std::map<Unique *, StrokeSet> > get_strokes() const;
-	std::shared_ptr<std::set<Unique *> > get_ids(bool include_deleted) const;
+	std::map<Unique *, StrokeSet> get_strokes() const;
+	std::set<Unique *> get_ids(bool include_deleted) const;
 	int count_actions() const {
 		return (parent ? parent->count_actions() : 0) + order.size() - deleted.size();
 	}
-	void all_strokes(std::list<RStroke> &strokes) const;
+	void all_strokes(std::vector<RStroke> &strokes) const;
 	RAction handle(RStroke s, RRanking &r) const;
 	// b1 is always reported as b2
 	void handle_advanced(RStroke s, std::map<guint, RAction> &a, std::map<guint, RRanking> &r, int b1, int b2) const;

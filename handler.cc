@@ -396,21 +396,21 @@ class IgnoreHandler : public Handler {
 	bool proximity;
 public:
 	IgnoreHandler(RModifiers mods_) : mods(mods_), proximity(xstate->in_proximity && prefs.proximity.get()) {}
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		if (xstate->current_dev->master) {
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 			XTestFakeButtonEvent(dpy, b, true, CurrentTime);
 		}
 	}
-	virtual void motion(RTriple e) {
+	virtual void motion(Triple e) {
 		if (xstate->current_dev->master)
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 		if (proximity && !xstate->in_proximity)
 			parent->replace_child(nullptr);
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		if (xstate->current_dev->master) {
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 			XTestFakeButtonEvent(dpy, b, false, CurrentTime);
 		}
 		if (proximity ? !xstate->in_proximity : !xstate->xinput_pressed.size())
@@ -431,27 +431,27 @@ public:
 		real_button(0),
 		proximity(xstate->in_proximity && prefs.proximity.get())
 	{}
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		if (xstate->current_dev->master) {
 			if (!real_button)
 				real_button = b;
 			if (real_button == b)
 				b = button;
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 			XTestFakeButtonEvent(dpy, b, true, CurrentTime);
 		}
 	}
-	virtual void motion(RTriple e) {
+	virtual void motion(Triple e) {
 		if (xstate->current_dev->master)
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 		if (proximity && !xstate->in_proximity)
 			parent->replace_child(nullptr);
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		if (xstate->current_dev->master) {
 			if (real_button == b)
 				b = button;
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 			XTestFakeButtonEvent(dpy, b, false, CurrentTime);
 		}
 		if (proximity ? !xstate->in_proximity : !xstate->xinput_pressed.size())
@@ -570,30 +570,30 @@ protected:
 		XTestFakeMotionEvent(dpy, DefaultScreen(dpy), orig_x, orig_y, 0);
 	}
 public:
-	virtual void raw_motion(RTriple e, bool abs_x, bool abs_y) {
-		float dx = abs_x ? (have_x ? e->x - last_x : 0) : e->x;
-		float dy = abs_y ? (have_y ? e->y - last_y : 0) : e->y;
+	virtual void raw_motion(Triple e, bool abs_x, bool abs_y) {
+		float dx = abs_x ? (have_x ? e.x - last_x : 0) : e.x;
+		float dy = abs_y ? (have_y ? e.y - last_y : 0) : e.y;
 
 		if (abs_x) {
-			last_x = e->x;
+			last_x = e.x;
 			have_x = true;
 		}
 
 		if (abs_y) {
-			last_y = e->y;
+			last_y = e.y;
 			have_y = true;
 		}
 
 		if (!last_t) {
-			last_t = e->t;
+			last_t = e.t;
 			return;
 		}
 
-		if (e->t == last_t)
+		if (e.t == last_t)
 			return;
 
-		int dt = e->t - last_t;
-		last_t = e->t;
+		int dt = e.t - last_t;
+		last_t = e.t;
 
 		double factor = (prefs.scroll_invert.get() ? 1.0 : -1.0) * prefs.scroll_speed.get();
 		offset_x += factor * curve(dx/dt)*dt/20.0;
@@ -633,7 +633,7 @@ public:
 	ScrollHandler(RModifiers mods_) : mods(mods_) {
 		proximity = xstate->in_proximity && prefs.proximity.get();
 	}
-	virtual void raw_motion(RTriple e, bool abs_x, bool abs_y) {
+	virtual void raw_motion(Triple e, bool abs_x, bool abs_y) {
 		if (proximity && !xstate->in_proximity) {
 			parent->replace_child(nullptr);
 			move_back();
@@ -644,7 +644,7 @@ public:
 	virtual void press_master(guint b, Time t) {
 		xstate->fake_core_button(b, false);
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		if ((proximity && xstate->in_proximity) || xstate->xinput_pressed.size())
 			return;
 		parent->replace_child(0);
@@ -663,13 +663,13 @@ public:
 		AbstractScrollHandler::fake_wheel(b1, n1, b2, n2);
 		rb = 0;
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		Handler *p = parent;
 		p->replace_child(nullptr);
 		p->release(b, e);
 		move_back();
 	}
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		Handler *p = parent;
 		p->replace_child(nullptr);
 		p->press(b, e);
@@ -682,14 +682,14 @@ public:
 class AdvancedStrokeActionHandler : public Handler {
 	RStroke s;
 public:
-	AdvancedStrokeActionHandler(RStroke s_, RTriple e) : s(s_) {}
-	virtual void press(guint b, RTriple e) {
+	AdvancedStrokeActionHandler(RStroke s_, Triple e) : s(s_) {}
+	virtual void press(guint b, Triple e) {
 		if (stroke_action) {
 			s->button = b;
 			(*stroke_action)(s);
 		}
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		if (stroke_action)
 			(*stroke_action)(s);
 		if (xstate->xinput_pressed.size() == 0)
@@ -700,11 +700,11 @@ public:
 };
 
 class AdvancedHandler : public Handler {
-	RTriple e;
+	Triple e;
 	guint remap_from, remap_to;
 	Time click_time;
 	guint replay_button;
-	RTriple replay_orig;
+	Triple replay_orig;
 	std::map<guint, RAction> as;
 	std::map<guint, RRanking> rs;
 	std::map<guint, RModifiers> mods;
@@ -712,20 +712,20 @@ class AdvancedHandler : public Handler {
 	guint button1, button2;
 	RPreStroke replay;
 
-	void show_ranking(guint b, RTriple e) {
+	void show_ranking(guint b, Triple e) {
 		if (!rs.count(b))
 			return;
 		Ranking::queue_show(rs[b], e);
 		rs.erase(b);
 	}
-	AdvancedHandler(RStroke s, RTriple e_, guint b1, guint b2, RPreStroke replay_) :
+	AdvancedHandler(RStroke s, Triple e_, guint b1, guint b2, RPreStroke replay_) :
 		e(e_), remap_from(0), remap_to(0), click_time(0), replay_button(0),
 		button1(b1), button2(b2), replay(replay_) {
 			if (s)
 				actions.get_action_list(grabber->current_class->get())->handle_advanced(s, as, rs, b1, b2);
 		}
 public:
-	static Handler *create(RStroke s, RTriple e, guint b1, guint b2, RPreStroke replay) {
+	static Handler *create(RStroke s, Triple e, guint b1, guint b2, RPreStroke replay) {
 		if (stroke_action && s)
 			return new AdvancedStrokeActionHandler(s, e);
 		else
@@ -747,9 +747,9 @@ public:
 		}
 		replay.reset();
 	}
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		if (xstate->current_dev->master)
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 		click_time = 0;
 		if (remap_to) {
 			xstate->fake_core_button(remap_to, false);
@@ -767,7 +767,7 @@ public:
 		}
 		RAction act = as[bb];
 		if (IS_SCROLL(act)) {
-			click_time = e->t;
+			click_time = e.t;
 			replay_button = b;
 			replay_orig = e;
 			RModifiers m = act->prepare();
@@ -775,7 +775,7 @@ public:
 			return replace_child(new ScrollAdvancedHandler(m, replay_button));
 		}
 		if (IS_IGNORE(act)) {
-			click_time = e->t;
+			click_time = e.t;
 			replay_button = b;
 			replay_orig = e;
 		}
@@ -799,15 +799,15 @@ public:
 			sticky_mods.reset();
 		act->run();
 	}
-	virtual void motion(RTriple e) {
-		if (replay_button && hypot(replay_orig->x - e->x, replay_orig->y - e->y) > 16)
+	virtual void motion(Triple e) {
+		if (replay_button && hypot(replay_orig.x - e.x, replay_orig.y - e.y) > 16)
 			replay_button = 0;
 		if (xstate->current_dev->master)
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 	}
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		if (xstate->current_dev->master)
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 		if (remap_to) {
 			xstate->fake_core_button(remap_to, false);
 		}
@@ -818,7 +818,7 @@ public:
 				XTestFakeButtonEvent(dpy, b, false, CurrentTime);
 		}
 		if (xstate->xinput_pressed.size() == 0) {
-			if (e->t < click_time + 250 && b == replay_button) {
+			if (e.t < click_time + 250 && b == replay_button) {
 				sticky_mods.reset();
 				mods.clear();
 				xstate->fake_click(b);
@@ -871,7 +871,7 @@ class StrokeHandler : public Handler, public sigc::trackable {
 	RPreStroke cur;
 	bool is_gesture;
 	bool drawing;
-	RTriple last, orig;
+	Triple last, orig;
 	bool use_timeout;
 	int init_timeout, final_timeout, radius;
 	struct Connection {
@@ -924,9 +924,9 @@ protected:
 	void abort_stroke() {
 		parent->replace_child(AdvancedHandler::create(RStroke(), last, button, 0, cur));
 	}
-	virtual void motion(RTriple e) {
+	virtual void motion(Triple e) {
 		cur->add(e);
-		float dist = hypot(e->x-orig->x, e->y-orig->y);
+		float dist = hypot(e.x-orig.x, e.y-orig.y);
 		if (!is_gesture && dist > 16) {
 			if (use_timeout && !final_timeout)
 				return abort_stroke();
@@ -938,8 +938,8 @@ protected:
 			bool first = true;
 			for (PreStroke::iterator i = cur->begin(); i != cur->end(); i++) {
 				Trace::Point p;
-				p.x = (*i)->x;
-				p.y = (*i)->y;
+				p.x = i->x;
+				p.y = i->y;
 				if (first) {
 					trace->start(p);
 					first = false;
@@ -949,31 +949,31 @@ protected:
 			}
 		} else if (drawing) {
 			Trace::Point p;
-			p.x = e->x;
-			p.y = e->y;
+			p.x = e.x;
+			p.y = e.y;
 			trace->draw(p);
 		}
 		if (use_timeout && is_gesture) {
 			connections.erase(remove_if(connections.begin(), connections.end(),
 						sigc::bind(sigc::mem_fun(*this, &StrokeHandler::expired),
-							hypot(e->x - last->x, e->y - last->y))), connections.end());
+							hypot(e.x - last.x, e.y - last.y))), connections.end());
 			connections.push_back(RConnection(new Connection(this, radius, final_timeout)));
 		}
 		last = e;
 	}
 
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		RStroke s = finish(b);
 		parent->replace_child(AdvancedHandler::create(s, e, button, b, cur));
 	}
 
-	virtual void release(guint b, RTriple e) {
+	virtual void release(guint b, Triple e) {
 		RStroke s = finish(0);
 
 		if (prefs.move_back.get())
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), orig->x, orig->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), orig.x, orig.y, 0);
 		else
-			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e->x, e->y, 0);
+			XTestFakeMotionEvent(dpy, DefaultScreen(dpy), e.x, e.y, 0);
 
 		if (stroke_action) {
 			(*stroke_action)(s);
@@ -997,13 +997,13 @@ protected:
 		if (IS_SCROLL(act))
 			return parent->replace_child(new ScrollHandler(mods));
 		char buf[16];
-		snprintf(buf, sizeof(buf), "%d", (int)orig->x);
+		snprintf(buf, sizeof(buf), "%d", (int)orig.x);
 		setenv("EASYSTROKE_X1", buf, 1);
-		snprintf(buf, sizeof(buf), "%d", (int)orig->y);
+		snprintf(buf, sizeof(buf), "%d", (int)orig.y);
 		setenv("EASYSTROKE_Y1", buf, 1);
-		snprintf(buf, sizeof(buf), "%d", (int)e->x);
+		snprintf(buf, sizeof(buf), "%d", (int)e.x);
 		setenv("EASYSTROKE_X2", buf, 1);
-		snprintf(buf, sizeof(buf), "%d", (int)e->y);
+		snprintf(buf, sizeof(buf), "%d", (int)e.y);
 		setenv("EASYSTROKE_Y2", buf, 1);
 		act->run();
 		unsetenv("EASYSTROKE_X1");
@@ -1013,7 +1013,7 @@ protected:
 		parent->replace_child(nullptr);
 	}
 public:
-	StrokeHandler(guint b, RTriple e) :
+	StrokeHandler(guint b, Triple e) :
 		button(b),
 		trigger(grabber->get_default_button() == (int)b ? 0 : b),
 		is_gesture(false),
@@ -1058,9 +1058,9 @@ public:
 
 class IdleHandler : public Handler {
 protected:
-	virtual void press(guint b, RTriple e) {
+	virtual void press(guint b, Triple e) {
 		if (current_app_window.get())
-			XState::activate_window(current_app_window.get(), e->t);
+			XState::activate_window(current_app_window.get(), e.t);
 		replace_child(new StrokeHandler(b, e));
 	}
 public:

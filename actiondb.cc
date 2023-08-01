@@ -271,33 +271,31 @@ RStrokeInfo ActionListDiff::get_info(Unique *id, bool *deleted, bool *stroke, bo
 	return si;
 }
 
-std::shared_ptr<std::map<Unique *, StrokeSet> > ActionListDiff::get_strokes() const {
-	std::shared_ptr<std::map<Unique *, StrokeSet> > strokes = parent ? parent->get_strokes() :
-		std::make_shared<std::map<Unique *, StrokeSet> >();
+std::map<Unique *, StrokeSet> ActionListDiff::get_strokes() const {
+	std::map<Unique *, StrokeSet> strokes = parent ? parent->get_strokes() : std::map<Unique *, StrokeSet>();
 	for (std::set<Unique *>::const_iterator i = deleted.begin(); i != deleted.end(); i++)
-		strokes->erase(*i);
+		strokes.erase(*i);
 	for (std::map<Unique *, StrokeInfo>::const_iterator i = added.begin(); i != added.end(); i++)
 		if (i->second.strokes.size())
-			(*strokes)[i->first] = i->second.strokes;
+			strokes[i->first] = i->second.strokes;
 	return strokes;
 }
 
-std::shared_ptr<std::set<Unique *> > ActionListDiff::get_ids(bool include_deleted) const {
-	std::shared_ptr<std::set<Unique *> > ids = parent ? parent->get_ids(false) :
-		std::make_shared<std::set<Unique *>>();
+std::set<Unique *> ActionListDiff::get_ids(bool include_deleted) const {
+	std::set<Unique *> ids = parent ? parent->get_ids(false) : std::set<Unique *>();
 	if (!include_deleted)
 		for (std::set<Unique *>::const_iterator i = deleted.begin(); i != deleted.end(); i++)
-			ids->erase(*i);
+			ids.erase(*i);
 	for (std::map<Unique *, StrokeInfo>::const_iterator i = added.begin(); i != added.end(); i++)
-		ids->insert(i->first);
+		ids.insert(i->first);
 	return ids;
 }
 
-void ActionListDiff::all_strokes(std::list<RStroke> &strokes) const {
+void ActionListDiff::all_strokes(std::vector<RStroke> &strokes) const {
 	for (std::map<Unique *, StrokeInfo>::const_iterator i = added.begin(); i != added.end(); i++)
 		for (std::set<RStroke>::const_iterator j = i->second.strokes.begin(); j != i->second.strokes.end(); j++)
 			strokes.push_back(*j);
-	for (std::list<ActionListDiff>::const_iterator i = children.begin(); i != children.end(); i++)
+	for (auto i = children.begin(); i != children.end(); i++)
 		i->all_strokes(strokes);
 }
 
@@ -307,8 +305,8 @@ RAction ActionListDiff::handle(RStroke s, RRanking &r) const {
 	r.reset(new Ranking);
 	r->stroke = s;
 	r->score = 0.0;
-	std::shared_ptr<std::map<Unique *, StrokeSet> > strokes = get_strokes();
-	for (std::map<Unique *, StrokeSet>::const_iterator i = strokes->begin(); i!=strokes->end(); i++) {
+	std::map<Unique *, StrokeSet> strokes = get_strokes();
+	for (std::map<Unique *, StrokeSet>::const_iterator i = strokes.begin(); i!=strokes.end(); i++) {
 		for (StrokeSet::iterator j = i->second.begin(); j!=i->second.end(); j++) {
 			double score;
 			int match = Stroke::compare(s, *j, score);
@@ -343,8 +341,8 @@ void ActionListDiff::handle_advanced(RStroke s, std::map<guint, RAction> &as,
 		std::map<guint, RRanking> &rs, int b1, int b2) const {
 	if (!s)
 		return;
-	std::shared_ptr<std::map<Unique *, StrokeSet> > strokes = get_strokes();
-	for (std::map<Unique *, StrokeSet>::const_iterator i = strokes->begin(); i!=strokes->end(); i++) {
+	std::map<Unique *, StrokeSet> strokes = get_strokes();
+	for (std::map<Unique *, StrokeSet>::const_iterator i = strokes.begin(); i!=strokes.end(); i++) {
 		for (StrokeSet::iterator j = i->second.begin(); j!=i->second.end(); j++) {
 			int b = (*j)->button;
 			if (!s->timeout && !b)

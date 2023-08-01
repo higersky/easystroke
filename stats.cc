@@ -126,9 +126,9 @@ public:
 	}
 };
 
-void Ranking::queue_show(RRanking r, RTriple e) {
-	r->x = (int)e->x;
-	r->y = (int)e->y;
+void Ranking::queue_show(RRanking r, Triple e) {
+	r->x = (int)e.x;
+	r->y = (int)e.y;
 	Glib::signal_idle().connect(sigc::bind(sigc::ptr_fun(&Ranking::show), r));
 }
 
@@ -243,13 +243,13 @@ void Stats::on_pdf() {
 		gettimeofday(&tv1, 0);
 	const int S = 32;
 	const int B = 1;
-	std::list<RStroke> strokes;
+	std::vector<RStroke> strokes;
 	actions.get_root()->all_strokes(strokes);
 	const int n = strokes.size();
 	Cairo::RefPtr<Cairo::PdfSurface> surface = Cairo::PdfSurface::create("/tmp/strokes.pdf", (n+1)*S, (n+1)*S);
 	const Cairo::RefPtr<Cairo::Context> ctx = Cairo::Context::create(surface);
 	int k = 1;
-	for (std::list<RStroke>::iterator i = strokes.begin(); i != strokes.end(); i++, k++) {
+	for (auto i = strokes.begin(); i != strokes.end(); i++, k++) {
 		(*i)->draw(surface, k*S+B, B, S-2*B, S-2*B);
 		(*i)->draw(surface, B, k*S+B, S-2*B, S-2*B);
 
@@ -262,7 +262,7 @@ void Stats::on_pdf() {
 		ctx->stroke();
 
 		int l = 1;
-		for (std::list<RStroke>::iterator j = strokes.begin(); j != strokes.end(); j++, l++) {
+		for (auto j = strokes.begin(); j != strokes.end(); j++, l++) {
 			double score;
 		        int match = Stroke::compare(*i, *j, score);
 			if (match < 0)

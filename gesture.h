@@ -39,9 +39,9 @@ struct Triple {
 	float y;
 	Time t;
 };
-typedef std::shared_ptr<Triple> RTriple;
-void update_triple(RTriple e, float x, float y, Time t);
-RTriple create_triple(float x, float y, Time t);
+
+typedef Triple Triple;
+Triple create_triple(float x, float y, Time t);
 
 class PreStroke;
 class Stroke {
@@ -151,10 +151,10 @@ public:
 BOOST_CLASS_VERSION(Stroke, 5)
 BOOST_CLASS_VERSION(Stroke::Point, 1)
 
-class PreStroke : public std::vector<RTriple> {
+class PreStroke : public std::vector<Triple> {
 public:
 	static RPreStroke create() { return std::make_shared<PreStroke>(); }
-	void add(RTriple p) { push_back(p); }
+	void add(Triple p) { push_back(p); }
 	bool valid() const { return size() > 2; }
 };
 #endif
