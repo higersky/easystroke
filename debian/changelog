@@ -1,4 +1,4 @@
-easystroke (0.6.0-2ubuntu1) UNRELEASED; urgency=medium
+easystroke (0.6.0-2) focal; urgency=medium
 
   * Always put the feedback tooltip on the lower center of screen (The original settings often wrongly place the tooltip on some random locations.)
   * Fix most of the memory leaks
