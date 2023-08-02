@@ -25,6 +25,8 @@
 double red, green, blue, alpha, width;
 std::vector<Trace::Point> points;
 
+#define POINTS_REGULAR_SIZE 128
+
 Popup::Popup(int x1, int y1, int x2, int y2) : Gtk::Window(Gtk::WINDOW_POPUP), rect(x1, y1, x2-x1, y2-y1) {
 	if (!is_composited())
 		throw std::runtime_error(_("'composite' not available"));
@@ -50,7 +52,7 @@ void Popup::invalidate(int x1, int y1, int x2, int y2) {
 }
 
 Composite::Composite() {
-#define N 256
+#define N 512
 	GdkRectangle work_area;
 	GdkDisplay* dp = gdk_display_get_default();
 	GdkMonitor* mon = gdk_display_get_primary_monitor(dp);
@@ -61,8 +63,8 @@ Composite::Composite() {
 	scale_factor = gdk_monitor_get_scale_factor(mon);
 	num_x = (work_area.width - 1)/N + 1;
 	num_y = (work_area.height - 1)/N + 1;
-
 	pieces.reserve(num_x * num_y);
+	points.reserve(POINTS_REGULAR_SIZE);
 	for (int i = 0; i < num_x; i++) {
 		for(int j = 0; j < num_y; j++) {
 			pieces.emplace_back(i*N,j*N,MIN((i+1)*N,w),MIN((j+1)*N,h));
@@ -144,8 +146,9 @@ bool Popup::on_draw(const ::Cairo::RefPtr< ::Cairo::Context>& ctx) {
 
 void Composite::end_() {
 	points.clear();
-	if (points.capacity() >= 512) {
+	if (points.capacity() >= POINTS_REGULAR_SIZE * 4) {
 		points.shrink_to_fit();
+		points.reserve(POINTS_REGULAR_SIZE);
 	}
 	for (int i = 0; i < num_x; i++)
 		for (int j = 0; j < num_y; j++)
