@@ -12,8 +12,8 @@
 #  OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 #  CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-CC = clang
-CXX = clang++
+CC = gcc
+CXX = g++
 DESTDIR  =
 PREFIX   = /usr/local
 BINDIR   = $(PREFIX)/bin
@@ -28,7 +28,7 @@ CXXSTD = -std=c++17
 INCLUDES = $(shell pkg-config gtkmm-3.0 dbus-glib-1 appindicator3-0.1 --cflags)
 CXXFLAGS = $(CXXSTD) -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES)
 CFLAGS   = -std=c17 -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES) -DGETTEXT_PACKAGE='"easystroke"'
-LDFLAGS  = $(DFLAGS) -flto -fuse-ld=lld
+LDFLAGS  = $(DFLAGS) -flto #-fuse-ld=lld
 
 LIBS     = $(DFLAGS) -lboost_serialization -lX11 -lXext -lXi -lXfixes -lXtst `pkg-config gtkmm-3.0 dbus-glib-1 appindicator3-0.1 --libs`
 
