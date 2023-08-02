@@ -21,5 +21,6 @@ mkShell {
                   iconv
                   glibcLocales
                   glibcLocalesUtf8
+                  libappindicator-gtk3
                 ];
 }
