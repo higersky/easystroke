@@ -137,8 +137,6 @@ bool delete_me(std::shared_ptr<Feedback>) {
 }
 
 bool Ranking::show(RRanking r) {
-	if (prefs.tray_feedback.get())
-		win->set_icon(r->stroke, !r->best_stroke);
 	if (prefs.feedback.get() && r->best_stroke) {
 		if (prefs.advanced_popups.get() || !(r->best_stroke->button || r->best_stroke->timeout)) {
 			std::shared_ptr<Feedback> popup = std::make_shared<Feedback>(r->best_stroke, r->name, r->x, r->y);

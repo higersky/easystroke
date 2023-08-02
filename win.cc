@@ -18,6 +18,7 @@
 #include "win.h"
 #include "main.h"
 #include <glibmm/i18n.h>
+#include <libappindicator/app-indicator.h>
 
 Glib::RefPtr<Gtk::Builder> widgets;
 
@@ -188,6 +189,10 @@ Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Pr
 	WIDGET(Gtk::SeparatorMenuItem, menu_sep);
 	menu.append(menu_sep);
 
+	WIDGET(Gtk::ImageMenuItem, menu_preferences, Gtk::Stock::PREFERENCES);
+	menu.append(menu_preferences);
+	menu_preferences.signal_activate().connect(sigc::mem_fun(*this, &Win::show));
+
 	WIDGET(Gtk::ImageMenuItem, menu_quit, Gtk::Stock::QUIT);
 	menu.append(menu_quit);
 	menu_quit.signal_activate().connect(sigc::ptr_fun(&quit));
@@ -216,34 +221,19 @@ Win::~Win() {
 
 extern void icon_warning();
 
-static gboolean icon_clicked(GtkStatusIcon *status_icon, GdkEventButton *event, gpointer) {
-	if (event->button == 2)
-		disabled.set(!disabled.get());
-	return TRUE;
-}
-
 void Win::show_hide_icon() {
 	bool show = prefs.tray_icon.get();
 	if (show) {
-		if (icon)
+		if (indicator != nullptr)
 			return;
-		icon = Gtk::StatusIcon::create("");
-		icon->set_tooltip_text("easystroke");
-		icon->signal_size_changed().connect(sigc::mem_fun(*this, &Win::on_icon_size_changed));
-		icon->signal_activate().connect(sigc::mem_fun(*this, &Win::show_hide));
-		icon->signal_popup_menu().connect(sigc::mem_fun(*this, &Win::show_popup));
-		if (gtk_major_version > 2 || (gtk_major_version == 2 && gtk_minor_version >= 15))
-			g_signal_connect(icon->gobj(), "button-release-event", G_CALLBACK(icon_clicked), nullptr);
+		
+		indicator = app_indicator_new("easystroke", "easystroke", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
+		app_indicator_set_status(indicator, APP_INDICATOR_STATUS_ACTIVE);
+		app_indicator_set_title(indicator, "easystroke");
+		app_indicator_set_menu(indicator, menu.gobj());
 	} else {
-		if (icon)
-			icon.reset();
 		icon_warning();
 	}
-}
-
-void Win::show_popup(guint button, guint32 activate_time) {
-	if (icon)
-		icon->popup_menu_at_position(menu, button, activate_time);
 }
 
 extern const char *version_string;
@@ -273,25 +263,9 @@ void Win::hide() {
 	win->hide();
 }
 
-bool Win::on_icon_size_changed(int size) {
-	icon_pb[0] = Stroke::trefoil()->draw(size);
-	icon_pb[1] = Stroke::trefoil()->draw(size);
-	icon_pb[1]->saturate_and_pixelate(icon_pb[1], 0.0, true);
-	if (icon)
-		icon->set(icon_pb[disabled.get() ? 1 : 0]);
-	return true;
-}
 
 void Win::timeout() {
-	if (icon)
-		icon->set(icon_pb[disabled.get() ? 1 : 0]);
-}
 
-void Win::set_icon(RStroke stroke, bool invert) {
-	if (!icon || icon->get_size() <= 0)
-		return;
-	icon->set(stroke->draw(icon->get_size(), 2.0, invert));
-	set_timeout(10000);
 }
 
 void error_dialog(const Glib::ustring &text) {

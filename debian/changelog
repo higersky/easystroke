@@ -1,3 +1,10 @@
+easystroke (0.6.0-3) focal; urgency=medium
+
+  * Use AppIndicator instead of GtkStatusIcon to get a better icon resolution on modern
+    displays. Therefore, feedbacks on tray icon are removed.
+
+ -- higersky <64680426+higersky@users.noreply.github.com>  Wed, 02 Aug 2023 20:45:31 +0800
+
 easystroke (0.6.0-2) focal; urgency=medium
 
   * Always put the feedback tooltip on the lower center of screen (The original settings often wrongly place the tooltip on some random locations.)

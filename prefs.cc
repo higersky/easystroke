@@ -300,8 +300,6 @@ Prefs::Prefs()
 	pref_objs.push_back(new Sensitive(prefs.feedback, "check_advanced_popups"));
 
 	pref_objs.push_back(new Check(prefs.tray_icon, "check_tray_icon"));
-	pref_objs.push_back(new Sensitive(prefs.tray_icon, "check_tray_feedback"));
-	pref_objs.push_back(new Check(prefs.tray_feedback, "check_tray_feedback"));
 
 	pref_objs.push_back(new Check(autostart, "check_autostart"));
 	pref_objs.push_back(new Sensitive(autostart_ok, "check_autostart"));

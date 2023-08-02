@@ -25,12 +25,12 @@ OFLAGS   = -O2
 AOFLAGS  = -O3
 STROKEFLAGS  = -Wall -std=c17 $(DFLAGS)
 CXXSTD = -std=c++17
-INCLUDES = $(shell pkg-config gtkmm-3.0 dbus-glib-1 --cflags)
+INCLUDES = $(shell pkg-config gtkmm-3.0 dbus-glib-1 appindicator3-0.1 --cflags)
 CXXFLAGS = $(CXXSTD) -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES)
 CFLAGS   = -std=c17 -Wall $(DFLAGS) -DLOCALEDIR=\"$(LOCALEDIR)\" $(INCLUDES) -DGETTEXT_PACKAGE='"easystroke"'
 LDFLAGS  = $(DFLAGS) -flto -fuse-ld=lld
 
-LIBS     = $(DFLAGS) -lboost_serialization -lX11 -lXext -lXi -lXfixes -lXtst `pkg-config gtkmm-3.0 dbus-glib-1 --libs`
+LIBS     = $(DFLAGS) -lboost_serialization -lX11 -lXext -lXi -lXfixes -lXtst `pkg-config gtkmm-3.0 dbus-glib-1 appindicator3-0.1 --libs`
 
 BINARY   = easystroke
 ICON     = easystroke.svg

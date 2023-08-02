@@ -21,6 +21,7 @@
 #include "prefdb.h"
 
 #include <forward_list>
+#include <libappindicator/app-indicator.h>
 
 class Actions;
 class Prefs;
@@ -47,10 +48,8 @@ public:
 	void set_icon(RStroke stroke, bool invert);
 	void show_about();
 private:
-	bool on_icon_size_changed(int);
 	virtual void timeout();
 	void on_help_toggled();
-	void show_popup(guint, guint32);
 	void show_hide_icon();
 
 	Notifier* register_notifier(sigc::slot<void()>&& f_);
@@ -62,8 +61,9 @@ private:
 
 	Gtk::Menu menu;
 
-	Glib::RefPtr<Gtk::StatusIcon> icon;
-	Glib::RefPtr<Gdk::Pixbuf> icon_pb[2];
+	AppIndicator* indicator;
+	// Glib::RefPtr<Gtk::StatusIcon> icon;
+	// Glib::RefPtr<Gdk::Pixbuf> icon_pb[2];
 };
 
 extern Win *win;
