@@ -270,7 +270,7 @@ public:
 	iterator begin() { return children.begin(); }
 	iterator end() { return children.end(); }
 
-	RStrokeInfo get_info(Unique *id, bool *deleted = 0, bool *stroke = 0, bool *name = 0, bool *action = 0) const;
+	RStrokeInfo get_info(Unique *id, bool *deleted = nullptr, bool *stroke = nullptr, bool *name = nullptr, bool *action = nullptr) const;
 	int order_size() const { return order.size(); }
 	int size_rec() const {
 		int size = added.size();
@@ -282,7 +282,7 @@ public:
 		return parent && (added.count(id) || deleted.count(id)) && parent->contains(id);
 	}
 
-	Unique *add(StrokeInfo &si, Unique *before = 0) {
+	Unique *add(StrokeInfo &si, Unique *before = nullptr) {
 		Unique *id = new Unique;
 		added.insert(std::pair<Unique *, StrokeInfo>(id, si));
 		id->level = level;

@@ -20,7 +20,7 @@
 
 Fire::Fire() {
 	const char *ofc = "org.freedesktop.compiz";
-	GError *error = 0;
+	GError *error = nullptr;
 	bus = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
 	if (!bus) {
 		g_error_free(error);

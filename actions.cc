@@ -745,7 +745,7 @@ void Actions::on_row_activated(const Gtk::TreeModel::Path& path, Gtk::TreeViewCo
 	dialog->set_message(_("Record a New Stroke"));
 	dialog->set_secondary_text(Glib::ustring::compose(_("The next stroke will be associated with the action \"%1\".  You can draw it anywhere on the screen (except for the two buttons below)."), row[cols.name]));
 
-	static Gtk::Button *del = 0, *cancel = 0;
+	static Gtk::Button *del = nullptr, *cancel = nullptr;
 	if (!del) {
 		widgets->get_widget("button_record_delete", del);
 		del->signal_enter().connect(sigc::mem_fun(*grabber, &Grabber::queue_suspend));
@@ -811,7 +811,7 @@ void Actions::on_selection_changed() {
 
 void Actions::on_button_new() {
 	editing_new = true;
-	Unique *before = 0;
+	Unique *before = nullptr;
 	if (tv.get_selection()->count_selected_rows()) {
 		std::vector<Gtk::TreePath> paths = tv.get_selection()->get_selected_rows();
 		Gtk::TreeIter i = tm->get_iter(paths[paths.size()-1]);

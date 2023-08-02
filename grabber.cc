@@ -27,7 +27,7 @@ extern Source<bool> disabled;
 extern Source<Window> current_app_window;
 extern Source<bool> recording;
 
-Grabber *grabber = 0;
+Grabber *grabber = nullptr;
 
 static unsigned int ignore_mods[4] = { 0, LockMask, Mod2Mask, LockMask | Mod2Mask };
 static unsigned char device_mask_data[2];

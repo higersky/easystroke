@@ -24,6 +24,8 @@
 #include <X11/XKBlib.h>
 #include <X11/Xproto.h>
 #include <cmath>  // std::abs(float)
+#include <memory>
+
 using std::abs;
 
 XState *xstate = nullptr;
@@ -957,7 +959,7 @@ protected:
 			connections.erase(remove_if(connections.begin(), connections.end(),
 						sigc::bind(sigc::mem_fun(*this, &StrokeHandler::expired),
 							hypot(e.x - last.x, e.y - last.y))), connections.end());
-			connections.push_back(RConnection(new Connection(this, radius, final_timeout)));
+			connections.push_back(std::make_shared<Connection>(this, radius, final_timeout));
 		}
 		last = e;
 	}

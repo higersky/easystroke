@@ -1,8 +1,11 @@
 with import <nixpkgs> {};
 mkShell {
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ gnumake 
+  LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
+  buildInputs = [ gnumake
+                  gcc12
                   clang_16 
+                  lld_16
                   boost 
                   pkgconfig 
                   gtkmm3 
