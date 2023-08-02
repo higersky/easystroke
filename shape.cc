@@ -26,8 +26,8 @@ Shape::Shape() {
                              &work_area);
 	int w = work_area.width;
 	int h = work_area.height;
-	Gdk::Color col = prefs.color.get().color;
-	unsigned long bg = ((col.get_red()/257)<<16) + ((col.get_green()/257)<<8) + col.get_blue()/257;
+	Gdk::RGBA col = prefs.color.get().color;
+	unsigned long bg = ((col.get_red_u()/257)<<16) + ((col.get_green_u()/257)<<8) + col.get_blue_u()/257;
 	win = XCreateSimpleWindow(dpy, ROOT, 0, 0, w, h, 0, CopyFromParent, bg);
 	XSetWindowAttributes attr;
 	attr.override_redirect = True;

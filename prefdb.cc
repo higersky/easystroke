@@ -44,7 +44,7 @@ PrefDB::PrefDB() :
 	timeout_profile(TimeoutDefault),
 	timeout_gestures(false),
 	tray_icon(false),
-	color(Gdk::Color("#980101")),
+	color(Gdk::RGBA("#980101")),
 	trace_width(3),
 	advanced_popups(true),
 	scroll_invert(true),
@@ -115,7 +115,7 @@ template<class Archive> void PrefDB::serialize(Archive & ar, const unsigned int 
 	if (version < 12) {
 		unsigned long c = 0;
 		ar & c;
-		color.unsafe_ref().color.set_rgb(257*(c >> 16), 257*((c >> 8) % 256), 257*(c % 256));
+		color.unsafe_ref().color.set_rgba_u(257*(c >> 16), 257*((c >> 8) % 256), 257*(c % 256));
 		return;
 	} else {
 		ar & color.unsafe_ref();

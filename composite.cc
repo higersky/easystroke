@@ -105,10 +105,10 @@ void Composite::draw(Point p, Point q) {
 
 void Composite::start_() {
 	RGBA rgba = prefs.color.get();
-	red = rgba.color.get_red_p();
-	green = rgba.color.get_green_p();
-	blue = rgba.color.get_blue_p();
-	alpha = ((double)rgba.alpha)/65535.0;
+	red = rgba.color.get_red();
+	green = rgba.color.get_green();
+	blue = rgba.color.get_blue();
+	alpha = rgba.color.get_alpha();
 	width = prefs.trace_width.get();
 }
 

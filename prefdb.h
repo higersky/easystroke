@@ -21,7 +21,8 @@
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/version.hpp>
 #include <boost/serialization/split_member.hpp>
-#include <gdkmm/color.h>
+// #include <gdkmm/color.h>
+#include <gdkmm.h>
 
 #include "var.h"
 
@@ -65,32 +66,33 @@ BOOST_CLASS_VERSION(ButtonInfo, 4)
 typedef std::shared_ptr<ButtonInfo> RButtonInfo;
 
 struct RGBA {
-	Gdk::Color color;
-	guint16 alpha;
-	RGBA() : alpha(65535) {}
-	RGBA(Gdk::Color c) : color(c), alpha(65535) {}
+	Gdk::RGBA color;
+	RGBA() {}
+	RGBA(Gdk::RGBA c) : color(c) {}
 	template<class Archive> void save(Archive &ar, unsigned int version) const {
-		gushort r, g, b;
-		r = color.get_red();
-		g = color.get_green();
-		b = color.get_blue();
+		gushort r, g, b, alpha;
+		r = color.get_red_u();
+		g = color.get_green_u();
+		b = color.get_blue_u();
+		alpha = color.get_alpha_u();
 		ar & r;
 		ar & g;
 		ar & b;
 		ar & alpha;
 	}
 	template<class Archive> void load(Archive &ar, unsigned int version) {
-		gushort r, g, b;
+		gushort r, g, b, alpha;
 		ar & r;
 		ar & g;
 		ar & b;
 		ar & alpha;
-		color.set_red(r);
-		color.set_green(g);
-		color.set_blue(b);
+		color.set_red_u(r);
+		color.set_green_u(g);
+		color.set_blue_u(b);
+		color.set_alpha_u(alpha);
 	}
 	bool operator==(const RGBA rgba) {
-		return color == rgba.color && alpha == rgba.alpha;
+		return color == rgba.color;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -83,14 +83,12 @@ class Color : public Base
 	Gtk::ColorButton *color;
 	virtual void notify()
 	{
-		color->set_color(io.get().color);
-		color->set_alpha(io.get().alpha);
+		color->set_rgba(io.get().color);
 	}
 	void on_changed()
 	{
 		RGBA rgba;
-		rgba.color = color->get_color();
-		rgba.alpha = color->get_alpha();
+		rgba.color = color->get_rgba();
 		if (rgba == io.get())
 			return;
 		io.set(rgba);
