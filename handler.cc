@@ -81,7 +81,7 @@ void XState::handle_event(XEvent &ev) {
 	case ButtonPress:
 		if (verbosity >= 3)
 			printf("Press (master): %d (%d, %d) at t = %ld\n", ev.xbutton.button, ev.xbutton.x, ev.xbutton.y, ev.xbutton.time);
-			H->press_master(ev.xbutton.button, ev.xbutton.time);
+		H->press_master(ev.xbutton.button, ev.xbutton.time);
 		return;
 
 	case ClientMessage:

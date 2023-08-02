@@ -70,8 +70,8 @@ class CellEditableAccel : Gtk.EventBox, Gtk.CellEditable {
 		this.path = path;
 		editing_done.connect(on_editing_done);
 		Gtk.Label label = new Gtk.Label(_("Key combination..."));
-		label.xalign = 0.0f;
-		label.yalign = 0.5f;
+		label.set_halign(Gtk.Align.START);
+		label.set_valign(Gtk.Align.CENTER);
 		add(label);
 		if(!background_color_added) {
 			var screen = this.get_screen();
