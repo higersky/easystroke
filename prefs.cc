@@ -408,7 +408,7 @@ Prefs::Prefs()
 
 	if (!experimental)
 	{
-		Gtk::HBox *hbox;
+		Gtk::Box *hbox;
 		widgets->get_widget("hbox_timeout", hbox);
 		hbox->hide();
 	}
@@ -548,7 +548,7 @@ SelectButton::SelectButton(ButtonInfo bi, bool def, bool any)
 	widgets->get_widget("radio_click_hold", radio_click_hold);
 	Gtk::Bin *box_button;
 	widgets->get_widget("box_button", box_button);
-	Gtk::HBox *hbox_button_timeout;
+	Gtk::Box *hbox_button_timeout;
 	widgets->get_widget("hbox_button_timeout", hbox_button_timeout);
 	select_button = dynamic_cast<Gtk::ComboBoxText *>(box_button->get_child());
 	if (!select_button)
