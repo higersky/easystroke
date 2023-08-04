@@ -1,7 +1,7 @@
 # easystroke
 Fork of thjaeger / easystroke with all of the known patches. Moreover,
 
-- Fix deprecated usages of Gtk (GdkScreen-related APIs)
+- Fix deprecated usages of Gtk (GdkScreen-related APIs, deprecated properties, etc.)
 - Fix most memory leaks, undefined behaviors and redundant allocations (AddressSanitizer checked)
 - Use modern C++/C standards to compile
 - Change the behavior of gesture feedback.
