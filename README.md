@@ -13,7 +13,7 @@ Fork of thjaeger / easystroke with all of the known patches. Moreover,
 You can use the following instructions to install on a Debian-based distribution:
 
 ```bash
-sudo apt-get install -y help2man intltool libatkmm-1.6-dev libboost-serialization-dev libboost-serialization1.71-dev libboost1.71-dev libcairomm-1.0-dev libfontenc-dev libglibmm-2.4-dev libgtkmm-3.0-dev libpangomm-1.4-dev libsigc++-2.0-dev libxfont-dev libxkbfile-dev xserver-xorg-dev libappindicator-dev
+sudo apt-get install -y help2man intltool libatkmm-1.6-dev libboost-serialization-dev libboost-serialization-dev libboost-dev libcairomm-1.0-dev libfontenc-dev libglibmm-2.4-dev libgtkmm-3.0-dev libpangomm-1.4-dev libsigc++-2.0-dev libxfont-dev libxkbfile-dev xserver-xorg-dev libappindicator-dev
 wget https://github.com/higersky/easystroke/archive/master.tar.gz
 tar zxf master.tar.gz
 cd easystroke-master
