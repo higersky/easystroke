@@ -2,11 +2,11 @@
 Fork of thjaeger / easystroke with all of the known patches. Moreover,
 
 - Fix deprecated usages of Gtk (GdkScreen-related APIs)
-- Fix most of memory leaks, undefined behaviors and redundant allocations (AddressSanitizer checked)
+- Fix most memory leaks, undefined behaviors and redundant allocations (AddressSanitizer checked)
 - Use modern C++/C standards to compile
-- Change the behavior of gesture feedbacks.
+- Change the behavior of gesture feedback.
   - The feedback tooltip is always shown on the lower center of the screen. Because the original settings often wrongly place the tooltip on some random locations.
-  - Use AppIndicators instead of deprecated GtkStatusIcon to get a better icon resolution on modern displays. Due to the limitations of AppIndicators, Feedbacks on the tray icon are removed.
+  - Use AppIndicators instead of deprecated GtkStatusIcon to get a better icon resolution on modern displays. Due to the limitations of AppIndicators, Feedback on the tray icon is removed.
 
 ## Build
 
@@ -19,5 +19,5 @@ tar zxf master.tar.gz
 cd easystroke-master
 make
 sudo make install
-# call ./build.sh if you want to create a deb pacakge
+# call ./build.sh if you want to create a deb package
 ```
