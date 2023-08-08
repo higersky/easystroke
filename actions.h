@@ -141,7 +141,7 @@ private:
 	Gtk::Button *button_record, *button_delete, *button_remove_app, *button_reset_actions;
 	Gtk::CheckButton *check_show_deleted;
 	Gtk::Expander *expander_apps;
-	Gtk::VPaned *vpaned_apps;
+	Gtk::Paned *vpaned_apps;
 
 	int vpaned_position;
 	bool editing_new;
