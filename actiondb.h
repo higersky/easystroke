@@ -237,7 +237,7 @@ class ActionListDiff {
 	std::set<Unique *> deleted;
 	std::map<Unique *, StrokeInfo> added;
 	std::list<Unique *> order;
-	std::vector<ActionListDiff> children;
+	std::list<ActionListDiff> children;
 
 	void update_order() {
 		int j = 0;
