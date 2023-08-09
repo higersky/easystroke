@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke 0.3.97\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-26 20:48+0800\n"
+"POT-Creation-Date: 2023-08-09 14:46+0800\n"
 "PO-Revision-Date: 2012-09-10 17:51+0000\n"
 "Last-Translator: Maximilian M�hlbauer <Unknown>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -32,100 +32,100 @@ msgstr "Name"
 msgid "Score"
 msgstr "Ergebnis"
 
-#: ../win.cc:180
+#: ../win.cc:181
 msgid "D_isabled"
 msgstr "Deaktiviert"
 
-#: ../win.cc:304
+#: ../win.cc:278
 msgid "<unnamed>"
 msgstr ""
 
-#: ../composite.cc:30
+#: ../composite.cc:32
 msgid "'composite' not available"
 msgstr "'composite' nicht verf�gbar"
 
-#: ../prefs.cc:191 ../actiondb.cc:141
+#: ../prefs.cc:192 ../actiondb.cc:141
 msgid "None"
 msgstr "Keine"
 
-#: ../prefs.cc:192 ../prefs.cc:202 ../prefs.cc:211 ../actiondb.cc:155
+#: ../prefs.cc:193 ../prefs.cc:203 ../prefs.cc:212 ../actiondb.cc:155
 #: ../actiondb.cc:179
 msgid "Default"
 msgstr "Standard"
 
-#: ../prefs.cc:193
+#: ../prefs.cc:194
 msgid "XShape"
 msgstr "XShape"
 
-#: ../prefs.cc:194
+#: ../prefs.cc:195
 msgid "Annotate (compiz)"
 msgstr "Annotate (compiz)"
 
-#: ../prefs.cc:195
+#: ../prefs.cc:196
 msgid "Fire (compiz)"
 msgstr "Feuer (compiz)"
 
-#: ../prefs.cc:196
+#: ../prefs.cc:197
 msgid "Water (compiz)"
 msgstr "Wasser (compiz)"
 
-#: ../prefs.cc:200 ../prefs.cc:209
+#: ../prefs.cc:201 ../prefs.cc:210
 msgid "Timeout Off"
 msgstr "Timeout Aus"
 
-#: ../prefs.cc:201 ../prefs.cc:210
+#: ../prefs.cc:202 ../prefs.cc:211
 msgid "Conservative"
 msgstr "Konservativ"
 
-#: ../prefs.cc:203 ../prefs.cc:212
+#: ../prefs.cc:204 ../prefs.cc:213
 msgid "Medium"
 msgstr "Mittel"
 
-#: ../prefs.cc:204 ../prefs.cc:213
+#: ../prefs.cc:205 ../prefs.cc:214
 msgid "Aggressive"
 msgstr "Aggressiv"
 
-#: ../prefs.cc:205 ../prefs.cc:214
+#: ../prefs.cc:206 ../prefs.cc:215
 msgid "Flick"
 msgstr "Flick"
 
-#: ../prefs.cc:215
+#: ../prefs.cc:216
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: ../prefs.cc:351
+#: ../prefs.cc:354
 msgid "Application (WM__CLASS)"
 msgstr "Anwendung (WM__CLASS)"
 
-#: ../prefs.cc:356 ../prefs.cc:403 ../actions.cc:76
+#: ../prefs.cc:359 ../prefs.cc:406 ../actions.cc:76
 msgid "Button"
 msgstr "Maustaste"
 
-#: ../prefs.cc:368 ../main.cc:372
+#: ../prefs.cc:371 ../main.cc:372
 msgid "Enabled"
 msgstr "Aktiv"
 
-#: ../prefs.cc:369
+#: ../prefs.cc:372
 msgid "Device"
 msgstr "Ger�t"
 
-#: ../prefs.cc:376 ../prefs.cc:448
+#: ../prefs.cc:379 ../prefs.cc:451
 msgid "<unchanged>"
 msgstr "<unver�ndert>"
 
-#: ../prefs.cc:390 ../gui.glade.h:25
+#: ../prefs.cc:393 ../gui.glade.h:14
 msgid "Timeout profile"
 msgstr "Timeout-Profil"
 
-#: ../prefs.cc:421 ../prefs.cc:725 ../prefs.cc:751
+#: ../prefs.cc:424 ../prefs.cc:728 ../prefs.cc:754
 msgid "<App disabled>"
 msgstr "<Anwendung deaktiviert>"
 
-#: ../prefs.cc:535
+#: ../prefs.cc:538
 msgid "Select a Mouse or Pen Button"
 msgstr "Eine Maus- oder Stifttaste ausw�hlen"
 
-#: ../prefs.cc:536
+#: ../prefs.cc:539
 msgid ""
 "Please place your mouse or pen in the box below and press the button that "
 "you want to select.  You can also hold down additional modifiers."
@@ -133,11 +133,11 @@ msgstr ""
 "Dr�cken Sie auf die entsprechende Taste, w�hrend sich der Mauszeiger in "
 "der Box befindet.  Sie k�nnen auch zus�tzlich Modifier dr�cken."
 
-#: ../prefs.cc:556 ../actions.cc:961
+#: ../prefs.cc:559 ../actions.cc:968
 msgid "Button %1"
 msgstr "Maustaste %1"
 
-#: ../handler.cc:342 ../main.cc:84
+#: ../main.cc:84 ../handler.cc:344
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fehler: %s\n"
@@ -182,12 +182,12 @@ msgstr "Fehler: Konnte Konfigurationsverzeichnis nicht erstellen: \"%s\"\n"
 msgid "Error: \"%s\" is not a directory\n"
 msgstr "Fehler: \"%s\" ist kein Verzeichnis\n"
 
-#: ../prefdb.cc:154
+#: ../prefdb.cc:153
 #, c-format
 msgid "Error: Couldn't save preferences: %s.\n"
 msgstr "Fehler: Konnte Einstellungen nicht speichern: %s\n"
 
-#: ../prefdb.cc:158 ../actiondb.cc:230
+#: ../prefdb.cc:157 ../actiondb.cc:230
 msgid ""
 "Couldn't save %1.  Your changes will be lost.  Make sure that \"%2\" is a "
 "directory and that you have write access to it.  You can change the "
@@ -198,11 +198,11 @@ msgstr ""
 "Konfigurationsverzeichnis mit den Kommandozeilenoptionen -c oder --config-"
 "dir ver�ndern."
 
-#: ../prefdb.cc:161
+#: ../prefdb.cc:160
 msgid "preferences"
 msgstr "Einstellungen"
 
-#: ../prefdb.cc:188
+#: ../prefdb.cc:187
 #, c-format
 msgid "Error: Couldn't read preferences.\n"
 msgstr "Fehler: Konnte Einstellungen nicht laden.\n"
@@ -219,11 +219,11 @@ msgstr "Taste"
 msgid "Text"
 msgstr "Text"
 
-#: ../actions.cc:74 ../actions.cc:968
+#: ../actions.cc:74 ../actions.cc:975
 msgid "Scroll"
 msgstr "Scrollen"
 
-#: ../actions.cc:75 ../actions.cc:975
+#: ../actions.cc:75 ../actions.cc:982
 msgid "Ignore"
 msgstr "Ignorieren"
 
@@ -243,7 +243,7 @@ msgstr "Details"
 msgid "Application"
 msgstr "Anwendung"
 
-#: ../actions.cc:229 ../gui.glade.h:22
+#: ../actions.cc:229 ../gui.glade.h:11
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -263,37 +263,37 @@ msgid_plural "Delete Actions"
 msgstr[0] "Eine Aktion l�schen"
 msgstr[1] "Aktionen l�schen"
 
-#: ../actions.cc:559
+#: ../actions.cc:566
 msgid "%1 \"%2\" (containing %3 %4) is about to be deleted."
 msgstr "Wenn Sie fortfahren, wird %1 \"%2\" (mitsamt %3 %4) gel�scht."
 
-#: ../actions.cc:560
+#: ../actions.cc:567
 msgid "The application"
 msgstr "die Anwendung"
 
-#: ../actions.cc:560
+#: ../actions.cc:567
 msgid "The group"
 msgstr "die Gruppe"
 
-#: ../actions.cc:563
+#: ../actions.cc:570
 msgid "action"
 msgid_plural "actions"
 msgstr[0] "Aktion"
 msgstr[1] "Aktionen"
 
-#: ../actions.cc:564
+#: ../actions.cc:571
 msgid "Delete an Application"
 msgstr "Eine Anwendung l�schen"
 
-#: ../actions.cc:564
+#: ../actions.cc:571
 msgid "Delete an Application Group"
 msgstr "Eine Anwendungsgruppe l�schen"
 
-#: ../actions.cc:594
+#: ../actions.cc:601
 msgid "Group"
 msgstr "Gruppe"
 
-#: ../actions.cc:712
+#: ../actions.cc:719
 msgid ""
 "You are about to bind an action to a single click.  This might make it "
 "difficult to use Button %1 in the future.  Are you sure you want to continue?"
@@ -302,11 +302,11 @@ msgstr ""
 "Schwierigkeiten bereiten, Maustaste %1 zu benutzen.  Sind Sie sich sicher, "
 "dass Sie fortfahren m�chten?"
 
-#: ../actions.cc:745
+#: ../actions.cc:752
 msgid "Record a New Stroke"
 msgstr "Eine neue Geste aufnehmen"
 
-#: ../actions.cc:746
+#: ../actions.cc:753
 msgid ""
 "The next stroke will be associated with the action \"%1\".  You can draw it "
 "anywhere on the screen (except for the two buttons below)."
@@ -315,27 +315,27 @@ msgstr ""
 "an beliebiger Position auf dem Bildschirm (mit Ausnahme der beiden "
 "Schaltfl�chen) erstellen."
 
-#: ../actions.cc:831
+#: ../actions.cc:838
 msgid "Gesture %1"
 msgstr "Geste %1"
 
-#: ../actions.cc:946
+#: ../actions.cc:953
 msgid "No Modifiers"
 msgstr "Keine Modifier"
 
-#: ../actions.cc:954
+#: ../actions.cc:961
 msgid "(Instantly) "
 msgstr "(Sofort) "
 
-#: ../actions.cc:956
+#: ../actions.cc:963
 msgid "(Click & Hold) "
 msgstr "(Click & Hold) "
 
-#: ../actions.cc:958
+#: ../actions.cc:965
 msgid "Any Modifier"
 msgstr "Beliebiger Modfier"
 
-#: ../actions.cc:966
+#: ../actions.cc:973
 msgid " + Scroll"
 msgstr " + Scrollen"
 
@@ -374,224 +374,220 @@ msgid "Connection to DBus failed"
 msgstr "Verbindung zum DBus fehlgeschlagen"
 
 #: ../gui.glade.h:1
-msgid "_Delete Current"
-msgstr "Geste l�schen"
-
-#: ../gui.glade.h:2
-msgid "_Default"
-msgstr "Standard"
-
-#: ../gui.glade.h:3
-msgid "Timeout"
-msgstr "Timeout"
-
-#: ../gui.glade.h:4
-msgid "Instant Gestures"
-msgstr "Sofortige Gesten"
-
-#: ../gui.glade.h:5
-msgid "Click & Hold"
-msgstr "Click & Hold"
-
-#: ../gui.glade.h:6
-msgid "_Control"
-msgstr "Strg"
-
-#: ../gui.glade.h:7
-msgid "_Shift"
-msgstr "Umschalt"
-
-#: ../gui.glade.h:8
-msgid "_Alt"
-msgstr "Alt"
-
-#: ../gui.glade.h:9
-msgid "S_uper"
-msgstr "Super"
-
-#: ../gui.glade.h:10
-msgid "An_y Modifier"
-msgstr "Beliebiger Modifier"
-
-#: ../gui.glade.h:11
-msgid "Alternatively, you may select button and modifiers below."
-msgstr ""
-"Alternativ k�nnen sie Maustaste und Modifiers weiter unten ausw�hlen."
-
-#: ../gui.glade.h:12
 msgid "Show deleted rows"
 msgstr "Zeige gel�schte Zeilen"
 
-#: ../gui.glade.h:13
+#: ../gui.glade.h:2
 msgid "Add Application"
 msgstr "Anwendung hinzuf�gen"
 
-#: ../gui.glade.h:14
+#: ../gui.glade.h:3
 msgid "Remove Application/Group"
 msgstr "Entferne Anwendung/Gruppe"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:4
 msgid "Add Group"
 msgstr "Gruppe hinzuf�gen"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:5
 msgid "Reset Action(s)"
 msgstr "Aktion(en) zur�cksetzen"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:6
 msgid "Applications"
 msgstr "Anwendungen"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:7
 msgid "_Record Stroke"
 msgstr "Geste aufnehmen"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:8
 msgid "_Add Action"
 msgstr "Aktion hinzuf�gen"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:9
 msgid "_Delete Action(s)"
 msgstr "Aktion(en) l�schen"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:10
 msgid "_Hide"
 msgstr "Verstecken"
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:12
 msgid "_Gesture Button"
 msgstr "Gesten-Maustaste"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:13
 msgid "Additional Buttons"
 msgstr "Zus�tzliche Maustasten"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:15
 msgid "Initial Timeout (ms)"
 msgstr "Anf�ngliches Timeout (ms)"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:16
 msgid "     Timeout (ms)"
 msgstr "     Timeout (ms)"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:17
 msgid "<b>Behavior</b>"
 msgstr "<b>Verhalten</b>"
 
-#: ../gui.glade.h:29
+#: ../gui.glade.h:18
 msgid "Method to show gestures"
 msgstr "Methode zum Anzeigen der Gesten"
 
-#: ../gui.glade.h:30
+#: ../gui.glade.h:19
 msgid "Color"
 msgstr "Farbe"
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:20
 msgid "Width"
 msgstr "Breite"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:21
 msgid "Show popups ("
 msgstr "Popus anzeigen ("
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:22
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:23
 msgid "Show tray icon"
 msgstr "Zeige Tray-Symbol"
 
-#: ../gui.glade.h:35
-msgid "Show last gesture in tray"
-msgstr "Zeige die letzte Geste im Tray"
-
-#: ../gui.glade.h:36
+#: ../gui.glade.h:24
 msgid "Autostart easystroke"
 msgstr "Automatisch starten"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:25
 msgid "<b>Appearance</b>"
 msgstr "<b>Erscheinung</b>"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:26
 msgid "<b>Exceptions</b>"
 msgstr "<b>Ausnahmen</b>"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:27
 msgid "_Add Exception"
 msgstr "Ausnahme hinzuf�gen"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:28
 msgid "_Remove Exception"
 msgstr "Ausnahme Entfernen"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:29
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:30
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:31
 msgid "Timeout Gestures"
 msgstr "Timeout-Gesten"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:32
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Ignoriere die Mausbewegung bei Advanced Gestures"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:33
 msgid "(See Documentation)"
 msgstr "(Siehe die Dokumentation)"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:34
 msgid "Show popups on advanced gestures"
 msgstr "Popups bei Advanced Gestures anzeigen"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:35
 msgid "Show OSD"
 msgstr "OSD anzeigen"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:36
 msgid "Invert Scroll Direction"
 msgstr "Scroll-Richtung invertieren"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:37
 msgid "Scroll Speed"
 msgstr "Scrollgeschwindigkeit"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:38
 msgid "Move the cursor back to the original position after each gesture"
 msgstr ""
 "Bewegen Sie den Mauszeiger nach einer Geste zur�ck in die Ausgangsposition"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:39
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 "Bleibe im 'Scrollen' oder 'Ignorieren' Modus solange der Stift in Reichweite "
 "ist"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:40
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Tablet-Optionen</b>"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:41
 msgid "<b>Devices</b>"
 msgstr "<b>Ger�te</b>"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:42
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:43
 msgid "_Matrix"
 msgstr "Matrix"
 
-#: ../gui.glade.h:56
+#: ../gui.glade.h:44
 msgid "_History"
 msgstr "Verlauf"
+
+#: ../gui.glade.h:45
+msgid "_Delete Current"
+msgstr "Geste l�schen"
+
+#: ../gui.glade.h:46
+msgid "_Default"
+msgstr "Standard"
+
+#: ../gui.glade.h:47
+msgid "Timeout"
+msgstr "Timeout"
+
+#: ../gui.glade.h:48
+msgid "Instant Gestures"
+msgstr "Sofortige Gesten"
+
+#: ../gui.glade.h:49
+msgid "Click & Hold"
+msgstr "Click & Hold"
+
+#: ../gui.glade.h:50
+msgid "An_y Modifier"
+msgstr "Beliebiger Modifier"
+
+#: ../gui.glade.h:51
+msgid "_Alt"
+msgstr "Alt"
+
+#: ../gui.glade.h:52
+msgid "S_uper"
+msgstr "Super"
+
+#: ../gui.glade.h:53
+msgid "_Control"
+msgstr "Strg"
+
+#: ../gui.glade.h:54
+msgid "_Shift"
+msgstr "Umschalt"
+
+#: ../gui.glade.h:55
+msgid "Alternatively, you may select button and modifiers below."
+msgstr ""
+"Alternativ k�nnen sie Maustaste und Modifiers weiter unten ausw�hlen."
 
 #: ../easystroke.desktop.in.h:1
 msgid "Easystroke Gesture Recognition"
@@ -608,6 +604,9 @@ msgstr "Aktivieren"
 #: ../easystroke.desktop.in.h:5
 msgid "Disable"
 msgstr "Deaktivieren"
+
+#~ msgid "Show last gesture in tray"
+#~ msgstr "Zeige die letzte Geste im Tray"
 
 #~ msgid "Error: can't execute command \"%s\": fork() failed\n"
 #~ msgstr ""

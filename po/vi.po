@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-26 20:48+0800\n"
+"POT-Creation-Date: 2023-08-09 14:46+0800\n"
 "PO-Revision-Date: 2010-09-04 14:46+0000\n"
 "Last-Translator: Van Diep Duong <Unknown>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
@@ -31,100 +31,100 @@ msgstr "Tên"
 msgid "Score"
 msgstr "Thành công"
 
-#: ../win.cc:180
+#: ../win.cc:181
 msgid "D_isabled"
 msgstr "Tắ_t"
 
-#: ../win.cc:304
+#: ../win.cc:278
 msgid "<unnamed>"
 msgstr ""
 
-#: ../composite.cc:30
+#: ../composite.cc:32
 msgid "'composite' not available"
 msgstr "'kết hợp' không có sẵn"
 
-#: ../prefs.cc:191 ../actiondb.cc:141
+#: ../prefs.cc:192 ../actiondb.cc:141
 msgid "None"
 msgstr "Không chọn"
 
-#: ../prefs.cc:192 ../prefs.cc:202 ../prefs.cc:211 ../actiondb.cc:155
+#: ../prefs.cc:193 ../prefs.cc:203 ../prefs.cc:212 ../actiondb.cc:155
 #: ../actiondb.cc:179
 msgid "Default"
 msgstr "Mặc định"
 
-#: ../prefs.cc:193
+#: ../prefs.cc:194
 msgid "XShape"
 msgstr "XShape"
 
-#: ../prefs.cc:194
+#: ../prefs.cc:195
 msgid "Annotate (compiz)"
 msgstr "Annotate (compiz)"
 
-#: ../prefs.cc:195
+#: ../prefs.cc:196
 msgid "Fire (compiz)"
 msgstr "Fire (compiz)"
 
-#: ../prefs.cc:196
+#: ../prefs.cc:197
 msgid "Water (compiz)"
 msgstr "Water (compiz)"
 
-#: ../prefs.cc:200 ../prefs.cc:209
+#: ../prefs.cc:201 ../prefs.cc:210
 msgid "Timeout Off"
 msgstr "Tắt"
 
-#: ../prefs.cc:201 ../prefs.cc:210
+#: ../prefs.cc:202 ../prefs.cc:211
 msgid "Conservative"
 msgstr "Vừa phải"
 
-#: ../prefs.cc:203 ../prefs.cc:212
+#: ../prefs.cc:204 ../prefs.cc:213
 msgid "Medium"
 msgstr "Trung bình"
 
-#: ../prefs.cc:204 ../prefs.cc:213
+#: ../prefs.cc:205 ../prefs.cc:214
 msgid "Aggressive"
 msgstr "Năng nổ"
 
-#: ../prefs.cc:205 ../prefs.cc:214
+#: ../prefs.cc:206 ../prefs.cc:215
 msgid "Flick"
 msgstr "Vút nhẹ"
 
-#: ../prefs.cc:215
+#: ../prefs.cc:216
 msgid "Custom"
 msgstr "Tuỳ chọn"
 
-#: ../prefs.cc:351
+#: ../prefs.cc:354
 msgid "Application (WM__CLASS)"
 msgstr "Ứng dụng (WM_CLASS)"
 
-#: ../prefs.cc:356 ../prefs.cc:403 ../actions.cc:76
+#: ../prefs.cc:359 ../prefs.cc:406 ../actions.cc:76
 msgid "Button"
 msgstr "Nút bấm"
 
-#: ../prefs.cc:368 ../main.cc:372
+#: ../prefs.cc:371 ../main.cc:372
 msgid "Enabled"
 msgstr "Bật"
 
-#: ../prefs.cc:369
+#: ../prefs.cc:372
 msgid "Device"
 msgstr "Thiết bị"
 
-#: ../prefs.cc:376 ../prefs.cc:448
+#: ../prefs.cc:379 ../prefs.cc:451
 msgid "<unchanged>"
 msgstr ""
 
-#: ../prefs.cc:390 ../gui.glade.h:25
+#: ../prefs.cc:393 ../gui.glade.h:14
 msgid "Timeout profile"
 msgstr "Mô tả timeout"
 
-#: ../prefs.cc:421 ../prefs.cc:725 ../prefs.cc:751
+#: ../prefs.cc:424 ../prefs.cc:728 ../prefs.cc:754
 msgid "<App disabled>"
 msgstr "<Tắt>"
 
-#: ../prefs.cc:535
+#: ../prefs.cc:538
 msgid "Select a Mouse or Pen Button"
 msgstr "Chọn nút bấm chuột hoặc bút"
 
-#: ../prefs.cc:536
+#: ../prefs.cc:539
 msgid ""
 "Please place your mouse or pen in the box below and press the button that "
 "you want to select.  You can also hold down additional modifiers."
@@ -132,11 +132,11 @@ msgstr ""
 "Xin hãy đặt bút hay chuột của bạn vào hộp dưới đây và bấm vào nút mà bạn "
 "muốn chọn. Bạn cũng có thể giữ thêm phím bổ trợ."
 
-#: ../prefs.cc:556 ../actions.cc:961
+#: ../prefs.cc:559 ../actions.cc:968
 msgid "Button %1"
 msgstr "Nút %1"
 
-#: ../handler.cc:342 ../main.cc:84
+#: ../main.cc:84 ../handler.cc:344
 #, c-format
 msgid "Error: %s\n"
 msgstr "Lỗi: %s\n"
@@ -181,12 +181,12 @@ msgstr "Lỗi: Không thể tạo thư mục cấu hình \"%s\"\n"
 msgid "Error: \"%s\" is not a directory\n"
 msgstr "Lỗi: \"%s\" không là một đường dẫn\n"
 
-#: ../prefdb.cc:154
+#: ../prefdb.cc:153
 #, c-format
 msgid "Error: Couldn't save preferences: %s.\n"
 msgstr "Lỗi: Không thể lưu các tùy chọn: %s.\n"
 
-#: ../prefdb.cc:158 ../actiondb.cc:230
+#: ../prefdb.cc:157 ../actiondb.cc:230
 msgid ""
 "Couldn't save %1.  Your changes will be lost.  Make sure that \"%2\" is a "
 "directory and that you have write access to it.  You can change the "
@@ -196,11 +196,11 @@ msgstr ""
 "là một thư mục và bạn đã viết truy cập vào nó. Bạn có thể thay đổi thư mục "
 "cấu hình bằng cách sử dụng các tùy chọn dòng lệnh -c hay --config-dir."
 
-#: ../prefdb.cc:161
+#: ../prefdb.cc:160
 msgid "preferences"
 msgstr "tuỳ chọn"
 
-#: ../prefdb.cc:188
+#: ../prefdb.cc:187
 #, c-format
 msgid "Error: Couldn't read preferences.\n"
 msgstr "Lỗi: Không thể đọc các tùy chọn\n"
@@ -217,11 +217,11 @@ msgstr "Phím"
 msgid "Text"
 msgstr "Văn bản"
 
-#: ../actions.cc:74 ../actions.cc:968
+#: ../actions.cc:74 ../actions.cc:975
 msgid "Scroll"
 msgstr "Cuộn"
 
-#: ../actions.cc:75 ../actions.cc:975
+#: ../actions.cc:75 ../actions.cc:982
 msgid "Ignore"
 msgstr "Bỏ qua"
 
@@ -241,7 +241,7 @@ msgstr "Chi tiết"
 msgid "Application"
 msgstr "Ứng dụng"
 
-#: ../actions.cc:229 ../gui.glade.h:22
+#: ../actions.cc:229 ../gui.glade.h:11
 msgid "Actions"
 msgstr "Thao tác"
 
@@ -259,36 +259,36 @@ msgid "Delete an Action"
 msgid_plural "Delete Actions"
 msgstr[0] "Xóa một thao tác"
 
-#: ../actions.cc:559
+#: ../actions.cc:566
 msgid "%1 \"%2\" (containing %3 %4) is about to be deleted."
 msgstr "%1 \"%2\" (bao gồm %3 %4) sắp được xóa"
 
-#: ../actions.cc:560
+#: ../actions.cc:567
 msgid "The application"
 msgstr "Ứng dụng"
 
-#: ../actions.cc:560
+#: ../actions.cc:567
 msgid "The group"
 msgstr "Nhóm"
 
-#: ../actions.cc:563
+#: ../actions.cc:570
 msgid "action"
 msgid_plural "actions"
 msgstr[0] "Thao tác"
 
-#: ../actions.cc:564
+#: ../actions.cc:571
 msgid "Delete an Application"
 msgstr "Xóa một ứng dụng"
 
-#: ../actions.cc:564
+#: ../actions.cc:571
 msgid "Delete an Application Group"
 msgstr "Xóa một nhóm ứng dụng"
 
-#: ../actions.cc:594
+#: ../actions.cc:601
 msgid "Group"
 msgstr "Nhóm"
 
-#: ../actions.cc:712
+#: ../actions.cc:719
 msgid ""
 "You are about to bind an action to a single click.  This might make it "
 "difficult to use Button %1 in the future.  Are you sure you want to continue?"
@@ -297,11 +297,11 @@ msgstr ""
 "làm cho nó khó sử dụng Nút 1% trong tương lai. Bạn có chắc bạn muốn tiếp tục "
 "không?"
 
-#: ../actions.cc:745
+#: ../actions.cc:752
 msgid "Record a New Stroke"
 msgstr "Ghi lại một nét vẽ mới"
 
-#: ../actions.cc:746
+#: ../actions.cc:753
 msgid ""
 "The next stroke will be associated with the action \"%1\".  You can draw it "
 "anywhere on the screen (except for the two buttons below)."
@@ -309,27 +309,27 @@ msgstr ""
 "Nét vẽ tiếp theo sẽ được kết hợp với thao tác \"%1\". Bạn có thể vẽ nó bất "
 "kỳ vị trí nào trên màn hình (ngoại trừ hai nút dưới đây)"
 
-#: ../actions.cc:831
+#: ../actions.cc:838
 msgid "Gesture %1"
 msgstr "Cử chỉ %1"
 
-#: ../actions.cc:946
+#: ../actions.cc:953
 msgid "No Modifiers"
 msgstr "Không bổ trợ"
 
-#: ../actions.cc:954
+#: ../actions.cc:961
 msgid "(Instantly) "
 msgstr "(Ngay lập tức) "
 
-#: ../actions.cc:956
+#: ../actions.cc:963
 msgid "(Click & Hold) "
 msgstr "(Nhắp & Giữ) "
 
-#: ../actions.cc:958
+#: ../actions.cc:965
 msgid "Any Modifier"
 msgstr "Tùy ý"
 
-#: ../actions.cc:966
+#: ../actions.cc:973
 msgid " + Scroll"
 msgstr " +Cuộn"
 
@@ -368,220 +368,216 @@ msgid "Connection to DBus failed"
 msgstr "Kết nối với DBUS thất bại"
 
 #: ../gui.glade.h:1
-msgid "_Delete Current"
-msgstr "_Xóa sự hiện hành"
-
-#: ../gui.glade.h:2
-msgid "_Default"
-msgstr "_Mặc định"
-
-#: ../gui.glade.h:3
-msgid "Timeout"
-msgstr "Timeout"
-
-#: ../gui.glade.h:4
-msgid "Instant Gestures"
-msgstr "Cử chỉ tức thời"
-
-#: ../gui.glade.h:5
-msgid "Click & Hold"
-msgstr "Nhắp & Giữ"
-
-#: ../gui.glade.h:6
-msgid "_Control"
-msgstr "_Control"
-
-#: ../gui.glade.h:7
-msgid "_Shift"
-msgstr "_Shift"
-
-#: ../gui.glade.h:8
-msgid "_Alt"
-msgstr "_Alt"
-
-#: ../gui.glade.h:9
-msgid "S_uper"
-msgstr "S_uper"
-
-#: ../gui.glade.h:10
-msgid "An_y Modifier"
-msgstr "Tùy ý"
-
-#: ../gui.glade.h:11
-msgid "Alternatively, you may select button and modifiers below."
-msgstr "Ngoài ra, bạn có thể chọn nút bấm và nút bổ trợ dưới đây."
-
-#: ../gui.glade.h:12
 msgid "Show deleted rows"
 msgstr "Hiện hàng đã xóa"
 
-#: ../gui.glade.h:13
+#: ../gui.glade.h:2
 msgid "Add Application"
 msgstr "Thêm ứng dụng"
 
-#: ../gui.glade.h:14
+#: ../gui.glade.h:3
 msgid "Remove Application/Group"
 msgstr "Hủy bỏ Ứng dụng/Nhóm"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:4
 msgid "Add Group"
 msgstr "Thêm nhóm"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:5
 msgid "Reset Action(s)"
 msgstr "Thiết lập lại thao tác"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:6
 msgid "Applications"
 msgstr "Ứng dụng"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:7
 msgid "_Record Stroke"
 msgstr "_Ghi nét vẽ"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:8
 msgid "_Add Action"
 msgstr "_Thêm thao tác"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:9
 msgid "_Delete Action(s)"
 msgstr "_Xóa thao tác"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:10
 msgid "_Hide"
 msgstr "Ẩ_n"
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:12
 msgid "_Gesture Button"
 msgstr "_Nút bấm"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:13
 msgid "Additional Buttons"
 msgstr "Thêm nút bấm"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:15
 msgid "Initial Timeout (ms)"
 msgstr "Thời gian trễ ban đầu (ms)"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:16
 msgid "     Timeout (ms)"
 msgstr "     Timeout (ms)"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:17
 msgid "<b>Behavior</b>"
 msgstr "<b>Chế độ</b>"
 
-#: ../gui.glade.h:29
+#: ../gui.glade.h:18
 msgid "Method to show gestures"
 msgstr "Cách thể hiện cử chỉ"
 
-#: ../gui.glade.h:30
+#: ../gui.glade.h:19
 msgid "Color"
 msgstr "Màu"
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:20
 msgid "Width"
 msgstr "Độ rộng"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:21
 msgid "Show popups ("
 msgstr "Hiển thị popup"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:22
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:23
 msgid "Show tray icon"
 msgstr "Hiện biểu tượng trên khay"
 
-#: ../gui.glade.h:35
-msgid "Show last gesture in tray"
-msgstr "Hiện cử chỉ mới nhất trong khay"
-
-#: ../gui.glade.h:36
+#: ../gui.glade.h:24
 msgid "Autostart easystroke"
 msgstr "Easystroke tự khởi động"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:25
 msgid "<b>Appearance</b>"
 msgstr "<b>Diện mạo</b>"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:26
 msgid "<b>Exceptions</b>"
 msgstr "<b>Ngoại lệ</b>"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:27
 msgid "_Add Exception"
 msgstr "_Thêm ngoại lệ"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:28
 msgid "_Remove Exception"
 msgstr "_Xóa ngoại trừ"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:29
 msgid "Preferences"
 msgstr "Tùy chỉnh"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:30
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:31
 msgid "Timeout Gestures"
 msgstr "Timeout Gestures"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:32
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Bỏ qua các nét vẽ dẫn đến cử chỉ cao cấp"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:33
 msgid "(See Documentation)"
 msgstr "(Xem tài liệu)"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:34
 msgid "Show popups on advanced gestures"
 msgstr "Hiển thì popup trong các cử chỉ nâng cao"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:35
 msgid "Show OSD"
 msgstr "Hiện OSD"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:36
 msgid "Invert Scroll Direction"
 msgstr "Đảo ngược hướng cuộn"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:37
 msgid "Scroll Speed"
 msgstr "Tốc độ cuộn"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:38
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "Di chuyển con trỏ trở lại vị trí ban đầu sau mỗi cử chỉ"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:39
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr "Trong chế độ  'cuộn' và 'bỏ qua' miễn là bút vẽ ở trong phạm vi"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:40
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Tùy chọn Tablet PC</b>"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:41
 msgid "<b>Devices</b>"
 msgstr "<b>Thiết bị</b>"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:42
 msgid "Advanced"
 msgstr "Nâng cao"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:43
 msgid "_Matrix"
 msgstr "_Bảng"
 
-#: ../gui.glade.h:56
+#: ../gui.glade.h:44
 msgid "_History"
 msgstr "_Lược sử"
+
+#: ../gui.glade.h:45
+msgid "_Delete Current"
+msgstr "_Xóa sự hiện hành"
+
+#: ../gui.glade.h:46
+msgid "_Default"
+msgstr "_Mặc định"
+
+#: ../gui.glade.h:47
+msgid "Timeout"
+msgstr "Timeout"
+
+#: ../gui.glade.h:48
+msgid "Instant Gestures"
+msgstr "Cử chỉ tức thời"
+
+#: ../gui.glade.h:49
+msgid "Click & Hold"
+msgstr "Nhắp & Giữ"
+
+#: ../gui.glade.h:50
+msgid "An_y Modifier"
+msgstr "Tùy ý"
+
+#: ../gui.glade.h:51
+msgid "_Alt"
+msgstr "_Alt"
+
+#: ../gui.glade.h:52
+msgid "S_uper"
+msgstr "S_uper"
+
+#: ../gui.glade.h:53
+msgid "_Control"
+msgstr "_Control"
+
+#: ../gui.glade.h:54
+msgid "_Shift"
+msgstr "_Shift"
+
+#: ../gui.glade.h:55
+msgid "Alternatively, you may select button and modifiers below."
+msgstr "Ngoài ra, bạn có thể chọn nút bấm và nút bổ trợ dưới đây."
 
 #: ../easystroke.desktop.in.h:1
 msgid "Easystroke Gesture Recognition"
@@ -598,6 +594,9 @@ msgstr ""
 #: ../easystroke.desktop.in.h:5
 msgid "Disable"
 msgstr ""
+
+#~ msgid "Show last gesture in tray"
+#~ msgstr "Hiện cử chỉ mới nhất trong khay"
 
 #~ msgid "Error: can't execute command \"%s\": fork() failed\n"
 #~ msgstr "Lỗi: \"%s\" không thể thực hiện\n"
