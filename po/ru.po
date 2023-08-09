@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 14:46+0800\n"
+"POT-Creation-Date: 2023-08-09 14:57+0800\n"
 "PO-Revision-Date: 2012-12-25 06:20+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -36,7 +36,19 @@ msgstr "Точность"
 msgid "D_isabled"
 msgstr "О_тключено"
 
-#: ../win.cc:278
+#: ../win.cc:186 ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr "Сведения о программе"
+
+#: ../win.cc:194 ../gui.glade.h:32
+msgid "Preferences"
+msgstr "Настройка"
+
+#: ../win.cc:199 ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr "Выйти"
+
+#: ../win.cc:281
 msgid "<unnamed>"
 msgstr ""
 
@@ -113,7 +125,7 @@ msgstr "Устройство"
 msgid "<unchanged>"
 msgstr ""
 
-#: ../prefs.cc:393 ../gui.glade.h:14
+#: ../prefs.cc:393 ../gui.glade.h:17
 msgid "Timeout profile"
 msgstr "Настройка задержки"
 
@@ -137,7 +149,7 @@ msgstr ""
 msgid "Button %1"
 msgstr "Кнопка %1"
 
-#: ../main.cc:84 ../handler.cc:344
+#: ../handler.cc:344 ../main.cc:84
 #, c-format
 msgid "Error: %s\n"
 msgstr "Ошибка: %s\n"
@@ -158,14 +170,6 @@ msgstr ""
 #, c-format
 msgid "Warning: No action \"%s\" defined\n"
 msgstr "Внимание: действие \"%s\" не определено\n"
-
-#: ../main.cc:373 ../easystroke.desktop.in.h:3
-msgid "About"
-msgstr "Сведения о программе"
-
-#: ../main.cc:374 ../easystroke.desktop.in.h:6
-msgid "Quit"
-msgstr "Выйти"
 
 #: ../main.cc:397
 #, c-format
@@ -419,172 +423,192 @@ msgid "_Gesture Button"
 msgstr "_Кнопка жеста"
 
 #: ../gui.glade.h:13
+msgid "_Add"
+msgstr ""
+
+#: ../gui.glade.h:14
+msgid "_Edit"
+msgstr ""
+
+#: ../gui.glade.h:15
+msgid "_Remove"
+msgstr ""
+
+#: ../gui.glade.h:16
 msgid "Additional Buttons"
 msgstr "Дополнительные кнопки"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:18
 msgid "Initial Timeout (ms)"
 msgstr "Начальная задержка (мс)"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:19
 msgid "     Timeout (ms)"
 msgstr "     Время до отключения (мс)"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:20
 msgid "<b>Behavior</b>"
 msgstr "<b>Поведение</b>"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:21
 msgid "Method to show gestures"
 msgstr "Метод показа жестов"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:22
 msgid "Color"
 msgstr "Цвет"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:23
 msgid "Width"
 msgstr "Ширина"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:24
 msgid "Show popups ("
 msgstr "Показывать всплывающие окна ("
 
-#: ../gui.glade.h:22
+#: ../gui.glade.h:25
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:26
 msgid "Show tray icon"
 msgstr "Показывать иконку в области уведомлений"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:27
 msgid "Autostart easystroke"
 msgstr "Автоматически запускать Easystroke"
 
-#: ../gui.glade.h:25
+#: ../gui.glade.h:28
 msgid "<b>Appearance</b>"
 msgstr "<b>Появление</b>"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:29
 msgid "<b>Exceptions</b>"
 msgstr "<b>Исключения</b>"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:30
 msgid "_Add Exception"
 msgstr "_Добавить исключение"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:31
 msgid "_Remove Exception"
 msgstr "_Удалить исключение"
 
-#: ../gui.glade.h:29
-msgid "Preferences"
-msgstr "Настройка"
-
-#: ../gui.glade.h:30
+#: ../gui.glade.h:33
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:34
 msgid "Timeout Gestures"
 msgstr "Жесты с задержкой"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:35
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Игнорировать движения, приводящие к расширенным жестам"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:36
 msgid "(See Documentation)"
 msgstr "(см. документацию)"
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:37
 msgid "Show popups on advanced gestures"
 msgstr "Показывать всплывающие окна для расширенных жестов"
 
-#: ../gui.glade.h:35
+#: ../gui.glade.h:38
 msgid "Show OSD"
 msgstr "Показывать OSD"
 
-#: ../gui.glade.h:36
+#: ../gui.glade.h:39
 msgid "Invert Scroll Direction"
 msgstr "Обратить направление прокрутки"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:40
 msgid "Scroll Speed"
 msgstr "Скорость прокрутки"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:41
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "Возвращать курсор в исходное положение после каждого жеста"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:42
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 "Пребывать в режиме прокрутки или игнора до тех пор, пока перо находится в "
 "диапазоне"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:43
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Настройка планшета</b>"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:44
 msgid "<b>Devices</b>"
 msgstr "<b>Устройства</b>"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:45
 msgid "Advanced"
 msgstr "Расширенные"
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:46
 msgid "_Matrix"
 msgstr "_Матрица"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:47
 msgid "_History"
 msgstr "_История"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:48
+msgid "Delete"
+msgstr ""
+
+#: ../gui.glade.h:49
+msgid "_Cancel"
+msgstr ""
+
+#: ../gui.glade.h:50
 msgid "_Delete Current"
 msgstr "_Удалить текущее"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:51
+msgid "_OK"
+msgstr ""
+
+#: ../gui.glade.h:52
 msgid "_Default"
 msgstr "_По умолчанию"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:53
 msgid "Timeout"
 msgstr "Задержка"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:54
 msgid "Instant Gestures"
 msgstr "Мгновенные жесты"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:55
 msgid "Click & Hold"
 msgstr "Нажать и удерживать"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:56
 msgid "An_y Modifier"
 msgstr "Л_юбой модификатор"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:57
 msgid "_Alt"
 msgstr "_Alt"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:58
 msgid "S_uper"
 msgstr "S_uper"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:59
 msgid "_Control"
 msgstr "_Control"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:60
 msgid "_Shift"
 msgstr "_Shift"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:61
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "Иначе, вы должны выбрать кнопку и модификаторы ниже."
 

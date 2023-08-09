@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 14:46+0800\n"
+"POT-Creation-Date: 2023-08-09 14:58+0800\n"
 "PO-Revision-Date: 2012-06-28 13:01+0000\n"
 "Last-Translator: @l3x1k0 <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -35,7 +35,19 @@ msgstr "Σκορ"
 msgid "D_isabled"
 msgstr "_Απενεργοποίηση"
 
-#: ../win.cc:278
+#: ../win.cc:186 ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr ""
+
+#: ../win.cc:194 ../gui.glade.h:32
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../win.cc:199 ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr ""
+
+#: ../win.cc:281
 msgid "<unnamed>"
 msgstr ""
 
@@ -112,7 +124,7 @@ msgstr "Συσκευή"
 msgid "<unchanged>"
 msgstr "<αμετάβλητο>"
 
-#: ../prefs.cc:393 ../gui.glade.h:14
+#: ../prefs.cc:393 ../gui.glade.h:17
 msgid "Timeout profile"
 msgstr "Timeout προφίλ"
 
@@ -137,7 +149,7 @@ msgstr ""
 msgid "Button %1"
 msgstr "Κουμπί %1"
 
-#: ../main.cc:84 ../handler.cc:344
+#: ../handler.cc:344 ../main.cc:84
 #, c-format
 msgid "Error: %s\n"
 msgstr "Σφάλμα: %s\n"
@@ -158,14 +170,6 @@ msgstr ""
 #, c-format
 msgid "Warning: No action \"%s\" defined\n"
 msgstr "Προειδοποίηση: Καμία δράση \"%s\" δεν έχει ορισθεί\n"
-
-#: ../main.cc:373 ../easystroke.desktop.in.h:3
-msgid "About"
-msgstr ""
-
-#: ../main.cc:374 ../easystroke.desktop.in.h:6
-msgid "Quit"
-msgstr ""
 
 #: ../main.cc:397
 #, c-format
@@ -417,173 +421,193 @@ msgid "_Gesture Button"
 msgstr "Κουμπί _Χειρονομίας"
 
 #: ../gui.glade.h:13
+msgid "_Add"
+msgstr ""
+
+#: ../gui.glade.h:14
+msgid "_Edit"
+msgstr ""
+
+#: ../gui.glade.h:15
+msgid "_Remove"
+msgstr ""
+
+#: ../gui.glade.h:16
 msgid "Additional Buttons"
 msgstr "Πρόσθετα Κουμπιά"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:18
 msgid "Initial Timeout (ms)"
 msgstr "Αρχικό Όριο Χρόνου (ms)"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:19
 msgid "     Timeout (ms)"
 msgstr "     Timeout (ms)"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:20
 msgid "<b>Behavior</b>"
 msgstr "<b>Συμπεριφορά</b>"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:21
 msgid "Method to show gestures"
 msgstr "Μέθοδος εμφάνισης χειρονομιών"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:22
 msgid "Color"
 msgstr "Χρώμα"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:23
 msgid "Width"
 msgstr "Πλάτος"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:24
 msgid "Show popups ("
 msgstr "Εμφάνιση popups ("
 
-#: ../gui.glade.h:22
+#: ../gui.glade.h:25
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:26
 msgid "Show tray icon"
 msgstr "Εμφάνιση εικονιδίου συστήματος"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:27
 msgid "Autostart easystroke"
 msgstr "Αυτόματη έναρξη easystroke"
 
-#: ../gui.glade.h:25
+#: ../gui.glade.h:28
 msgid "<b>Appearance</b>"
 msgstr "<b>Εμφάνιση</b>"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:29
 msgid "<b>Exceptions</b>"
 msgstr "<b>Εξαιρέσεις</b>"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:30
 msgid "_Add Exception"
 msgstr "_Προσθήκη Εξαίρεσης"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:31
 msgid "_Remove Exception"
 msgstr "_Αφαίρεση Εξαίρεσης"
 
-#: ../gui.glade.h:29
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
-#: ../gui.glade.h:30
+#: ../gui.glade.h:33
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:34
 msgid "Timeout Gestures"
 msgstr "Timeout χειρονομιών"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:35
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "Αγνοήστε κτυπήματε που οδηγούν σε προχωρημένες χειρονομίες"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:36
 msgid "(See Documentation)"
 msgstr "(Βλέπε Τεκμηρίωση)"
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:37
 msgid "Show popups on advanced gestures"
 msgstr "Εμφάνιση popups σε προχωρημένες χειρονομίες"
 
-#: ../gui.glade.h:35
+#: ../gui.glade.h:38
 msgid "Show OSD"
 msgstr "Εμφάνιση OSD"
 
-#: ../gui.glade.h:36
+#: ../gui.glade.h:39
 msgid "Invert Scroll Direction"
 msgstr "Αντιστροφή Διεύθυνσης Κύλισης"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:40
 msgid "Scroll Speed"
 msgstr "Ταχύτητα Κύλισης"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:41
 msgid "Move the cursor back to the original position after each gesture"
 msgstr ""
 "Μετακινήστε τον κέρσορα πίσω στην αρχική του θέση ύστερα από κάθε χειρονομία"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:42
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 "Μείνετε σε κατάσταση 'κύλιση' και 'άγνοια' μέχρι η πένα να είναι μεταξύ του "
 "εύρους"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:43
 msgid "<b>Tablet Options</b>"
 msgstr "<b>Επιλογές Πινακίδας</b>"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:44
 msgid "<b>Devices</b>"
 msgstr "<b>Συσκευές</b>"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:45
 msgid "Advanced"
 msgstr "Για προχωρημένους"
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:46
 msgid "_Matrix"
 msgstr "_Μήτρα"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:47
 msgid "_History"
 msgstr "_Ιστορικό"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:48
+msgid "Delete"
+msgstr ""
+
+#: ../gui.glade.h:49
+msgid "_Cancel"
+msgstr ""
+
+#: ../gui.glade.h:50
 msgid "_Delete Current"
 msgstr "_Διαγραφή Τρέχοντος"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:51
+msgid "_OK"
+msgstr ""
+
+#: ../gui.glade.h:52
 msgid "_Default"
 msgstr "_Προεπιλογή"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:53
 msgid "Timeout"
 msgstr "Timeout"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:54
 msgid "Instant Gestures"
 msgstr "Στιγμιαίες Χειρονομίες"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:55
 msgid "Click & Hold"
 msgstr "Κλικ & Κράτημα"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:56
 msgid "An_y Modifier"
 msgstr "Κάθ_ε Τροποποιητής"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:57
 msgid "_Alt"
 msgstr "_Alt"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:58
 msgid "S_uper"
 msgstr "S_uper"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:59
 msgid "_Control"
 msgstr "_Control"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:60
 msgid "_Shift"
 msgstr "_Shift"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:61
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "Εναλλακτικά, μπορείτε  να επιλέξετε κουμπί και τροποποιητές παρακάτω."
 

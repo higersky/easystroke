@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 14:45+0800\n"
+"POT-Creation-Date: 2023-08-09 14:57+0800\n"
 "PO-Revision-Date: 2010-05-04 06:50+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
@@ -35,7 +35,19 @@ msgstr "スコア"
 msgid "D_isabled"
 msgstr "無効(_I)"
 
-#: ../win.cc:278
+#: ../win.cc:186 ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr ""
+
+#: ../win.cc:194 ../gui.glade.h:32
+msgid "Preferences"
+msgstr "設定"
+
+#: ../win.cc:199 ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr ""
+
+#: ../win.cc:281
 msgid "<unnamed>"
 msgstr ""
 
@@ -112,7 +124,7 @@ msgstr "デバイス"
 msgid "<unchanged>"
 msgstr ""
 
-#: ../prefs.cc:393 ../gui.glade.h:14
+#: ../prefs.cc:393 ../gui.glade.h:17
 msgid "Timeout profile"
 msgstr "タイムアウトのプロファイル"
 
@@ -136,7 +148,7 @@ msgstr ""
 msgid "Button %1"
 msgstr "ボタン %1"
 
-#: ../main.cc:84 ../handler.cc:344
+#: ../handler.cc:344 ../main.cc:84
 #, c-format
 msgid "Error: %s\n"
 msgstr "エラー: %s\n"
@@ -155,14 +167,6 @@ msgstr ""
 #, c-format
 msgid "Warning: No action \"%s\" defined\n"
 msgstr "警告: アクション \"%s\" は定義されていません\n"
-
-#: ../main.cc:373 ../easystroke.desktop.in.h:3
-msgid "About"
-msgstr ""
-
-#: ../main.cc:374 ../easystroke.desktop.in.h:6
-msgid "Quit"
-msgstr ""
 
 #: ../main.cc:397
 #, c-format
@@ -411,171 +415,191 @@ msgid "_Gesture Button"
 msgstr "ジェスチャ・ボタン(_G)"
 
 #: ../gui.glade.h:13
+msgid "_Add"
+msgstr ""
+
+#: ../gui.glade.h:14
+msgid "_Edit"
+msgstr ""
+
+#: ../gui.glade.h:15
+msgid "_Remove"
+msgstr ""
+
+#: ../gui.glade.h:16
 msgid "Additional Buttons"
 msgstr "さらに追加するボタン"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:18
 msgid "Initial Timeout (ms)"
 msgstr "初期タイムアウト(ミリ秒)"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:19
 msgid "     Timeout (ms)"
 msgstr "     タイムアウト(ミリ秒)"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:20
 msgid "<b>Behavior</b>"
 msgstr "<b>動作</b>"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:21
 msgid "Method to show gestures"
 msgstr "ジェスチャを表示する方法"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:22
 msgid "Color"
 msgstr "色"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:23
 msgid "Width"
 msgstr "幅"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:24
 msgid "Show popups ("
 msgstr "ポップアップを表示 ("
 
-#: ../gui.glade.h:22
+#: ../gui.glade.h:25
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:26
 msgid "Show tray icon"
 msgstr "トレイアイコンを表示"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:27
 msgid "Autostart easystroke"
 msgstr "Easystroke を自動起動"
 
-#: ../gui.glade.h:25
+#: ../gui.glade.h:28
 msgid "<b>Appearance</b>"
 msgstr "<b>外観</b>"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:29
 msgid "<b>Exceptions</b>"
 msgstr "<b>例外</b>"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:30
 msgid "_Add Exception"
 msgstr "例外を追加(_A)"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:31
 msgid "_Remove Exception"
 msgstr "例外を削除(_R)"
 
-#: ../gui.glade.h:29
-msgid "Preferences"
-msgstr "設定"
-
-#: ../gui.glade.h:30
+#: ../gui.glade.h:33
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:34
 msgid "Timeout Gestures"
 msgstr "タイムアウト・ジェスチャ"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:35
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "高度ジェスチャに至ったストロークを無視"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:36
 msgid "(See Documentation)"
 msgstr "(説明を参照のこと)"
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:37
 msgid "Show popups on advanced gestures"
 msgstr "高度ジェスチャ時にポップアップを表示"
 
-#: ../gui.glade.h:35
+#: ../gui.glade.h:38
 msgid "Show OSD"
 msgstr "OSD を表示"
 
-#: ../gui.glade.h:36
+#: ../gui.glade.h:39
 msgid "Invert Scroll Direction"
 msgstr "スクロール方向を反転"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:40
 msgid "Scroll Speed"
 msgstr "スクロール速度"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:41
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "ジェスチャー毎後にカーソルを元の位置に戻す"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:42
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 "ペンが読取可能高さの範囲内にある限り「スクロール」や「無視」モードを保つ"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:43
 msgid "<b>Tablet Options</b>"
 msgstr "<b>タブレット・オプション</b>"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:44
 msgid "<b>Devices</b>"
 msgstr "<b>デバイス</b>"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:45
 msgid "Advanced"
 msgstr "高度設定"
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:46
 msgid "_Matrix"
 msgstr "マトリクス(_M)"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:47
 msgid "_History"
 msgstr "履歴(_H)"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:48
+msgid "Delete"
+msgstr ""
+
+#: ../gui.glade.h:49
+msgid "_Cancel"
+msgstr ""
+
+#: ../gui.glade.h:50
 msgid "_Delete Current"
 msgstr "現在の設定を削除(_D)"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:51
+msgid "_OK"
+msgstr ""
+
+#: ../gui.glade.h:52
 msgid "_Default"
 msgstr "デフォルト(_D)"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:53
 msgid "Timeout"
 msgstr "タイムアウト"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:54
 msgid "Instant Gestures"
 msgstr "インスタント・ジェスチャ"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:55
 msgid "Click & Hold"
 msgstr "クリック & ホールド"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:56
 msgid "An_y Modifier"
 msgstr "任意の修飾キー(_Y)"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:57
 msgid "_Alt"
 msgstr "_Alt"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:58
 msgid "S_uper"
 msgstr "S_uper"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:59
 msgid "_Control"
 msgstr "_Control"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:60
 msgid "_Shift"
 msgstr "_Shift"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:61
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "代わりに、ボタンや修飾キーを下から選択することもできます。"
 

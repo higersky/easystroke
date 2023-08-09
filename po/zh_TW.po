@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 14:46+0800\n"
+"POT-Creation-Date: 2023-08-09 14:58+0800\n"
 "PO-Revision-Date: 2010-08-31 15:44+0000\n"
 "Last-Translator: 于 <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
@@ -35,7 +35,19 @@ msgstr "相似度"
 msgid "D_isabled"
 msgstr "禁用(_i)"
 
-#: ../win.cc:278
+#: ../win.cc:186 ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr ""
+
+#: ../win.cc:194 ../gui.glade.h:32
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../win.cc:199 ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr ""
+
+#: ../win.cc:281
 msgid "<unnamed>"
 msgstr ""
 
@@ -112,7 +124,7 @@ msgstr "裝置"
 msgid "<unchanged>"
 msgstr ""
 
-#: ../prefs.cc:393 ../gui.glade.h:14
+#: ../prefs.cc:393 ../gui.glade.h:17
 msgid "Timeout profile"
 msgstr "逾時設定"
 
@@ -136,7 +148,7 @@ msgstr ""
 msgid "Button %1"
 msgstr "按鈕 %1"
 
-#: ../main.cc:84 ../handler.cc:344
+#: ../handler.cc:344 ../main.cc:84
 #, c-format
 msgid "Error: %s\n"
 msgstr "錯誤：%s\n"
@@ -155,14 +167,6 @@ msgstr "要重新顯示設定對話視窗，您必須為\"其它…顯示/隱藏
 #, c-format
 msgid "Warning: No action \"%s\" defined\n"
 msgstr "警告：\"%s\"動作未被定義\n"
-
-#: ../main.cc:373 ../easystroke.desktop.in.h:3
-msgid "About"
-msgstr ""
-
-#: ../main.cc:374 ../easystroke.desktop.in.h:6
-msgid "Quit"
-msgstr ""
 
 #: ../main.cc:397
 #, c-format
@@ -408,170 +412,190 @@ msgid "_Gesture Button"
 msgstr "滑鼠手勢按鈕(_G)"
 
 #: ../gui.glade.h:13
+msgid "_Add"
+msgstr ""
+
+#: ../gui.glade.h:14
+msgid "_Edit"
+msgstr ""
+
+#: ../gui.glade.h:15
+msgid "_Remove"
+msgstr ""
+
+#: ../gui.glade.h:16
 msgid "Additional Buttons"
 msgstr "額外按鈕"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:18
 msgid "Initial Timeout (ms)"
 msgstr "初始逾時值（毫秒）"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:19
 msgid "     Timeout (ms)"
 msgstr "     逾時（毫秒）"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:20
 msgid "<b>Behavior</b>"
 msgstr "<b>行為</b>"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:21
 msgid "Method to show gestures"
 msgstr "顯示手勢的方式"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:22
 msgid "Color"
 msgstr "顏色"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:23
 msgid "Width"
 msgstr "寬度"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:24
 msgid "Show popups ("
 msgstr "顯示手勢的描繪"
 
-#: ../gui.glade.h:22
+#: ../gui.glade.h:25
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:26
 msgid "Show tray icon"
 msgstr "顯示系統列圖示"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:27
 msgid "Autostart easystroke"
 msgstr "自動啟動easystroke"
 
-#: ../gui.glade.h:25
+#: ../gui.glade.h:28
 msgid "<b>Appearance</b>"
 msgstr "<b>外觀</b>"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:29
 msgid "<b>Exceptions</b>"
 msgstr "<b>例外</b>"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:30
 msgid "_Add Exception"
 msgstr "增加例外(_A)"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:31
 msgid "_Remove Exception"
 msgstr "移除例外(_R)"
 
-#: ../gui.glade.h:29
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: ../gui.glade.h:30
+#: ../gui.glade.h:33
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:34
 msgid "Timeout Gestures"
 msgstr "滑鼠手勢逾時"
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:35
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "忽略會觸發進階操作的滑鼠手勢"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:36
 msgid "(See Documentation)"
 msgstr "（檢視說明文件）"
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:37
 msgid "Show popups on advanced gestures"
 msgstr "顯示進階手勢的描繪"
 
-#: ../gui.glade.h:35
+#: ../gui.glade.h:38
 msgid "Show OSD"
 msgstr "顯示 OSD"
 
-#: ../gui.glade.h:36
+#: ../gui.glade.h:39
 msgid "Invert Scroll Direction"
 msgstr "顛倒滑動方向"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:40
 msgid "Scroll Speed"
 msgstr "滑動速度"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:41
 msgid "Move the cursor back to the original position after each gesture"
 msgstr "劃出手勢後，滑鼠回到原來位置"
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:42
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr "當觸控筆在指定範圍內，則保持滑動與忽略模式"
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:43
 msgid "<b>Tablet Options</b>"
 msgstr "<b>平版電腦選項</b>"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:44
 msgid "<b>Devices</b>"
 msgstr "<b>裝置</b>"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:45
 msgid "Advanced"
 msgstr "進階"
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:46
 msgid "_Matrix"
 msgstr "矩陣(_M)"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:47
 msgid "_History"
 msgstr "歷史(_H)"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:48
+msgid "Delete"
+msgstr ""
+
+#: ../gui.glade.h:49
+msgid "_Cancel"
+msgstr ""
+
+#: ../gui.glade.h:50
 msgid "_Delete Current"
 msgstr "刪除目前設定(_D)"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:51
+msgid "_OK"
+msgstr ""
+
+#: ../gui.glade.h:52
 msgid "_Default"
 msgstr "預設(_D)"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:53
 msgid "Timeout"
 msgstr "逾時"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:54
 msgid "Instant Gestures"
 msgstr "滑鼠手勢"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:55
 msgid "Click & Hold"
 msgstr "按住不放"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:56
 msgid "An_y Modifier"
 msgstr "任意組合鍵"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:57
 msgid "_Alt"
 msgstr "_Alt"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:58
 msgid "S_uper"
 msgstr "S_uper"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:59
 msgid "_Control"
 msgstr "_Control"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:60
 msgid "_Shift"
 msgstr "_Shift"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:61
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "或者你也可以選擇以下的按鈕和組合鍵"
 

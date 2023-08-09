@@ -182,18 +182,21 @@ Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Pr
 	menu.append(menu_disabled);
 	menu_check = new MenuCheck(disabled, &menu_disabled);
 
-	WIDGET(Gtk::ImageMenuItem, menu_about, Gtk::Stock::ABOUT);
+	WIDGET(Gtk::MenuItem, menu_about);
+	menu_about.set_label(_("About"));
 	menu.append(menu_about);
 	menu_about.signal_activate().connect(sigc::mem_fun(*this, &Win::show_about));
 
 	WIDGET(Gtk::SeparatorMenuItem, menu_sep);
 	menu.append(menu_sep);
 
-	WIDGET(Gtk::ImageMenuItem, menu_preferences, Gtk::Stock::PREFERENCES);
+	WIDGET(Gtk::MenuItem, menu_preferences);
+	menu_preferences.set_label(_("Preferences"));
 	menu.append(menu_preferences);
 	menu_preferences.signal_activate().connect(sigc::mem_fun(*this, &Win::show));
 
-	WIDGET(Gtk::ImageMenuItem, menu_quit, Gtk::Stock::QUIT);
+	WIDGET(Gtk::ImageMenuItem, menu_quit);
+	menu_quit.set_label(_("Quit"));
 	menu.append(menu_quit);
 	menu_quit.signal_activate().connect(sigc::ptr_fun(&quit));
 

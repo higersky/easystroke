@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: easystroke\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 14:46+0800\n"
+"POT-Creation-Date: 2023-08-09 14:57+0800\n"
 "PO-Revision-Date: 2009-11-19 08:54+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -35,7 +35,19 @@ msgstr "ניקוד"
 msgid "D_isabled"
 msgstr "מ_נוטרל"
 
-#: ../win.cc:278
+#: ../win.cc:186 ../main.cc:373 ../easystroke.desktop.in.h:3
+msgid "About"
+msgstr ""
+
+#: ../win.cc:194 ../gui.glade.h:32
+msgid "Preferences"
+msgstr "העדפות"
+
+#: ../win.cc:199 ../main.cc:374 ../easystroke.desktop.in.h:6
+msgid "Quit"
+msgstr ""
+
+#: ../win.cc:281
 msgid "<unnamed>"
 msgstr ""
 
@@ -112,7 +124,7 @@ msgstr "התקן"
 msgid "<unchanged>"
 msgstr ""
 
-#: ../prefs.cc:393 ../gui.glade.h:14
+#: ../prefs.cc:393 ../gui.glade.h:17
 msgid "Timeout profile"
 msgstr ""
 
@@ -136,7 +148,7 @@ msgstr ""
 msgid "Button %1"
 msgstr "לחצן %1"
 
-#: ../main.cc:84 ../handler.cc:344
+#: ../handler.cc:344 ../main.cc:84
 #, c-format
 msgid "Error: %s\n"
 msgstr "שגיאה: %s\n"
@@ -156,14 +168,6 @@ msgstr ""
 #, c-format
 msgid "Warning: No action \"%s\" defined\n"
 msgstr "אזהרה: לא הוגדרה פעולה \"%s\"\n"
-
-#: ../main.cc:373 ../easystroke.desktop.in.h:3
-msgid "About"
-msgstr ""
-
-#: ../main.cc:374 ../easystroke.desktop.in.h:6
-msgid "Quit"
-msgstr ""
 
 #: ../main.cc:397
 #, c-format
@@ -410,170 +414,190 @@ msgid "_Gesture Button"
 msgstr "לחצן ה_מחווה"
 
 #: ../gui.glade.h:13
+msgid "_Add"
+msgstr ""
+
+#: ../gui.glade.h:14
+msgid "_Edit"
+msgstr ""
+
+#: ../gui.glade.h:15
+msgid "_Remove"
+msgstr ""
+
+#: ../gui.glade.h:16
 msgid "Additional Buttons"
 msgstr "לחצנים נוספים"
 
-#: ../gui.glade.h:15
+#: ../gui.glade.h:18
 msgid "Initial Timeout (ms)"
 msgstr "תום זמן התחלתי (מילישניות)"
 
-#: ../gui.glade.h:16
+#: ../gui.glade.h:19
 msgid "     Timeout (ms)"
 msgstr "     תום הזמן (מילישניות)"
 
-#: ../gui.glade.h:17
+#: ../gui.glade.h:20
 msgid "<b>Behavior</b>"
 msgstr "<b>התנהגות</b>"
 
-#: ../gui.glade.h:18
+#: ../gui.glade.h:21
 msgid "Method to show gestures"
 msgstr "השיטה להצגת המחוות"
 
-#: ../gui.glade.h:19
+#: ../gui.glade.h:22
 msgid "Color"
 msgstr "צבע"
 
-#: ../gui.glade.h:20
+#: ../gui.glade.h:23
 msgid "Width"
 msgstr "רוחב"
 
-#: ../gui.glade.h:21
+#: ../gui.glade.h:24
 msgid "Show popups ("
 msgstr "הצגת חלוניות מוקפצות ("
 
-#: ../gui.glade.h:22
+#: ../gui.glade.h:25
 msgid "to the right of the cursor)"
 msgstr ""
 
-#: ../gui.glade.h:23
+#: ../gui.glade.h:26
 msgid "Show tray icon"
 msgstr "הצגת סמל באזור הדיווחים"
 
-#: ../gui.glade.h:24
+#: ../gui.glade.h:27
 msgid "Autostart easystroke"
 msgstr "הפעלה אוטומטית של easystroke"
 
-#: ../gui.glade.h:25
+#: ../gui.glade.h:28
 msgid "<b>Appearance</b>"
 msgstr "<b>מראה</b>"
 
-#: ../gui.glade.h:26
+#: ../gui.glade.h:29
 msgid "<b>Exceptions</b>"
 msgstr "<b>חריגות</b>"
 
-#: ../gui.glade.h:27
+#: ../gui.glade.h:30
 msgid "_Add Exception"
 msgstr "הוספת _חריגה"
 
-#: ../gui.glade.h:28
+#: ../gui.glade.h:31
 msgid "_Remove Exception"
 msgstr "הסרת ה_חריגה"
 
-#: ../gui.glade.h:29
-msgid "Preferences"
-msgstr "העדפות"
-
-#: ../gui.glade.h:30
+#: ../gui.glade.h:33
 msgid "Only enable easystroke for applications listed on 'Actions' tab"
 msgstr ""
 
-#: ../gui.glade.h:31
+#: ../gui.glade.h:34
 msgid "Timeout Gestures"
 msgstr ""
 
-#: ../gui.glade.h:32
+#: ../gui.glade.h:35
 msgid "Ignore strokes leading up to advanced gestures"
 msgstr "התעלמות מתנועות המובילות למחוות מתקדמות"
 
-#: ../gui.glade.h:33
+#: ../gui.glade.h:36
 msgid "(See Documentation)"
 msgstr "(יש לעיין בתיעוד)"
 
-#: ../gui.glade.h:34
+#: ../gui.glade.h:37
 msgid "Show popups on advanced gestures"
 msgstr "הצגת חלוניות מוקפצות עבור מחוות מתקדמות"
 
-#: ../gui.glade.h:35
+#: ../gui.glade.h:38
 msgid "Show OSD"
 msgstr "הצגת תצוגה על המסך"
 
-#: ../gui.glade.h:36
+#: ../gui.glade.h:39
 msgid "Invert Scroll Direction"
 msgstr "הפיכת כיוון הגלילה"
 
-#: ../gui.glade.h:37
+#: ../gui.glade.h:40
 msgid "Scroll Speed"
 msgstr "מהירות הגלילה"
 
-#: ../gui.glade.h:38
+#: ../gui.glade.h:41
 msgid "Move the cursor back to the original position after each gesture"
 msgstr ""
 
-#: ../gui.glade.h:39
+#: ../gui.glade.h:42
 msgid "Stay in 'scroll' and 'ignore' mode as long as the pen is within range"
 msgstr ""
 
-#: ../gui.glade.h:40
+#: ../gui.glade.h:43
 msgid "<b>Tablet Options</b>"
 msgstr "<b>אפשרויות מחשב הלוח</b>"
 
-#: ../gui.glade.h:41
+#: ../gui.glade.h:44
 msgid "<b>Devices</b>"
 msgstr "<b>התקנים</b>"
 
-#: ../gui.glade.h:42
+#: ../gui.glade.h:45
 msgid "Advanced"
 msgstr "מתקדם"
 
-#: ../gui.glade.h:43
+#: ../gui.glade.h:46
 msgid "_Matrix"
 msgstr "_מטריצה"
 
-#: ../gui.glade.h:44
+#: ../gui.glade.h:47
 msgid "_History"
 msgstr "היס_טוריה"
 
-#: ../gui.glade.h:45
+#: ../gui.glade.h:48
+msgid "Delete"
+msgstr ""
+
+#: ../gui.glade.h:49
+msgid "_Cancel"
+msgstr ""
+
+#: ../gui.glade.h:50
 msgid "_Delete Current"
 msgstr "מחיקת ה_נוכחית"
 
-#: ../gui.glade.h:46
+#: ../gui.glade.h:51
+msgid "_OK"
+msgstr ""
+
+#: ../gui.glade.h:52
 msgid "_Default"
 msgstr "_ברירת מחדל"
 
-#: ../gui.glade.h:47
+#: ../gui.glade.h:53
 msgid "Timeout"
 msgstr "תום הזמן"
 
-#: ../gui.glade.h:48
+#: ../gui.glade.h:54
 msgid "Instant Gestures"
 msgstr "מחווה מיידית"
 
-#: ../gui.glade.h:49
+#: ../gui.glade.h:55
 msgid "Click & Hold"
 msgstr "לחיצה והחזקה"
 
-#: ../gui.glade.h:50
+#: ../gui.glade.h:56
 msgid "An_y Modifier"
 msgstr "מקש ה_חלפה כלשהו"
 
-#: ../gui.glade.h:51
+#: ../gui.glade.h:57
 msgid "_Alt"
 msgstr "_Alt"
 
-#: ../gui.glade.h:52
+#: ../gui.glade.h:58
 msgid "S_uper"
 msgstr "_סופר"
 
-#: ../gui.glade.h:53
+#: ../gui.glade.h:59
 msgid "_Control"
 msgstr "_Control"
 
-#: ../gui.glade.h:54
+#: ../gui.glade.h:60
 msgid "_Shift"
 msgstr "_Shift"
 
-#: ../gui.glade.h:55
+#: ../gui.glade.h:61
 msgid "Alternatively, you may select button and modifiers below."
 msgstr "לחילופין, ניתן לבחור לחצנים ומקשי החלפה להלן."
 
