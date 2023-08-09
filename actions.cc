@@ -501,15 +501,22 @@ void Actions::on_button_delete() {
 	dialog->hide();
 	if (!ok)
 		return;
-
+	
+	std::vector<Unique*> to_delete;
 	std::vector<Gtk::TreePath> paths = tv.get_selection()->get_selected_rows();
 	for (std::vector<Gtk::TreePath>::iterator i = paths.begin(); i != paths.end(); ++i) {
 		Gtk::TreeRow row(*tm->get_iter(*i));
-		action_list->remove(row[cols.id]);
+		auto id = row[cols.id];
+		action_list->remove(id);
+		to_delete.push_back(id);
 	}
 	update_action_list();
 	update_actions();
 	update_counts();
+
+	for(auto id: to_delete) {
+		delete id;
+	}
 }
 
 void Actions::on_cell_data_apps(Gtk::CellRenderer* cell, const Gtk::TreeModel::iterator& iter) {

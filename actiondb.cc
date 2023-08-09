@@ -382,6 +382,9 @@ void ActionListDiff::handle_advanced(RStroke s, std::map<guint, RAction> &as,
 ActionListDiff::~ActionListDiff() {
 	if (app)
 		actions.apps.erase(name);
+	for(auto id: order) {
+		delete id;
+	}
 }
 
 ActionDB actions;
