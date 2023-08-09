@@ -1904,7 +1904,17 @@ Van Diep Duong (Vietnamese)</property>
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkEventBox" id="box_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">1</property>
+              </packing>
             </child>
           </object>
           <packing>
