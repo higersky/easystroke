@@ -195,7 +195,7 @@ Win::Win() : actions(std::make_shared<Actions>()), prefs_tab(std::make_shared<Pr
 	menu.append(menu_preferences);
 	menu_preferences.signal_activate().connect(sigc::mem_fun(*this, &Win::show));
 
-	WIDGET(Gtk::ImageMenuItem, menu_quit);
+	WIDGET(Gtk::MenuItem, menu_quit);
 	menu_quit.set_label(_("Quit"));
 	menu.append(menu_quit);
 	menu_quit.signal_activate().connect(sigc::ptr_fun(&quit));
